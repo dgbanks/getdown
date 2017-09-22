@@ -35,5 +35,12 @@
   "bugs": {
     "url": "https://github.com/dgbanks/getdown/issues"
   },
-  "homepage": "https://github.com/dgbanks/getdown#readme"
+  "homepage": "https://github.com/dgbanks/getdown#readme",
+  "engines": {
+    "node": "6.10.1",
+    "npm": "3.10.10"
+  },
+  "scripts": {
+    "postinstall": "webpack"
+  }
 }
