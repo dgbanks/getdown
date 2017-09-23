@@ -9,8 +9,6 @@ const App = () => (
       <h1>getdown</h1>
       <NavBarContainer />
     </header>
-    <Switch>
-    </Switch>
   </div>
 );
 
