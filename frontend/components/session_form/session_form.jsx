@@ -81,6 +81,10 @@ class SessionForm extends React.Component {
     };
   }
 
+  handleCheckbox(event) {
+    event.preventDefault();
+  }
+
   determine() {
     if (this.formType === 'signup') {
       return (
@@ -88,23 +92,24 @@ class SessionForm extends React.Component {
 
           <label> Name
             <input type='text' value={this.state.name} onChange={this.update('name')}/>
-          </label>
+          </label>  <br/>
 
           <label> Email
             <input type='text' value={this.state.email} onChange={this.update('email')}/>
-          </label>
+          </label>  <br/>
 
           <label> Password
             <input type='password' value={this.state.password} onChange={this.update('password')}/>
-          </label>
+          </label>  <br/>
 
           <label> Zip Code
             <input type='text' value={this.state.location} onChange={this.update('location')}/>
-          </label>
+          </label>  <br/>
 
-          <label> Interests
-            <input type='checkbox' name={this.state.interests} value="ice cream"/>
-          </label>
+          <label> Interests <br/>
+            <input type='checkbox' value="Ice Cream" onChange={() => this.handleCheckbox()}/>Ice Cream <br/>
+            <input type='checkbox' value="Books"/>Books <br/>
+          </label>  <br/>
 
           <input type='submit' value="SIGN UP"></input>
 
@@ -116,11 +121,11 @@ class SessionForm extends React.Component {
 
           <label> Email
             <input type='text' value={this.state.email} onChange={this.update('email')}/>
-          </label>
+          </label>  <br/>
 
           <label> Password
             <input type='password' value={this.state.password} onChange={this.update('password')}/>
-          </label>
+          </label>  <br/>
 
           <input type='submit' value="Sign In"></input>
 

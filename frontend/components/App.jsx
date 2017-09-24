@@ -6,7 +6,6 @@ import SessionFormContainer from './session_form/session_form_container';
 const App = () => (
   <div>
     <header>
-      <h1>getdown</h1>
       <NavBarContainer />
     </header>
   </div>
