@@ -88,7 +88,7 @@ class SessionForm extends React.Component {
   determine() {
     if (this.formType === 'signup') {
       return (
-        <form onSubmit={this.handleSubmit}>
+        <form className="session-form" onSubmit={this.handleSubmit}>
 
           <label> Name
             <input type='text' value={this.state.name} onChange={this.update('name')}/>
@@ -117,7 +117,7 @@ class SessionForm extends React.Component {
       );
     } else {
       return (
-        <form onSubmit={this.handleSubmit}>
+        <form className="session-form" onSubmit={this.handleSubmit}>
 
           <label> Email
             <input type='text' value={this.state.email} onChange={this.update('email')}/>
@@ -163,11 +163,11 @@ class SessionForm extends React.Component {
           onRequestClose={() => this.closeModal()}
           contentLabel="Modal"
         >
-
+        <div className="session-form-container">
           {this.determine()}
           {this.navLink()}
           {this.renderErrors()}
-
+        </div>
         </Modal>
 
       </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { joinGroup } from '../../actions/user_actions';
+// import { fetchGroups } from '../../actions/group_actions';
 import EventIndex from '../event_index/event_index';
 
 class GroupShow extends React.Component {
@@ -8,8 +9,18 @@ class GroupShow extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.fetchGroup(this.props.match.params.groupId);
+  }
+
   render () {
     const group = this.props.group;
+    if (group === undefined) {
+      return (
+        <div>loading...</div>
+      );
+    }
+
     return (
       <div className='show-container'>
         <div className='show-header'>
@@ -33,11 +44,12 @@ class GroupShow extends React.Component {
           </div>
           <br/>
           <div className='event-index'>
-          
+
           </div>
         </div>
       </div>
     );
+
   }
 }
 
