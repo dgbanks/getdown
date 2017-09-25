@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   attr_reader :password
 
+  ### Group Associations
+
   has_many :membershps,
     primary_key: :id,
     foreign_key: :user_id,
@@ -21,6 +23,19 @@ class User < ApplicationRecord
     primary_key: :id,
     foreign_key: :organizer_id,
     class_name: :Group
+
+  ### Event Associations
+
+  has_many :rsvps,
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: :Rsvp
+
+  has_many :events,
+    through: :rsvps,
+    source: :event
+
+  ##### Methods #####
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)

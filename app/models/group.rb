@@ -17,4 +17,9 @@ class Group < ApplicationRecord
     foreign_key: :organizer_id,
     class_name: :User
 
+  has_many :events,
+    primary_key: :id,
+    foreign_key: :group_id,
+    class_name: :Event
+
 end
