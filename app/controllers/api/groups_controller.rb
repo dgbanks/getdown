@@ -1,7 +1,6 @@
 class Api::GroupsController < ApplicationController
 
   def create
-    # @group = current_user.groups.new(group_params)
     @group = Group.new(group_params)
     @group.organizer_id = current_user.id
     if @group.save

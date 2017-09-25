@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { fetchGroups } from '../../actions/group_actions';
 import GroupIndex from './group_index';
 
@@ -10,7 +11,7 @@ const mapDispatchToProps = dispatch => ({
   fetchGroups: () => dispatch(fetchGroups())
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(GroupIndex);
+)(GroupIndex));

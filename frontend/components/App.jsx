@@ -11,6 +11,7 @@ const App = () => (
       <NavBarContainer />
     </header>
     <main>
+      <GroupIndexContainer />
       <switch>
         <Route path='/login' component={GroupIndexContainer}/>
         <Route path='/groups/:groupId' component={GroupShowContainer}/>

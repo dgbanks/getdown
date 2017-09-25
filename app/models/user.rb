@@ -31,9 +31,14 @@ class User < ApplicationRecord
     foreign_key: :user_id,
     class_name: :Rsvp
 
-  has_many :events,
+  has_many :appearances,
     through: :rsvps,
     source: :event
+
+  has_many :events_hosted,
+    primary_key: :id,
+    foreign_key: :host_id,
+    class_name: :Event
 
   ##### Methods #####
 

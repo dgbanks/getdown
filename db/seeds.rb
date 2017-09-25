@@ -80,3 +80,18 @@ beer = Group.create({
   location: 'wherever',
   organizer_id: user.id
   })
+
+
+### EVENTS
+
+Event.destroy_all
+
+fight1 = Event.create({
+  name: 'monday fight',
+  description: 'super fun',
+  location: 'outside',
+  date: Date.parse('2017-09-29'),
+  time: 'midnight',
+  group_id: fightclub.id,
+  host_id: fightclub.organizer_id
+  })
