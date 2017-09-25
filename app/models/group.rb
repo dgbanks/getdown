@@ -8,8 +8,13 @@ class Group < ApplicationRecord
     foreign_key: :group_id,
     class_name: :Membership
 
-  has_many :users,
+  has_many :members,
     through: :membershps,
     source: :user
+
+  belongs_to :organizer,
+    primary_key: :id,
+    foreign_key: :organizer_id,
+    class_name: :User
 
 end

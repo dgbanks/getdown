@@ -1,7 +1,7 @@
 import { RECEIVE_GROUPS, RECEIVE_GROUP } from '../actions/group_actions';
 import merge from 'lodash/merge';
 
-const GroupReducer = (prevState = {}, action) => {
+const GroupsReducer = (prevState = {}, action) => {
   Object.freeze(prevState);
   switch (action.type) {
     case RECEIVE_GROUPS:
@@ -12,3 +12,5 @@ const GroupReducer = (prevState = {}, action) => {
       return prevState;
   }
 };
+
+export default GroupsReducer;
