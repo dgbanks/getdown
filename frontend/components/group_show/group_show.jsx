@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { joinGroup } from '../../actions/user_actions';
+import EventIndex from '../event_index/event_index';
 
 class GroupShow extends React.Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class GroupShow extends React.Component {
           </div>
           <br/>
           <div className='event-index'>
-
+          
           </div>
         </div>
       </div>

@@ -7,8 +7,10 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :groups, only: [:create, :index, :show, :update, :destroy] do
       resources :memberships, only: [:create, :destroy]
-      resources :events, only: [:create, :update, :destroy]
+      resources :events, only: [:create, :update, :destroy, :index]
     end
-    resources :events, only: [:index, :show]
+    resources :events, only: [:index, :show] do
+      resources :rsvps, only: [:create, :destroy]
+    end
   end
 end

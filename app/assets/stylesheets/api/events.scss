@@ -1,3 +1,24 @@
 // Place all the styles related to the api/events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// EVENT INDEX
+
+.event-index-container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.event-INDEX {
+  width: 800px;
+  display: flex;
+  justify-content: center;
+  background-color: pink;
+}
+
+.event-item {
+  background-color: white;
+  width: 700px;
+}

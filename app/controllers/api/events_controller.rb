@@ -22,7 +22,11 @@ class Api::EventsController < ApplicationController
   end
 
   def index
-    @events = Event.all
+    if params[:userId]
+      @events = current_user.appearances
+    else
+      @events = Event.all
+    end
     render "api/events/index"
   end
 
