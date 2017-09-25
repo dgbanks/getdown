@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+// GROUP INDEX
+
 .group-index-container {
   display: flex;
   justify-content: center;
@@ -19,13 +22,40 @@
 background-color: white;
 }
 
-.show-header-container {
+
+// GROUP SHOW
+
+.show-container {
   display: flex;
   justify-content: center;
+  align-items: center;
+  // background-color: red;
+  flex-direction: column;
+  margin-top: 50px;
 }
 
-.show-header {
-  width: 500px;
-  background-color: pink;
-  justify-content: center;
-}
+    .show-header {
+      width: 800px;
+      background-color: pink;
+    }
+
+    .show-main {
+      display: flex;
+      justify-content: center;
+      width: 800px;
+      background-color: lightgray;
+      height: 300px;
+    }
+
+        .left-nav {
+          width: 250px;
+          background-color: pink;
+          height: 100px;
+          margin-right: 50px;
+        }
+
+        .event-index {
+          width: 500px;
+          background-color: pink;
+          height: 100px;
+        }

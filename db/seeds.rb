@@ -86,12 +86,32 @@ beer = Group.create({
 
 Event.destroy_all
 
-fight1 = Event.create({
-  name: 'monday fight',
+bcmeeting = Event.create({
+  name: 'September meeting',
   description: 'super fun',
   location: 'outside',
   date: Date.parse('2017-09-29'),
+  time: 'Noon',
+  group_id: bookclub.id,
+  host_id: bookclub.organizer_id
+  })
+
+fight = Event.create({
+  name: 'weekend brawl',
+  description: 'super fun',
+  location: 'outside',
+  date: Date.parse('2017-10-01'),
   time: 'midnight',
   group_id: fightclub.id,
   host_id: fightclub.organizer_id
+  })
+
+drinking = Event.create({
+  name: 'burp',
+  description: 'super fun',
+  location: 'inside',
+  date: Date.parse('2017-09-29'),
+  time: '6PM',
+  group_id: beer.id,
+  host_id: beer.organizer_id
   })
