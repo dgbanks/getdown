@@ -13,7 +13,8 @@ class SessionForm extends React.Component {
       location: "",
       interests: "",
 
-      modalIsOpen: false
+      // modalIsOpen: false
+      modalIsOpen: this.props.loginModalOpen
     };
     this.formType = "";
     this.openModal = this.openModal.bind(this);
@@ -26,10 +27,15 @@ class SessionForm extends React.Component {
     this.renderErrors = this.renderErrors.bind(this);
   }
 
+
+
+////////// CONSOLIDATE BELOW
   openModal(formType) {
     this.formType = formType;
+
     this.setState({
-      modalIsOpen: true
+      // modalIsOpen: true
+      modalIsOpen: this.props.toggleSessionModal()
     });
   }
 
@@ -44,6 +50,10 @@ class SessionForm extends React.Component {
       interests: ""
     });
   }
+////////// CONSOLIDATE ABOVE
+
+
+
 
   changeForm() {
     if (this.formType === 'signup') {
@@ -163,11 +173,11 @@ class SessionForm extends React.Component {
           onRequestClose={() => this.closeModal()}
           contentLabel="Modal"
         >
-        <div className="session-form-container">
-          {this.determine()}
-          {this.navLink()}
-          {this.renderErrors()}
-        </div>
+          <div className="session-form-container">
+            {this.determine()}
+            {this.navLink()}
+            {this.renderErrors()}
+          </div>
         </Modal>
 
       </div>

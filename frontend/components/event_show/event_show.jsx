@@ -63,7 +63,7 @@ class EventShow extends React.Component {
 
           <br/>
 
-          <div className='event-main'>
+          <div className='show-details'>
             <h6>{event.description}</h6>
           </div>
         </div>

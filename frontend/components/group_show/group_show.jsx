@@ -55,7 +55,7 @@ class GroupShow extends React.Component {
 
           </div>
           <br/>
-          <div className='group-event-index'>
+          <div className='show-details'>
             <EventIndexContainer />
           </div>
         </div>
