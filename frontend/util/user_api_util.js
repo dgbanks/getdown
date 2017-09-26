@@ -1,13 +1,34 @@
-export const joinGroup = id => (
+
+/// USER => GROUP
+
+export const joinGroup = groupId => (
   $.ajax({
     method: 'POST',
-    url: `api/groups/${id}/memberships`
+    url: `api/groups/${groupId}/memberships`
   })
 );
 
-export const leaveGroup = id => (
+export const leaveGroup = (groupId) => (
   $.ajax({
     method: 'DELETE',
-    url: `api/groups/${id}/memberships`
+    url: `api/groups/${groupId}/memberships`
+  })
+);
+
+
+
+/// USER => EVENT
+
+export const joinEvent = eventId => (
+  $.ajax({
+    method: 'POST',
+    url: `api/events/${eventId}/rsvps`
+  })
+);
+
+export const leaveEvent = (eventId, rsvpId) => (
+  $.ajax({
+    method: 'DELETE',
+    url: `api/events/${eventId}/rsvps/${rsvpId}`
   })
 );

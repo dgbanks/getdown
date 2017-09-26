@@ -7,18 +7,20 @@ class EventIndex extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.currentUser) {
-      this.props.fetchAllEvents(this.props.currentUser.id);
+    if (this.props.match.params.groupId) {
+      this.props.fetchGroupEvents(this.props.match.params.groupId);
+    } else if (this.props.currentUser) {
+      this.props.fetchUserEvents(this.props.currentUser.id);
     } else {
-      this.props.fetchAllEvents();
+      this.props.fetchEvents();
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.currentUser && !prevProps.currentUser) {
-      this.props.fetchAllEvents(this.props.currentUser.id);
+      this.props.fetchUserEvents(this.props.currentUser.id);
     } else if (!this.props.currentUser && prevProps.currentUser) {
-      this.props.fetchAllEvents();
+      this.props.fetchEvents();
     }
   }
 

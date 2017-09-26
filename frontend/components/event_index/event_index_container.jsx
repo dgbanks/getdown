@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchAllEvents, fetchGroupEvents } from '../../actions/event_actions';
+import { fetchEvents, fetchGroupEvents, fetchUserEvents } from '../../actions/event_actions';
 import EventIndex from './event_index';
 
 const mapStateToProps = state => ({
@@ -9,11 +9,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchAllEvents: (userId) => dispatch(fetchAllEvents(userId)),
-  fetchGroupEvents: (groupId) => dispatch(fetchGroupEvents(groupId))
+  fetchEvents: () => dispatch(fetchEvents()),
+  fetchGroupEvents: (groupId) => dispatch(fetchGroupEvents(groupId)),
+  fetchUserEvents: (userId) => dispatch(fetchUserEvents(userId))
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(EventIndex);
+)(EventIndex));

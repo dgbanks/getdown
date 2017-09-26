@@ -1,16 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { joinGroup } from '../../actions/user_actions';
-// import { fetchGroups } from '../../actions/group_actions';
-import EventIndex from '../event_index/event_index';
+import EventIndexContainer from '../event_index/event_index_container';
 
 class GroupShow extends React.Component {
   constructor(props) {
     super(props);
+
+    this.handleJoinGroup = this.handleJoinGroup.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchGroup(this.props.match.params.groupId);
+  }
+
+  handleJoinGroup() {
+    this.props.joinGroup(this.props.match.params.groupId);
   }
 
   render () {
@@ -26,7 +31,7 @@ class GroupShow extends React.Component {
         <div className='show-header'>
           <h3>{group.name}</h3>
           <p>{group.description}</p>
-          <button onClick={joinGroup}>Join Group</button>
+          <button onClick={this.handleJoinGroup}>Join Group</button>
         </div>
 
         <br/>
@@ -44,7 +49,7 @@ class GroupShow extends React.Component {
           </div>
           <br/>
           <div className='event-index'>
-
+            <EventIndexContainer />
           </div>
         </div>
       </div>

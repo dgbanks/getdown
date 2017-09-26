@@ -22,8 +22,10 @@ class Api::EventsController < ApplicationController
   end
 
   def index
-    if params[:userId]
+    if params[:user_id]
       @events = current_user.appearances
+    elsif params[:group_id]
+      @events = Event.where(group_id: params[:group_id])
     else
       @events = Event.all
     end

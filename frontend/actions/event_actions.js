@@ -13,8 +13,12 @@ const receiveEvent = event => ({
   event
 });
 
-export const fetchAllEvents = (userId) => dispatch => (
-  EventApiUtil.fetchAllEvents(userId).then(events => dispatch(receiveEvents(events)))
+export const fetchEvents = () => dispatch => (
+  EventApiUtil.fetchEvents().then(events => dispatch(receiveEvents(events)))
+);
+
+export const fetchUserEvents = (userId) => dispatch => (
+  EventApiUtil.fetchUserEvents(userId).then(events => dispatch(receiveEvents(events)))
 );
 
 export const fetchGroupEvents = groupId => dispatch => (
