@@ -20,3 +20,11 @@ export const joinGroup = groupId => dispatch => (
 export const leaveGroup = (groupId) => dispatch => (
   UserApiUtil.leaveGroup(groupId).then(user => dispatch(removeUser(user)))
 );
+
+export const joinEvent = eventId => dispatch => (
+  UserApiUtil.joinEvent(eventId).then(user => dispatch(receiveUser(user)))
+);
+
+export const leaveEvent = eventId => dispatch => (
+  UserApiUtil.leaveEvent(eventId).then(user => dispatch(receiveUser(user)))
+);

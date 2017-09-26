@@ -38,17 +38,24 @@ class GroupShow extends React.Component {
 
         <div className='show-main'>
           <div className='left-nav'>
-            <br/>
-            <h3>Location:</h3>
-            <h1>{group.location}</h1>
-            <br/>
-            <h3>Organizer:</h3>
-            <h1>{group.organizer.name}</h1>
-            <br/>
+
+            <div className='left-content'>
+              <br/>
+              <h3>Location:</h3>
+              <h1>{group.location}</h1>
+              <br/>
+              <h3>Organizer:</h3>
+              <h1>{group.organizer.name}</h1>
+              <br/>
+              <h3>Members</h3>
+              <br/>
+              <h3>Calendar</h3>
+              <br/>
+            </div>
 
           </div>
           <br/>
-          <div className='event-index'>
+          <div className='group-event-index'>
             <EventIndexContainer />
           </div>
         </div>

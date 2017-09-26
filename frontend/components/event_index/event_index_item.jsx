@@ -6,12 +6,14 @@ const EventIndexItem = ({event}) => {
     <div>
       <br/>
       <li className='event-item'>
-        {event.name} <br/>
+        <Link to={`/events/${event.id}`}>
+          {event.name}
+        </Link> <br/>
         {event.description} <br/>
         {event.location} <br/>
-      <Link to={`/groups/${event.group.id}`}>
-        {event.group.name}
-      </Link>
+        <Link to={`/groups/${event.group.id}`}>
+          {event.group.name}
+        </Link>
       </li> <br/>
     </div>
   );

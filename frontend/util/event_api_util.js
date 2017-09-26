@@ -1,4 +1,6 @@
 //refacttor the optional userId into separate actions
+
+
 export const fetchEvents = (userId) => (
   $.ajax({
     method: 'GET',
@@ -10,7 +12,7 @@ export const fetchEvents = (userId) => (
 export const fetchEvent = id => (
   $.ajax({
     method: 'GET',
-    url: 'api/events/:id'
+    url: `api/events/${id}`
   })
 );
 

@@ -27,7 +27,9 @@ class EventIndex extends React.Component {
   render() {
     return (
       <div className='event-index-container'>
-        <div className='event-INDEX'>
+        <h1>Upcoming:</h1>
+
+        <div className='event-index'>
           <ul>
             {
               this.props.events.map(event => (

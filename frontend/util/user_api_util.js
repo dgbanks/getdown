@@ -8,7 +8,7 @@ export const joinGroup = groupId => (
   })
 );
 
-export const leaveGroup = (groupId) => (
+export const leaveGroup = groupId => (
   $.ajax({
     method: 'DELETE',
     url: `api/groups/${groupId}/memberships`
@@ -26,9 +26,9 @@ export const joinEvent = eventId => (
   })
 );
 
-export const leaveEvent = (eventId, rsvpId) => (
+export const leaveEvent = eventId => (
   $.ajax({
     method: 'DELETE',
-    url: `api/events/${eventId}/rsvps/${rsvpId}`
+    url: `api/events/${eventId}/rsvps`
   })
 );
