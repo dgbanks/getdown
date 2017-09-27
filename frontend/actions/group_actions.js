@@ -42,3 +42,9 @@ export const updateGroup = group => dispatch => (
 export const deleteGroup = id => dispatch => (
   GroupApiUtil.deleteGroup(id).then(group => dispatch(removeGroup(group)))
 );
+
+/// GROUP SEARCH
+
+export const searchGroups = group => dispatch => (
+  GroupApiUtil.searchGroups(group).then(groups => dispatch(receiveGroups(groups)))
+);

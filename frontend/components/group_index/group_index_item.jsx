@@ -6,7 +6,7 @@ const GroupIndexItem = ({group}) => {
     <div>
       <br/>
       <li className='group-item'>
-        <Link to={`/groups/${group.id}`}>
+        <Link to={`/groups/${group.id}`} style={{color: 'pink', textWeight: 'bold', textDecoration: 'none'}}>
           {group.name} <br/>
         </Link>
         {group.location} <br/>

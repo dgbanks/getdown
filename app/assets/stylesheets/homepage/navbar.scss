@@ -20,13 +20,18 @@
 }
 
 .navbar button:hover {
-  background-color: lightgray;
+  background-color: gray;
+  color: black; 
 }
 
 .logo {
   color: white;
   font-size: 45px;
   font-weight: bold;
+}
+
+.logo h1:hover {
+  color: gray;
 }
 
 .session-links {

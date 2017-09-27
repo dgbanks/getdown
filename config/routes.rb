@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root 'static_pages#root'
 
   namespace :api, defaults: {format: :json} do
+    ##is this right ???
+    post 'groups/search', to: 'groups#search'
+    ##
     resources :users, only: [:create] do
       resources :groups, only: [:index]
       resources :events, only: [:index]

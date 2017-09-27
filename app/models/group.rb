@@ -22,4 +22,9 @@ class Group < ApplicationRecord
     foreign_key: :group_id,
     class_name: :Event
 
+
+  def self.search(query)
+    self.where("name ILIKE ? OR description ILIKE ?", "%#{query}%", "%#{query}%")
+  end
+
 end

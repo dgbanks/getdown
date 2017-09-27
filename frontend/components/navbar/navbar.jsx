@@ -22,7 +22,9 @@ const personalGreeting = (currentUser, logout) => (
 const NavBar = ({currentUser, logout}) => (
   <nav className='navbar'>
     <div className='logo'>
-      <h1>getdown</h1>
+      <Link to='/' style={{color: 'white', textDecoration: 'none'}}>
+        <h1>getdown</h1>
+      </Link>
     </div>
     {getSessionLinks(currentUser, logout)}
   </nav>

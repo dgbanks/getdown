@@ -38,3 +38,13 @@ export const deleteGroup = id => (
     url: `api/groups/${id}`
   })
 );
+
+/// SEARCH GROUP
+
+export const searchGroups = group => (
+  $.ajax({
+    method: 'POST',
+    url: 'api/groups/search',
+    data: group
+  })
+);

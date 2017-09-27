@@ -21,8 +21,8 @@ class Api::GroupsController < ApplicationController
   end
 
   def index
-    if params[:organizer_id]
-      @groups = User.find(params[:id]).groups
+    if params[:user_id]
+      @groups = current_user.groups
     else
       @groups = Group.all
     end
@@ -38,18 +38,15 @@ class Api::GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @group.destroy
     render json: {}
+  end
 
-    # @group = Group.find(params[:id])
-    # if @group.organizer_id = current_user.id
-    #   @group.destroy
-    #   render json: {}
-    # else
-    #   render json: @group.errors.full_messages, status: 403
-    # end
+  def search
+    @groups = Group.search(group_params[:query])
+    render "api/groups/index"
   end
 
   def group_params
-    params.require(:group).permit(:name, :description, :location)
+    params.require(:group).permit(:name, :description, :location, :query)
   end
 
 end
