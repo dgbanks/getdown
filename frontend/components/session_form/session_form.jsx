@@ -1,6 +1,30 @@
 import React from 'react';
 import Modal from 'react-modal';
 
+const customStyles = {
+  overlay : {
+    // position : 'fixed',
+    backgroundColor : 'rgba(0,0,0, 0.75)',
+  },
+  content : {
+    // position                   : 'absolute',
+    top                        : '50%',
+    left                       : '50%',
+    right                      : 'auto',
+    bottom                     : 'auto',
+    border                     : '1px solid #ccc',
+    background: 'white',
+    overflow                   : 'auto',
+    WebkitOverflowScrolling    : 'touch',
+    borderRadius               : '10px',
+    outline                    : 'none',
+    padding                    : '20px',
+    marginRight                : '-50%',
+    transform                  : 'translate(-50%, -50%)',
+    width                      : '400px'
+  }
+};
+
 class SessionForm extends React.Component {
 
   constructor(props) {
@@ -26,8 +50,6 @@ class SessionForm extends React.Component {
     this.determine = this.determine.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
   }
-
-
 
 ////////// CONSOLIDATE BELOW
   openModal(formType) {
@@ -99,45 +121,49 @@ class SessionForm extends React.Component {
     if (this.formType === 'signup') {
       return (
         <form className="session-form" onSubmit={this.handleSubmit}>
+          <h1 className='modal-logo'>getdown</h1>
+          <h2 className='modal-type'>sign up</h2>
 
-          <label> Name
-            <input type='text' value={this.state.name} onChange={this.update('name')}/>
+          <label className='session-label'> Name
+            <input className= 'session-input' type='text' value={this.state.name} onChange={this.update('name')}/>
           </label>  <br/>
 
-          <label> Email
-            <input type='text' value={this.state.email} onChange={this.update('email')}/>
+        <label className='session-label'> Email
+            <input className= 'session-input' type='text' value={this.state.email} onChange={this.update('email')}/>
           </label>  <br/>
 
-          <label> Password
-            <input type='password' value={this.state.password} onChange={this.update('password')}/>
+        <label className='session-label'> Password
+            <input className= 'session-input' type='password' value={this.state.password} onChange={this.update('password')}/>
           </label>  <br/>
 
-          <label> Zip Code
-            <input type='text' value={this.state.location} onChange={this.update('location')}/>
+        <label className='session-label'> Zip Code
+            <input className= 'session-input' type='text' value={this.state.location} onChange={this.update('location')}/>
           </label>  <br/>
 
-          <label> Interests <br/>
-            <input type='checkbox' value="Ice Cream" onChange={() => this.handleCheckbox()}/>Ice Cream <br/>
-            <input type='checkbox' value="Books"/>Books <br/>
+        <label className='session-label'> Interests <br/>
+            <input className= 'session-input' type='checkbox' value="Ice Cream" onChange={() => this.handleCheckbox()}/>Ice Cream <br/>
+            <input className= 'session-input' type='checkbox' value="Books"/>Books <br/>
           </label>  <br/>
 
-          <input type='submit' value="SIGN UP"></input>
+        <input className= 'session-button' type='submit' value="SIGN UP"></input>
 
         </form>
       );
     } else {
       return (
         <form className="session-form" onSubmit={this.handleSubmit}>
+          <h1 className='modal-logo'>getdown</h1>
+          <h2 className='modal-type'>sign up</h2>
 
-          <label> Email
-            <input type='text' value={this.state.email} onChange={this.update('email')}/>
+          <label className='session-label'> Email
+            <input className= 'session-input' type='text' value={this.state.email} onChange={this.update('email')}/>
           </label>  <br/>
 
-          <label> Password
-            <input type='password' value={this.state.password} onChange={this.update('password')}/>
+        <label className='session-label'> Password
+            <input className= 'session-input' type='password' value={this.state.password} onChange={this.update('password')}/>
           </label>  <br/>
 
-          <input type='submit' value="Sign In"></input>
+        <input className= 'session-button' type='submit' value="Sign In"></input>
 
         </form>
       );
@@ -172,6 +198,7 @@ class SessionForm extends React.Component {
           isOpen={this.state.modalIsOpen}
           onRequestClose={() => this.closeModal()}
           contentLabel="Modal"
+          style={customStyles}
         >
           <div className="session-form-container">
             {this.determine()}
