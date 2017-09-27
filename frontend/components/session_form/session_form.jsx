@@ -38,7 +38,7 @@ class SessionForm extends React.Component {
       interests: "",
 
       // modalIsOpen: false
-      modalIsOpen: this.props.loginModalOpen
+      modalIsOpen: this.props.modalIsOpen
     };
     this.formType = "";
     this.openModal = this.openModal.bind(this);
@@ -57,7 +57,7 @@ class SessionForm extends React.Component {
 
     this.setState({
       // modalIsOpen: true
-      modalIsOpen: this.props.toggleSessionModal()
+      modalIsOpen: this.props.toggleModal()
     });
   }
 
