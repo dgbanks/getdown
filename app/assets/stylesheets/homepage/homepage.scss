@@ -28,6 +28,10 @@
   border: 3px solid pink;
 }
 
+.search-bar:hover {
+  background-color: darken(white, 10);
+}
+
 // .search-button {
 //   height: 50px;
 //   cursor: pointer;

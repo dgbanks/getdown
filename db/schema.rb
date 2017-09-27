@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170925024810) do
+ActiveRecord::Schema.define(version: 20170925011917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,20 +19,25 @@ ActiveRecord::Schema.define(version: 20170925024810) do
     t.string "name", null: false
     t.text "description"
     t.string "location", null: false
+    t.float "latitude"
+    t.float "longitude"
     t.date "date", null: false
     t.string "time", null: false
     t.string "img_url"
     t.integer "group_id", null: false
+    t.integer "host_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "host_id", null: false
     t.index ["group_id"], name: "index_events_on_group_id"
+    t.index ["host_id"], name: "index_events_on_host_id"
   end
 
   create_table "groups", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
-    t.string "location"
+    t.integer "zip_code"
+    t.float "latitude"
+    t.float "longitude"
     t.string "img_url"
     t.integer "organizer_id", null: false
     t.datetime "created_at", null: false
@@ -59,11 +64,14 @@ ActiveRecord::Schema.define(version: 20170925024810) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
+    t.string "name", null: false
+    t.string "email", null: false
     t.string "password_digest"
     t.string "session_token"
-    t.integer "location"
+    t.integer "zip_code"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "img_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email"

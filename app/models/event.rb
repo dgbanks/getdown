@@ -1,6 +1,8 @@
 class Event < ApplicationRecord
 
-  validates :name, :description, :location, :date, :time, :group_id, :host_id, presence: true
+  validates :name, :description, :location, :date, :time, :group_id, :host_id, :latitude, :longitude, presence: true
+
+  after_initialize :geocode
 
   belongs_to :group,
     primary_key: :id,
@@ -20,5 +22,11 @@ class Event < ApplicationRecord
   has_many :attendees,
     through: :rsvps,
     source: :user
+
+  def geocode
+    geocode = Geocoder.coordinates(self.location)
+    self.latitude = geocode.first
+    self.longitude = geocode.last
+  end
 
 end

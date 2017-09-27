@@ -3,7 +3,9 @@ class CreateGroups < ActiveRecord::Migration[5.1]
     create_table :groups do |t|
       t.string :name, null: false
       t.text :description
-      t.string :location
+      t.integer :zip_code
+      t.float :latitude
+      t.float :longitude
       t.string :img_url
       t.integer :organizer_id, null: false
       t.timestamps

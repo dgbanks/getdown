@@ -1,7 +1,9 @@
 class Group < ApplicationRecord
 
-  validates :name, :description, :location, :organizer_id, presence: true
+  validates :name, :description, :zip_code, :organizer_id, :latitude, :longitude, presence: true
   validates :name, uniqueness: true
+
+  after_initialize :geocode
 
   has_many :membershps,
     primary_key: :id,
@@ -27,4 +29,9 @@ class Group < ApplicationRecord
     self.where("name ILIKE ? OR description ILIKE ?", "%#{query}%", "%#{query}%")
   end
 
+  def geocode
+    geocode = Geocoder.coordinates(self.zip_code)
+    self.latitude = geocode.first
+    self.longitude = geocode.last
+  end
 end
