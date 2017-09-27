@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     ##is this right ???
     post 'groups/search', to: 'groups#search'
     ##
-    resources :users, only: [:create] do
+    resources :users, only: [:create, :update] do
       resources :groups, only: [:index]
       resources :events, only: [:index]
     end

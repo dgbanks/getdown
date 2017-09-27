@@ -1,4 +1,4 @@
-/// INDEX & SHOW
+/// INDEX
 
 export const fetchGroups = () => (
   $.ajax({
@@ -7,20 +7,29 @@ export const fetchGroups = () => (
   })
 );
 
-export const fetchGroup = id => (
-  $.ajax({
-    method: 'GET',
-    url: `api/groups/${id}`
-  })
-);
-
-/// GROUP FORM UTILS
+/// DASHBOARD MENU
 
 export const createGroup = group => (
   $.ajax({
     method: 'POST',
     url: 'api/groups',
     data: {group}
+  })
+);
+
+export const userGroups = userId => (
+  $.ajax({
+    method: 'GET',
+    url: `api/users/${userId}/groups`,
+  })
+);
+
+/// GROUP SHOW
+
+export const fetchGroup = id => (
+  $.ajax({
+    method: 'GET',
+    url: `api/groups/${id}`
   })
 );
 

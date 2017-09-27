@@ -29,6 +29,10 @@ export const fetchGroup = id => dispatch => (
   GroupApiUtil.fetchGroup(id).then(group => dispatch(receiveGroup(group)))
 );
 
+export const fetchUserGroups = userId => dispatch => (
+  GroupApiUtil.fetchUserGroups(userId).then(groups => dispatch(receiveGroups(groups)))
+);
+
 /// FORM THUNKS
 
 export const createGroup = group => dispatch => (

@@ -1,4 +1,12 @@
 
+export const updateUser = user => (
+  $.ajax({
+    method: 'PATCH',
+    url: `api/users/${user.id}`,
+    data: {user}
+  })
+);
+
 /// USER => GROUP
 
 export const joinGroup = groupId => (
@@ -14,8 +22,6 @@ export const leaveGroup = groupId => (
     url: `api/groups/${groupId}/memberships`
   })
 );
-
-
 
 /// USER => EVENT
 

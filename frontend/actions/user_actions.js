@@ -28,3 +28,7 @@ export const joinEvent = eventId => dispatch => (
 export const leaveEvent = eventId => dispatch => (
   UserApiUtil.leaveEvent(eventId).then(user => dispatch(receiveUser(user)))
 );
+
+export const updateUser = userId => dispatch => (
+  UserApiUtil.updateUser(userId).then(user => dispatch(receiveUser(user)))
+);
