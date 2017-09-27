@@ -69,4 +69,25 @@
 
 .group-item {
   background-color: white;
+  width: 450px;
+  padding: 10px;
+  border-radius: 10px;
+}
+.group-item:hover {
+  background-color: darken(white, 10);
+  cursor: pointer;
+}
+
+.item-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.item-content p {
+  margin-left: 10px;
+  margin-top: 3px;
+}
+
+.item-content p, .group-item p {
+  color: gray;
 }
