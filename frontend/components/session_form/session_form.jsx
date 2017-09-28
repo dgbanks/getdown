@@ -57,7 +57,7 @@ class SessionForm extends React.Component {
 
     this.setState({
       // modalIsOpen: true
-      modalIsOpen: this.props.toggleModal()
+      modalIsOpen: true
     });
   }
 
@@ -73,9 +73,6 @@ class SessionForm extends React.Component {
     });
   }
 ////////// CONSOLIDATE ABOVE
-
-
-
 
   changeForm() {
     if (this.formType === 'signup') {

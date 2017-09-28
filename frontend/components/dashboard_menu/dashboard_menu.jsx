@@ -1,5 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
+import GroupFormContainer from '../group_form/group_form_container';
+import GroupIndexContainer from '../group_index/group_index_container';
 
 const customStyles = {
   overlay : {
@@ -30,96 +32,55 @@ class DashboardMenu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {modalIsOpen: false};
+    this.formType = "";
+
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.determine = this.determine.bind(this);
   }
 
   openModal(formType) {
-    this.formType === formType;
+    this.formType = formType;
     this.setState({modalIsOpen: true});
   }
 
   closeModal() {
     this.formType = "";
-    this.setState({modalIsOpen: false,});
-  }
-
-  update() {
-    
+    this.setState({
+      modalIsOpen: false
+    });
   }
 
   determine() {
     if (this.formType === 'createGroup') {
       return (
-        <form>
-          <h1 className='form-type'>Start a new group</h1>
-
-          <label> Name
-            <input></input>
-          </label>
-
-          <label> Description
-            <input></input>
-          </label>
-
-          <label> Location
-            <input></input>
-          </label>
-
-          <label> Category
-            <input></input>
-          </label>
-
-        </form>
+        <GroupFormContainer />
       );
-    } else if (this.formType === 'userGroups') {
+    } else if (this.formType === 'groupIndex') {
       return (
         <GroupIndexContainer />
       );
     } else {
       return (
-        <form>
-          <h1>Edit Profile</h1>
-            <label className='modal-label'> Name
-              <input className= 'modal-input' type='text' value={this.state.name} onChange={this.update('name')}/>
-            </label>  <br/>
-
-            <label className='modal-label'> Email
-              <input className= 'modal-input' type='text' value={this.state.email} onChange={this.update('email')}/>
-            </label>  <br/>
-
-            <label className='modal-label'> Password
-              <input className= 'modal-input' type='password' value={this.state.password} onChange={this.update('password')}/>
-            </label>  <br/>
-
-            <label className='modal-label'> Zip Code
-              <input className= 'modal-input' type='text' value={this.state.location} onChange={this.update('location')}/>
-            </label>  <br/>
-
-            <label className='modal-label'> Interests <br/>
-              <input className= 'modal-input' type='checkbox' value="Ice Cream" onChange={() => this.handleCheckbox()}/>Ice Cream <br/>
-              <input className= 'modal-input' type='checkbox' value="Books"/>Books <br/>
-            </label>  <br/>
-
-            <input className= 'modal-button' type='submit' value="SIGN UP"></input>
-        </form>
+        'this is where the updateUser would go'
       );
     }
   }
 
   render() {
+    console.log(this.props);
     return (
       <div>
 
-        <div className="dropdown">
+        <nav className="dropdown">
           <button className="dropdown-button">{this.props.currentUser.name}</button>
           <div className="dropdown-menu">
-            <ul>
-              <li><button className='dropdown-option' onClick={() => this.openModal('createGroup')}>Start a Group</button></li>
-              <li><button className='dropdown-option' onClick={() => this.openModal('groupIndex')}>Your Groups</button></li>
-              <li><button className='dropdown-option' onClick={() => this.openModal('updateUser')}>Update Profile</button></li>
-              <li><button className='dropdown-option' onClick={this.props.logout}>Logout</button></li>
-            </ul>
+            <button className='dropdown-option' onClick={() => this.openModal('createGroup')}>Start a Group</button>
+            <button className='dropdown-option' onClick={() => this.openModal('groupIndex')}>Your Groups</button>
+            <button className='dropdown-option' onClick={() => this.openModal('updateUser')}>Update Profile</button>
+            <button className='dropdown-option' onClick={this.props.logout}>Logout</button>
           </div>
-        </div>
+        </nav>
 
         <Modal
           isOpen={this.state.modalIsOpen}
@@ -129,6 +90,7 @@ class DashboardMenu extends React.Component {
         >
           {this.determine()}
         </Modal>
+
       </div>
     );
   }

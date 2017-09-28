@@ -1,12 +1,19 @@
 import { connect } from 'react-redux';
 import { createGroup, updateGroup } from '../../actions/group_actions';
-import { toggleUserModal } from '../../actions/ui_actions';
+import { toggleModal } from '../../actions/ui_actions';
+import GroupForm from './group_form';
 
-const mapStateToProps = state => ({
-  group: state.entities
+const mapStateToProps = (state, ownProps) => ({
+
 });
+
 
 const mapDispatchToProps = dispatch => ({
   createGroup: group => dispatch(createGroup(group)),
-  updateGroup: group => dispatch(updateGroup(group))
+  updateGroup: group => dispatch(updateGroup(group)),
 });
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GroupForm);

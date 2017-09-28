@@ -5,7 +5,7 @@
 // GROUP INDEX ITEMS
 
 .group-item {
-  
+
 }
 
 .item-left {
@@ -16,7 +16,7 @@
 
 }
 
-// GROUP SHOW
+/// GROUP SHOW
 
 .show-container {
   display: flex;
@@ -27,7 +27,7 @@
   margin-top: 50px;
 }
 
-/// HEADER
+////// HEADER
 
 .show-header {
   width: 800px;
@@ -65,7 +65,7 @@
   color: white;
 }
 
-/// BODY
+////// MAIN
 
 .show-main {
   display: flex;
@@ -79,6 +79,7 @@
   width: 250px;
   background-color: pink;
   margin-right: 50px;
+  border-radius: 10px;
 }
 
 .left-content {
@@ -89,7 +90,7 @@
 .show-details {
   width: 500px;
   background-color: pink;
-
+  border-radius: 10px;
   padding: 15px;
 }
 
@@ -119,5 +120,6 @@
 .event-item {
   background-color: white;
   width: 450px;
-  padding: 0px 15px;
+  padding: 5px 15px;
+  border-radius: 10px;
 }

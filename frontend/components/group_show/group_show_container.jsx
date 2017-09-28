@@ -6,7 +6,8 @@ import { fetchGroupEvents } from '../../actions/event_actions';
 import GroupShow from './group_show';
 
 const mapStateToProps = (state, ownProps) => ({
-  group: state.entities.groups[ownProps.match.params.groupId]
+  group: state.entities.groups[ownProps.match.params.groupId],
+  currentUser: state.ui.currentUser
 });
 
 const mapDispatchToProps = dispatch => ({

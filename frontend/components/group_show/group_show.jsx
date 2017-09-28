@@ -2,12 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { joinGroup } from '../../actions/user_actions';
 import EventIndexContainer from '../event_index/event_index_container';
+import EventFormContainer from '../event_form/event_form_container';
 
 class GroupShow extends React.Component {
   constructor(props) {
     super(props);
 
     this.handleJoinGroup = this.handleJoinGroup.bind(this);
+    this.eventButton = this.eventButton.bind(this);
   }
 
   componentDidMount() {
@@ -16,6 +18,18 @@ class GroupShow extends React.Component {
 
   handleJoinGroup() {
     this.props.joinGroup(this.props.match.params.groupId);
+  }
+
+  eventButton() {
+    if (this.props.currentUser) {
+      return (
+        <button onClick={this.getEventForm}>Create Event</button>
+      );
+    }
+  }
+
+  getEventForm() {
+    <EventFormContainer />
   }
 
   render () {
@@ -48,9 +62,9 @@ class GroupShow extends React.Component {
               <h1>{group.organizer.name}</h1>
               <br/>
               <h3>Members</h3>
+              <h1>{group.members.length}</h1>
               <br/>
-              <h3>Calendar</h3>
-              <br/>
+              {this.eventButton()}
             </div>
 
           </div>

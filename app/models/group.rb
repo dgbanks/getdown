@@ -34,4 +34,9 @@ class Group < ApplicationRecord
     self.latitude = geocode.first
     self.longitude = geocode.last
   end
+
+  # def location
+  #   self.location = Geocoder.address(self.zip_code)
+  #   self.location.save
+  # end
 end
