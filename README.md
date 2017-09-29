@@ -37,13 +37,13 @@ Getdown uses a Ruby on Rails backend, a JavaScript/React frontend, and
 is deployed through Heroku.
 
 ###### Homepage
-(../app/assets/homepage.png)
+(https://github.com/dgbanks/getdown/blob/master/app/assets/homepage.png)
 
 ###### Group Page
-(../app/assets/group.png)
+(https://github.com/dgbanks/getdown/blob/master/app/assets/group.png)
 
 ###### Events page
-(../app/assets/events.png)
+(https://github.com/dgbanks/getdown/blob/master/app/assets/event.png)
 
 ###### Groups
 
@@ -79,8 +79,34 @@ A logged-in user can see his or her RSVP'd events on the bottom half of
 the homepage. By visiting any group page, one can also find a dated index
 of all of that group's upcoming events.
 
+With several different occasions and flavors of the Event Index function,
+it was challenging to work out how the correct data would be fetched
+based on whether the events were meant to be represented as belonging to
+a particular group or user or nobody in particular when no current user
+was detected.
+
+```
+// frontend/components/event_index/event_index.jsx
+componentDidMount() {
+  if (this.props.match.params.groupId) {
+    this.props.fetchGroupEvents(this.props.match.params.groupId);
+  } else if (this.props.currentUser) {
+    this.props.fetchUserEvents(this.props.currentUser.id);
+  } else {
+    this.props.fetchEvents();
+  }
+}
+
+componentDidUpdate(prevProps, prevState) {
+  if (this.props.currentUser && !prevProps.currentUser) {
+    this.props.fetchUserEvents(this.props.currentUser.id);
+  } else if (!this.props.currentUser && prevProps.currentUser) {
+    this.props.fetchEvents();
+  }
+}
+```
+
 ###### Links
 
-[Meetup, the app being cloned] (https://www.meetup.com/)
-
-[]
+Meetup, the app being cloned: (https://www.meetup.com/)
+Heroku deployment: (https://getdown-fs.herokuapp.com/#/)
