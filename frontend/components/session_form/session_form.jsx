@@ -34,7 +34,7 @@ class SessionForm extends React.Component {
       name: "",
       email: "",
       password: "",
-      location: "",
+      zip_code: "",
       interests: "",
       formType: "",
 
@@ -83,7 +83,7 @@ class SessionForm extends React.Component {
       name: "",
       email: "",
       password: "",
-      location: "",
+      zip_code: "",
       interests: "",
       formType: ""
     });
@@ -151,7 +151,7 @@ class SessionForm extends React.Component {
           </label>  <br/>
 
         <label className='session-label'> Zip Code
-            <input className= 'session-input' type='text' value={this.state.location} onChange={this.update('location')}/>
+            <input className= 'session-input' type='text' value={this.state.zip_code} onChange={this.update('zip_code')}/>
           </label>  <br/>
 
         <label className='session-label'> Interests <br/>

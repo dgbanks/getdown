@@ -36,6 +36,15 @@ option that allows users to explore the site.
 Getdown uses a Ruby on Rails backend, a JavaScript/React frontend, and
 is deployed through Heroku.
 
+###### Homepage
+(../app/assets/homepage.png)
+
+###### Group Page
+(../app/assets/group.png)
+
+###### Events page
+(../app/assets/events.png)
+
 ###### Groups
 
 Groups can be accessed in multiple ways on Getdown. They can be found
