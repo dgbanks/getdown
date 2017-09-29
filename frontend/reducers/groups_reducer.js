@@ -1,4 +1,5 @@
-import { RECEIVE_GROUPS, RECEIVE_GROUP, REMOVE_GROUP } from '../actions/group_actions';
+import { RECEIVE_GROUPS, RECEIVE_GROUP, REMOVE_GROUP, CLEAR_GROUPS } from '../actions/group_actions';
+import { RECEIVE_USER } from '../actions/user_actions';
 import merge from 'lodash/merge';
 
 const GroupsReducer = (prevState = {}, action) => {
@@ -12,6 +13,10 @@ const GroupsReducer = (prevState = {}, action) => {
       let newState = merge({}, prevState);
       delete newState[action.group.id];
       return newState;
+    case CLEAR_GROUPS:
+      return {};
+    case RECEIVE_USER:
+      return merge({}, prevState, {[action.group.id]: {members: [action.user]}})
     default:
       return prevState;
   }

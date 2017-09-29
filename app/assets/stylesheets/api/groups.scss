@@ -31,10 +31,9 @@
 
 .show-header {
   width: 800px;
-  background-color: white;
   display: flex;
   justify-content: space-around;
-  background-color: lightgray;
+  // background-color: lightgray;
   // border: 1px solid black;
   padding: 15px 0px;
 }
@@ -42,7 +41,8 @@
 .show-header h3 {
   font-size: 30px;
   font-weight: bold;
-  color: white;
+  // color: white;
+  color:pink;
 }
 
 .show-header button {
@@ -62,7 +62,8 @@
 }
 
 .show-header p {
-  color: white;
+  // color: white;
+  color:gray;
 }
 
 ////// MAIN

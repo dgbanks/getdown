@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { joinGroup } from '../../actions/user_actions';
 import EventIndexContainer from '../event_index/event_index_container';
 import EventFormContainer from '../event_form/event_form_container';
 
@@ -17,7 +16,12 @@ class GroupShow extends React.Component {
   }
 
   handleJoinGroup() {
-    this.props.joinGroup(this.props.match.params.groupId);
+
+    if (this.props.currentUser) {
+      this.props.joinGroup(this.props.group.id);
+    } else {
+      this.props.toggleModal();
+    }
   }
 
   eventButton() {
@@ -62,9 +66,9 @@ class GroupShow extends React.Component {
               <h1>{group.organizer.name}</h1>
               <br/>
               <h3>Members</h3>
-              <h1>{group.members.length}</h1>
+              <h1>{group.member_count}</h1>
               <br/>
-              {this.eventButton()}
+              <button onClick={this.getEventForm}>Create Event</button>
             </div>
 
           </div>

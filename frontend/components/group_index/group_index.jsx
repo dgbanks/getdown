@@ -8,8 +8,13 @@ class GroupIndex extends React.Component {
   }
 
   componentWillMount() {
-    this.props.fetchGroups();
+    if (this.props.currentUser) {
+      this.props.fetchUserGroups(this.props.currentUser.id);
+    } else {
+      this.props.fetchGroups();
+    }
   }
+
 
   render() {
     return (

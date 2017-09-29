@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { searchGroups, fetchGroups } from '../../actions/group_actions';
+import { searchGroups, fetchGroups, clearGroupSearch } from '../../actions/group_actions';
 import GroupSearch from './group_search';
 
 const mapStateToProps = state => ({
@@ -8,7 +8,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   searchGroups: (group) => dispatch(searchGroups(group)),
-  fetchGroups: () => dispatch(fetchGroups())
+  fetchGroups: () => dispatch(fetchGroups()),
+  clearGroupSearch: () => dispatch(clearGroupSearch())
 });
 
 export default connect(

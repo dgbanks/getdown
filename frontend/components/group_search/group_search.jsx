@@ -7,30 +7,25 @@ class GroupSearch extends React.Component {
     super(props);
     this.state = { query: ""};
     this.update = this.update.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchGroups();
+    // this.props.fetchGroups();
   }
-
-
-
 
   update(e) {
     this.setState({ query: e.currentTarget.value });
     clearTimeout(this.idleTimeout);
-    this.idleTimeout = setTimeout(this.handleSubmit, 500);
+    this.idleTimeout = setTimeout(this.handleSearch, 500);
   }
 
-    // return e => {
-    //   e.preventDefault();
-    //   this.setState({ query: e.target.value });
-    // };
-
-  handleSubmit(e) {
-    // e.preventDefault();
-    this.props.searchGroups({group: {query: this.state.query}});
+  handleSearch(e) {
+    if (this.state.query === "") {
+      this.props.clearGroupSearch();
+    } else {
+      this.props.searchGroups({group: {query: this.state.query}});
+    }
   }
 
   render() {

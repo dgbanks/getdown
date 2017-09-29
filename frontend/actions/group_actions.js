@@ -3,6 +3,7 @@ import * as GroupApiUtil from '../util/group_api_util';
 export const RECEIVE_GROUPS = "RECEIVE_GROUPS";
 export const RECEIVE_GROUP = "RECEIVE_GROUP";
 export const REMOVE_GROUP = "REMOVE_GROUP";
+export const CLEAR_GROUPS = "CLEAR_GROUPS";
 
 const receiveGroups = groups => ({
   type: RECEIVE_GROUPS,
@@ -52,3 +53,7 @@ export const deleteGroup = id => dispatch => (
 export const searchGroups = group => dispatch => (
   GroupApiUtil.searchGroups(group).then(groups => dispatch(receiveGroups(groups)))
 );
+
+export const clearGroupSearch = () => ({
+  type: CLEAR_GROUPS
+});

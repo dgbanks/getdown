@@ -9,7 +9,7 @@ class GroupForm extends React.Component {
     this.state = {
       name: "",
       description: "",
-      location: "",
+      zip_code: "",
       category: ""
     };
 
@@ -33,25 +33,25 @@ class GroupForm extends React.Component {
     return (
       <form className="session-form" onSubmit={this.handleSubmit}>
 
-        <h2 className='modal-type'>sign up</h2>
+        <h2 className='modal-type'>start a new group</h2>
 
         <label className='session-label'> Group Name
           <input className= 'session-input' type='text' value={this.state.name} onChange={this.update('name')}/>
         </label>  <br/>
 
       <label className='session-label'> Description
-            <input className= 'session-input' type='text' value={this.state.email} onChange={this.update('email')}/>
+            <input className= 'session-input' type='text' value={this.state.description} onChange={this.update('description')}/>
           </label>  <br/>
 
-        <label className='session-label'> Location
-            <input className= 'session-input' type='password' value={this.state.password} onChange={this.update('password')}/>
+        <label className='session-label'> Zip Code
+            <input className= 'session-input' type='text' value={this.state.zip_code} onChange={this.update('zip_code')}/>
           </label>  <br/>
 
         <label className='session-label'> Category <br/>
-          <select className= 'session-input' onChange={() => this.update('category')}>
+          <select className= 'session-input' value={this.state.category} onChange={() => this.update('category')}>
             <option disabled>Select category</option>
-            <option>Ice Cream</option>
-            <option>Books</option>
+            <option value={'ice cream'}>Ice Cream</option>
+            <option value={'books'}>Books</option>
           </select>
         </label>  <br/>
 

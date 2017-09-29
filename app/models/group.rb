@@ -3,6 +3,8 @@ class Group < ApplicationRecord
   validates :name, :description, :zip_code, :organizer_id, :latitude, :longitude, presence: true
   validates :name, uniqueness: true
 
+  after_save :ensure_organizer_membership, on: :create
+
   after_initialize :geocode
 
   has_many :membershps,
@@ -35,8 +37,8 @@ class Group < ApplicationRecord
     self.longitude = geocode.last
   end
 
-  # def location
-  #   self.location = Geocoder.address(self.zip_code)
-  #   self.location.save
-  # end
+  def ensure_organizer_membership
+    Membership.create({group: self, user: self.organizer})
+  end
+
 end

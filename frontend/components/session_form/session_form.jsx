@@ -36,11 +36,11 @@ class SessionForm extends React.Component {
       password: "",
       location: "",
       interests: "",
+      formType: "",
 
       // modalIsOpen: false
       modalIsOpen: this.props.modalIsOpen
     };
-    this.formType = "";
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.changeForm = this.changeForm.bind(this);
@@ -51,39 +51,47 @@ class SessionForm extends React.Component {
     this.renderErrors = this.renderErrors.bind(this);
   }
 
+
+  componentWillReceiveProps(newProps) {
+    this.setState({modalIsOpen: newProps.modalIsOpen});
+    if (this.state.modalIsOpen && this.state.formType === "") {
+      this.setState({
+        formType: 'login'
+      });
+    }
+  }
+
 ////////// CONSOLIDATE BELOW
   openModal(formType) {
-    this.formType = formType;
-
     this.setState({
-      // modalIsOpen: true
-      modalIsOpen: true
+      formType: formType
     });
+    this.props.toggleModal();
   }
 
   closeModal() {
-    this.formType = "";
     this.setState({
-      modalIsOpen: false,
       name: "",
       email: "",
       password: "",
       location: "",
-      interests: ""
+      interests: "",
+      formType: ""
     });
+    this.props.toggleModal();
   }
 ////////// CONSOLIDATE ABOVE
 
   changeForm() {
-    if (this.formType === 'signup') {
-      this.formType = 'login';
+    if (this.state.formType === 'signup') {
+      this.setState({formType: 'login'});
     } else {
-      this.formType = 'signup';
+      this.setState({formType: 'signup'});
     }
   }
 
   navLink() {
-    if (this.formType === 'signup') {
+    if (this.state.formType === 'signup') {
       return (
         <button onClick={this.changeForm}>Already have an account?</button>
       );
@@ -96,7 +104,7 @@ class SessionForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    if (this.formType === 'signup') {
+    if (this.state.formType === 'signup') {
       this.props.signup(this.state);
     } else {
       this.props.login(this.state);
@@ -115,7 +123,7 @@ class SessionForm extends React.Component {
   }
 
   determine() {
-    if (this.formType === 'signup') {
+    if (this.state.formType === 'signup') {
       return (
         <form className="session-form" onSubmit={this.handleSubmit}>
           <h1 className='modal-logo'>getdown</h1>

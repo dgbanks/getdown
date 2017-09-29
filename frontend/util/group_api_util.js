@@ -17,7 +17,7 @@ export const createGroup = group => (
   })
 );
 
-export const userGroups = userId => (
+export const fetchUserGroups = userId => (
   $.ajax({
     method: 'GET',
     url: `api/users/${userId}/groups`,

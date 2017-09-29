@@ -68,12 +68,11 @@ class DashboardMenu extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
 
         <nav className="dropdown">
-          <button className="dropdown-button">{this.props.currentUser.name}</button>
+          <button className="dropdown-button">{this.props.currentUser.name} ▾</button>
           <div className="dropdown-menu">
             <button className='dropdown-option' onClick={() => this.openModal('createGroup')}>Start a Group</button>
             <button className='dropdown-option' onClick={() => this.openModal('groupIndex')}>Your Groups</button>
