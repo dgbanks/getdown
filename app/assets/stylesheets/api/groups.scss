@@ -2,19 +2,29 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// GROUP INDEX ITEMS
+// GROUP IMAGE
 
-.group-item {
-
+// show-container, image-container, image
+.show-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 100px;
 }
 
-.item-left {
-
+.show-container .image-container {
+  margin-top: -50px;
+  height: 400px;
+  overflow: hidden;
+  margin-bottom: 50px;
 }
 
-.item-right {
-
+.show-container .image {
+  // object-fit: cover;
+  margin-top: -400px;
 }
+
 
 /// GROUP SHOW
 
@@ -32,7 +42,8 @@
 .show-header {
   width: 800px;
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: space-between;
   // background-color: lightgray;
   // border: 1px solid black;
   padding: 15px 0px;
@@ -46,6 +57,17 @@
 }
 
 .show-header button {
+  margin-top: 15px;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: pink;
+  font-size: 15px;
+  color: white;
+  border: 0px;
+}
+
+.left-content button {
   margin-left: 10px;
   cursor: pointer;
   border-radius: 10px;
@@ -57,13 +79,29 @@
 }
 
 .show-header button:hover {
-  background-color: pink;
+  background-color: darken(pink, 10);
   color: white;
+}
+
+.left-content button:hover {
+  background-color: darken(white, 10);
 }
 
 .show-header p {
   // color: white;
   color:gray;
+}
+
+.header-left {
+  margin-left: 30px;
+  justify-content: center;
+}
+
+.header-right {
+  width: 450px;
+  border: solid 1px gray;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 ////// MAIN
@@ -88,12 +126,25 @@
   width: 200;
 }
 
+.left-content h3 {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.left-content h1 {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
 .show-details {
   width: 500px;
   background-color: pink;
   border-radius: 10px;
   padding: 15px;
 }
+
+.show-details
 
 
 // EVENT INDEX
@@ -104,6 +155,7 @@
   font-size: 20px;
   font-weight: bold;
   // margin-top: 50px;
+  color: white;
 }
 
 .event-date {

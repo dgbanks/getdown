@@ -98,7 +98,7 @@ bookclub_meeting = Event.create({
   description: 'Reading some Jane Eyre.... eyeroll am i right?',
   location: bookclub.zip_code,
   date: Date.parse('2017-09-29'),
-  time: 'Noon',
+  time: Time.parse('12:00'),
   group_id: bookclub.id,
   host_id: bookclub.organizer_id
   })
@@ -108,7 +108,7 @@ betterbc_meeting = Event.create({
   description: 'Reading some Wuthering Heights because we are just a little bit better than those other losers',
   location: betterbookclub.zip_code,
   date: Date.parse('2017-10-01'),
-  time: 'midnight',
+  time: Time.parse('12:00'),
   group_id: betterbookclub.id,
   host_id: betterbookclub.organizer_id
   })
@@ -118,7 +118,7 @@ betterbc_meeting = Event.create({
   description: 'Reading some Dickens because we\'re not above it',
   location: betterbookclub.zip_code,
   date: Date.parse('2017-10-01'),
-  time: 'midnight',
+  time: Time.parse('12:00'),
   group_id: betterbookclub.id,
   host_id: betterbookclub.organizer_id
   })
@@ -128,7 +128,7 @@ code_sesh = Event.create({
   description: 'Staying up til 1AM coding forever to finish fullstacks lololololololol',
   location: react.zip_code,
   date: Date.parse('2017-09-29'),
-  time: '6PM',
+  time: Time.parse('12:00'),
   group_id: react.id,
   host_id: react.organizer_id
   })

@@ -39,6 +39,7 @@ class GroupShow extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.determine = this.determine.bind(this);
 
+    this.handleCreateEvent = this.handleCreateEvent.bind(this);
     this.handleJoinGroup = this.handleJoinGroup.bind(this);
     this.eventButton = this.eventButton.bind(this);
   }
@@ -83,6 +84,14 @@ class GroupShow extends React.Component {
     }
   }
 
+  handleCreateEvent() {
+    if (this.props.currentUser) {
+      this.openModal('createEvent');
+    } else {
+      this.props.toggleModal();
+    }
+  }
+
   eventButton() {
     if (this.props.currentUser) {
       return (
@@ -101,10 +110,19 @@ class GroupShow extends React.Component {
 
     return (
       <div className='show-container'>
+        <div className='image-container'>
+          <img
+            src='https://images.unsplash.com/photo-1416453072034-c8dbfa2856b5?dpr=1&auto=compress,format&fit=crop&w=1516&h=&q=80&cs=tinysrgb&crop='
+            className='image' />
+        </div>
         <div className='show-header'>
-          <h3>{group.name}</h3>
-          <p>{group.description}</p>
+          <div className='header-left'>
+            <h3>{group.name}</h3>
             <button onClick={this.handleJoinGroup}>Join Group</button>
+          </div>
+          <div className='header-right'>
+            <p>{group.description}</p>
+          </div>
         </div>
 
         <br/>
@@ -120,10 +138,9 @@ class GroupShow extends React.Component {
               <h3>Organizer:</h3>
               <h1>{group.organizer.name}</h1>
               <br/>
-              <h3>Members</h3>
-              <h1>{group.member_count}</h1>
+              <h3>Members: ({group.member_count})</h3>
               <br/>
-              <button onClick={() => this.openModal('createEvent')}>Create Event</button>
+              <button onClick={this.handleCreateEvent}>Create Event</button>
             </div>
 
           </div>

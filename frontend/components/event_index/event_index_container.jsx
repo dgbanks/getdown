@@ -4,7 +4,13 @@ import { fetchEvents, fetchGroupEvents, fetchUserEvents } from '../../actions/ev
 import EventIndex from './event_index';
 
 const mapStateToProps = state => ({
-  events: Object.keys(state.entities.events).map(id => state.entities.events[id]),
+  events: Object.keys(state.entities.events).map(id => state.entities.events[id]).sort(function (a, b) {if (a.date < b.date) {
+    return -1;
+  } if (a.date > b.date) {
+    return 1;
+  }
+    return 0
+  ;}),
   currentUser: state.session.currentUser
 });
 

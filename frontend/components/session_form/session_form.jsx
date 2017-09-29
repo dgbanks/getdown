@@ -49,6 +49,15 @@ class SessionForm extends React.Component {
     this.update = this.update.bind(this);
     this.determine = this.determine.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
+  }
+
+  demoLogin() {
+    this.setState({
+      email: 'email2',
+      password: 'password'
+    }, () => this.props.login(this.state));
+
   }
 
 
@@ -196,6 +205,10 @@ class SessionForm extends React.Component {
 
           <button onClick={() => this.openModal('login')}>
             Log In
+          </button>
+
+          <button onClick={this.demoLogin}>
+            Guest Login
           </button>
         </nav>
 
