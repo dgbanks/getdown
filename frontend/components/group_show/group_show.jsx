@@ -115,7 +115,7 @@ class GroupShow extends React.Component {
             <div className='left-content'>
               <br/>
               <h3>Location:</h3>
-              <h1>{group.location}</h1>
+              <h1>{group.address}</h1>
               <br/>
               <h3>Organizer:</h3>
               <h1>{group.organizer.name}</h1>

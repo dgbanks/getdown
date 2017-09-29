@@ -4,7 +4,7 @@ class Event < ApplicationRecord
 
   after_save :ensure_host_attendance, on: :create
 
-  after_initialize :geocode
+  # after_initialize :geocode
 
   belongs_to :group,
     primary_key: :id,
@@ -25,11 +25,11 @@ class Event < ApplicationRecord
     through: :rsvps,
     source: :user
 
-  def geocode
-    geocode = Geocoder.coordinates(self.location)
-    self.latitude = geocode.first
-    self.longitude = geocode.last
-  end
+  # def geocode
+  #   geocode = Geocoder.coordinates(self.location)
+  #   self.latitude = geocode.first
+  #   self.longitude = geocode.last
+  # end
 
   def ensure_host_attendance
     Rsvp.create({event: self, user: self.host})

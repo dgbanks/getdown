@@ -19,8 +19,13 @@
 
 /// SEARCH BY GROUP
 
+.image-container .search-bar:hover {
+  background-color: darken(white, 10);
+}
+
 .search {
   margin: 30px 0px;
+  // margin-top: -150px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,7 +40,7 @@
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   // border-radius: 10px;
-  border: 3px solid pink;
+  border: 5px solid pink;
 }
 
 .search-bar:hover {
@@ -97,11 +102,16 @@
   flex-direction: row;
 }
 
+.item-content h1 {
+  font-weight: bold;
+}
+
 .item-content p {
   margin-left: 10px;
   margin-top: 3px;
 }
 
-.item-content p, .group-item p {
+.item-content p, .group-item p, .event-item p {
   color: gray;
+  margin-top: 0px;
 }

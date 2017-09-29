@@ -5,16 +5,17 @@ const EventIndexItem = ({event}) => {
   return (
     <div>
       <br/>
-      <li className='event-item'>
-        <Link to={`/events/${event.id}`}>
-          {event.name}
-        </Link> <br/>
-        {event.description} <br/>
-        {event.location} <br/>
-        <Link to={`/groups/${event.group.id}`}>
-          {event.group.name}
-        </Link>
-      </li> <br/>
+      <Link to={`/events/${event.id}`} style={{color: 'black', textDecoration: 'none'}}>
+        <div className='event-date'>{event.date}</div>
+        <li className='event-item'>
+          <div className='item-content'>
+            <h2>{event.name}</h2>
+            <p> at {event.location}</p>
+          </div>
+          <p>{event.description}</p>
+          <h2>{event.group.name}</h2>
+        </li>
+      </Link>
     </div>
   );
 };

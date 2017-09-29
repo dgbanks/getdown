@@ -73,7 +73,7 @@
   justify-content: center;
   width: 800px;
   // background-color: lightgray;
-  height: 300px;
+  // height: 300px;
 }
 
 .left-nav {
@@ -103,12 +103,24 @@
   padding-top: 10px;
   font-size: 20px;
   font-weight: bold;
+  // margin-top: 50px;
+}
+
+.event-date {
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0px 0px 5px 20px;
+}
+
+.event-item h2 {
+  font-weight: bold;
 }
 
 .event-index-container .event-index {
-  margin-top: 5px;
+  // margin-top: 5px;
   display: flex;
   justify-content: center;
+  margin-bottom: 100px;
 }
 
 .event-index {
@@ -116,6 +128,8 @@
   display: flex;
   justify-content: center;
   background-color: pink;
+  border-radius: 10px;
+  // margin-bottom: 10px;
 }
 
 .event-item {
@@ -123,4 +137,11 @@
   width: 450px;
   padding: 5px 15px;
   border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+
+
+.event-item:hover {
+  background-color: darken(white, 10);
 }

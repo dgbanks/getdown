@@ -12,6 +12,7 @@ class GroupSearch extends React.Component {
 
   componentDidMount() {
     // this.props.fetchGroups();
+    this.props.clearGroupSearch();
   }
 
   update(e) {
@@ -35,7 +36,7 @@ class GroupSearch extends React.Component {
         <input
           className='search-bar'
           type='search'
-          placeholder='Search for groups by name or description'
+          placeholder='Search for groups by name, description, or location'
           onChange={this.update}
         />
 
