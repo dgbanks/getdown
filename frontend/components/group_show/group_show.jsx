@@ -1,15 +1,74 @@
 import React from 'react';
+import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 import EventIndexContainer from '../event_index/event_index_container';
 import EventFormContainer from '../event_form/event_form_container';
 
+const customStyles = {
+  overlay : {
+    // position : 'fixed',
+    backgroundColor : 'rgba(0,0,0, 0.75)',
+  },
+  content : {
+    // position                   : 'absolute',
+    top                        : '50%',
+    left                       : '50%',
+    right                      : 'auto',
+    bottom                     : 'auto',
+    border                     : '1px solid #ccc',
+    background: 'white',
+    overflow                   : 'auto',
+    WebkitOverflowScrolling    : 'touch',
+    borderRadius               : '10px',
+    outline                    : 'none',
+    padding                    : '20px',
+    marginRight                : '-50%',
+    transform                  : 'translate(-50%, -50%)',
+    width                      : '400px'
+  }
+};
+
 class GroupShow extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {modalIsOpen: false};
+    this.formType = "";
+
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.determine = this.determine.bind(this);
 
     this.handleJoinGroup = this.handleJoinGroup.bind(this);
     this.eventButton = this.eventButton.bind(this);
   }
+
+//////////
+
+  openModal(formType) {
+    this.formType = formType;
+    this.setState({modalIsOpen: true});
+  }
+
+  closeModal() {
+    this.formType = "";
+    this.setState({
+      modalIsOpen: false
+    });
+  }
+
+  determine() {
+    if (this.formType === 'createEvent') {
+      return(
+        <EventFormContainer />
+      );
+    } else {
+      return (
+        'something'
+      );
+    }
+  }
+
+//////////
 
   componentDidMount() {
     this.props.fetchGroup(this.props.match.params.groupId);
@@ -29,10 +88,6 @@ class GroupShow extends React.Component {
         <button onClick={this.getEventForm}>Create Event</button>
       );
     }
-  }
-
-  getEventForm() {
-    <EventFormContainer />
   }
 
   render () {
@@ -67,7 +122,7 @@ class GroupShow extends React.Component {
               <h3>Members</h3>
               <h1>{group.member_count}</h1>
               <br/>
-              <button onClick={this.getEventForm}>Create Event</button>
+              <button onClick={() => this.openModal('createEvent')}>Create Event</button>
             </div>
 
           </div>
@@ -76,6 +131,17 @@ class GroupShow extends React.Component {
             <EventIndexContainer />
           </div>
         </div>
+
+
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onRequestClose={() => this.closeModal()}
+          contentLabel="Modal"
+          style={customStyles}
+        >
+          {this.determine()}
+        </Modal>
+
       </div>
     );
 

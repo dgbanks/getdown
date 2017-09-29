@@ -13,7 +13,11 @@ class EventShow extends React.Component {
   }
 
   handleJoinEvent() {
-    this.props.joinEvent(this.props.match.params.eventId);
+    if (this.props.currentUser) {
+      this.props.joinEvent(this.props.event.id);
+    } else {
+      this.props.toggleModal();
+    }
   }
 
   render() {

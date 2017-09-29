@@ -2,6 +2,8 @@ class Event < ApplicationRecord
 
   validates :name, :description, :location, :date, :time, :group_id, :host_id, :latitude, :longitude, presence: true
 
+  after_save :ensure_host_attendance, on: :create
+
   after_initialize :geocode
 
   belongs_to :group,
@@ -29,4 +31,7 @@ class Event < ApplicationRecord
     self.longitude = geocode.last
   end
 
+  def ensure_host_attendance
+    Rsvp.create({event: self, user: self.host})
+  end
 end

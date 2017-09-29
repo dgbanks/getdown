@@ -29,6 +29,7 @@ class Api::EventsController < ApplicationController
     else
       @events = Event.all
     end
+    @events = @events.sort_by {|event| event.date}
     render "api/events/index"
   end
 
