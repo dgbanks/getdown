@@ -1,4 +1,5 @@
 import * as GroupApiUtil from '../util/group_api_util';
+import * as UserApiUtil from '../util/user_api_util';
 
 export const RECEIVE_GROUPS = "RECEIVE_GROUPS";
 export const RECEIVE_GROUP = "RECEIVE_GROUP";
@@ -19,6 +20,12 @@ const removeGroup = group => ({
   type: REMOVE_GROUP,
   group
 });
+
+// USER
+
+export const joinGroup = groupId => dispatch => (
+  UserApiUtil.joinGroup(groupId).then(group => dispatch(receiveGroup(group)))
+);
 
 /// INDEX AND SHOW THUNKS
 

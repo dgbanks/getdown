@@ -15,8 +15,8 @@ const GroupsReducer = (prevState = {}, action) => {
       return newState;
     case CLEAR_GROUPS:
       return {};
-    case RECEIVE_USER:
-      return merge({}, prevState, {[action.group.id]: {members: [action.user]}})
+    // case RECEIVE_USER:
+    //   return merge({}, prevState, {[action.group.id]: {members: [action.user]}})
     default:
       return prevState;
   }

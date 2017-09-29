@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { joinGroup } from '../../actions/user_actions';
+import { joinGroup } from '../../actions/group_actions';
 import { fetchGroup } from '../../actions/group_actions';
 import { fetchGroupEvents } from '../../actions/event_actions';
 import { toggleModal } from '../../actions/ui_actions';

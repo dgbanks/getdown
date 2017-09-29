@@ -25,7 +25,7 @@ class Api::GroupsController < ApplicationController
       @groups = current_user.groups
     else
       @groups = Group.all
-      @groups = @groups.sort_by {|group| group.member_count}.reverse
+      @groups = @groups.sort_by {|group| group.members.count}.reverse
     end
     render "api/groups/index"
   end

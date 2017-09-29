@@ -13,9 +13,9 @@ const removeUser = user => ({
   user
 });
 
-export const joinGroup = groupId => dispatch => (
-  UserApiUtil.joinGroup(groupId).then(user => dispatch(receiveUser(user)))
-);
+// export const joinGroup = groupId => dispatch => (
+//   UserApiUtil.joinGroup(groupId).then(group => dispatch(receiveUser(group)))
+// );
 
 export const leaveGroup = (groupId) => dispatch => (
   UserApiUtil.leaveGroup(groupId).then(user => dispatch(removeUser(user)))

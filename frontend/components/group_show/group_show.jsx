@@ -16,7 +16,6 @@ class GroupShow extends React.Component {
   }
 
   handleJoinGroup() {
-
     if (this.props.currentUser) {
       this.props.joinGroup(this.props.group.id);
     } else {
@@ -49,7 +48,7 @@ class GroupShow extends React.Component {
         <div className='show-header'>
           <h3>{group.name}</h3>
           <p>{group.description}</p>
-          <button onClick={this.handleJoinGroup}>Join Group</button>
+            <button onClick={this.handleJoinGroup}>Join Group</button>
         </div>
 
         <br/>
