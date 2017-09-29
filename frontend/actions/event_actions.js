@@ -4,6 +4,7 @@ import * as UserApiUtil from '../util/user_api_util';
 export const RECEIVE_EVENTS = "RECEIVE_EVENTS";
 export const RECEIVE_EVENT = "RECEIVE_EVENT";
 export const REMOVE_EVENT = "REMOVE_EVENT";
+export const RECEIVE_GROUP = "RECEIVE_GROUP";
 
 const receiveEvents = events => ({
   type: RECEIVE_EVENTS,
@@ -46,8 +47,8 @@ export const fetchEvent = id => dispatch => (
 
 /// FORM THUNKS
 
-export const createEvent = event => dispatch => (
-  EventApiUtil.createEvent(event).then(event => dispatch(receiveEvent(event)))
+export const createEvent = (groupId, event) => dispatch => (
+  EventApiUtil.createEvent(groupId, event).then(event => dispatch(receiveEvent(event)))
 );
 
 export const updateEvent = event => dispatch => (

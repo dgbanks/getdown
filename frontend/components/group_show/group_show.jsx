@@ -24,7 +24,8 @@ const customStyles = {
     padding                    : '20px',
     marginRight                : '-50%',
     transform                  : 'translate(-50%, -50%)',
-    width                      : '400px'
+    width: '600px',
+    height: '450px'
   }
 };
 
@@ -59,7 +60,7 @@ class GroupShow extends React.Component {
   determine() {
     if (this.formType === 'createEvent') {
       return(
-        <EventFormContainer />
+        <EventFormContainer groupId={this.props.group.id}/>
       );
     } else {
       return (

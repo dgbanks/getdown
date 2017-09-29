@@ -6,7 +6,11 @@ class Homepage extends React.Component {
   render() {
     return (
       <div className='homepage'>
-
+        <div className='image-container'>
+          <img
+            src='https://images.unsplash.com/reserve/brBe5pGVSwGi0dC3192U_Sunset%20in%20Dunhuang.jpg?dpr=1&auto=compress,format&fit=crop&w=1508&h=&q=80&cs=tinysrgb&crop='
+            className='image' />
+        </div>
         <div>
           <GroupSearchContainer />
         </div>

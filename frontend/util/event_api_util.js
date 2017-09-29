@@ -1,5 +1,6 @@
 //refacttor the optional userId into separate actions
 
+/// INDEX
 
 export const fetchEvents = (userId) => (
   $.ajax({
@@ -9,12 +10,23 @@ export const fetchEvents = (userId) => (
   })
 );
 
+export const fetchUserEvents = (userId) => (
+  $.ajax({
+    method: 'GET',
+    url: `api/users/${userId}/events`,
+  })
+);
+
+/// EVENT SHOW
+
 export const fetchEvent = id => (
   $.ajax({
     method: 'GET',
     url: `api/events/${id}`
   })
 );
+
+/// GROUP SHOW
 
 export const fetchGroupEvents = (groupId) => (
   $.ajax({
@@ -23,9 +35,10 @@ export const fetchGroupEvents = (groupId) => (
   })
 );
 
-export const fetchUserEvents = (userId) => (
+export const createEvent = (groupId, event) => (
   $.ajax({
-    method: 'GET',
-    url: `api/users/${userId}/events`,
+    method: 'POST',
+    url: `api/groups/${groupId}/events`,
+    data: {event}
   })
 );

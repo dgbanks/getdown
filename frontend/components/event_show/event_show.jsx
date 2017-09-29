@@ -10,6 +10,7 @@ class EventShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchEvent(this.props.match.params.eventId);
+    // this.props.fetchEvent(this.props.event.id);
   }
 
   handleJoinEvent() {
@@ -22,6 +23,9 @@ class EventShow extends React.Component {
 
   render() {
     const event = this.props.event;
+    if (!event) {
+      return null;
+    }
     return (
       <div className='show-container'>
         <div className='show-header'>
@@ -49,6 +53,11 @@ class EventShow extends React.Component {
 
               <br/>
 
+              <h3>Time:</h3>
+              <h1>{event.time}</h1>
+
+              <br/>
+
               <h3>Hosted by:</h3>
               <Link to={`/groups/${event.group.id}`}>
                 <h1>{event.group.name}</h1>
@@ -57,9 +66,8 @@ class EventShow extends React.Component {
               <br/>
 
               <div className='event-group-info'>
-                <h3>Members</h3> <br/>
-                <h3>Organizer</h3> <br/>
-                <h3>Calendar</h3> <br/>
+                <h3>Members: ({event.attendance})</h3> <br/>
+                <h3>Host: {event.host.name}</h3> <br/>
               </div>
 
             </div>

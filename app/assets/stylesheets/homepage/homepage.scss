@@ -6,6 +6,16 @@
   width: 100%;
 }
 
+.image-container {
+  height: 400px;
+  overflow: hidden;
+}
+
+.image {
+  // object-fit: cover;
+  margin-top: -300px;
+}
+
 
 /// SEARCH BY GROUP
 

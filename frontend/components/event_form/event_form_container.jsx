@@ -4,12 +4,11 @@ import { toggleModal } from '../../actions/ui_actions';
 import EventForm from './event_form';
 
 const mapStateToProps = (state, ownProps) => ({
-
 });
 
 
 const mapDispatchToProps = dispatch => ({
-  createEvent: event => dispatch(createEvent(event)),
+  createEvent: (groupId, event) => dispatch(createEvent(groupId, event)),
   updateEvent: event => dispatch(updateEvent(event)),
 });
 
