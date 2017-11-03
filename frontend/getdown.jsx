@@ -4,11 +4,11 @@ import Root from './components/root';
 import { configureStore } from './store/store';
 
 // testing
-import * as SessionApiUtil from './util/session_api_util';
-import { signup, login, logout } from './actions/session_actions';
-window.signup = signup;
-window.login = login;
-window.logout = logout;
+// import * as SessionApiUtil from './util/session_api_util';
+// import { signup, login, logout } from './actions/session_actions';
+// window.signup = signup;
+// window.login = login;
+// window.logout = logout;
 // testing
 
 
@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // testing
-  window.getState = store.getState;
-  window.dispatch = store.dispatch;
+  // window.getState = store.getState;
+  // window.dispatch = store.dispatch;
   //testing
 
   const root = document.getElementById('root');
