@@ -9,12 +9,11 @@
 .splash-container {
   height: 500px;
   width: 100%;
-  background-color: black;
+  background-color: lightgray;
   z-index: -2;
 }
 
 .splash-text {
-  // float: left;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,31 +35,33 @@
 .stripes {
   // display: flex;
   // justify-content: space-between;
-  display: flex;
-  flex-direction: column;
-
-  position: absolute;
-  background-color: red;
-  height: 500px;
-  width: 20%;
+  // align-items: flex-end;
+  // position: absolute;
+  // background-color: red;
+  // height: 500px;
+  // width: 20%;
   z-index: -1;
-  animation: 10s linear 0s infinite move_stripe;
+  // animation: 10s linear 0s infinite move_stripe;
 }
 
-.single-stripe {
-
-  position: absolute;
-  background-color: red;
-  height: 50px;
-  width: 20%;
-  z-index: -1;
-  animation: 10s linear 0s infinite move_stripe;
+.stripes .single-stripe {
+  // display: flex;
+  // flex-direction: column;
+  // position: absolute;
 }
-  @keyframes move_stripe { from { margin-left: -20%; } to { margin-left: 100%; }  }
+
+// .single-stripe {
+//   position: absolute;
+//   height: 50px;
+//   // width: 20%;
+//   z-index: -1;
+//   animation: 10s linear 0s infinite move_stripe;
+// }
+//   @keyframes move_stripe { from { margin-left: -20%; } to { margin-left: 100%; }  }
 
 /// SEARCH BY GROUP
 
-.image-container .search-bar:hover {
+.search-bar:hover {
   background-color: darken(white, 10);
 }
 
