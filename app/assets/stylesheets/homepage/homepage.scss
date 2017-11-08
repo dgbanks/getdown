@@ -9,7 +9,7 @@
 .splash-container {
   height: 500px;
   width: 100%;
-  background-color: lightgray;
+  background-color: white;
   z-index: -2;
 }
 
@@ -22,7 +22,7 @@
 .splash-text h1 {
   font-family: sans-serif;
   font-size: 50px;
-  color: white;
+  color: black;
   margin-top: 50px;
 }
 
@@ -31,33 +31,6 @@
   color: #355e3b;
   display: inline;
 }
-
-.stripes {
-  // display: flex;
-  // justify-content: space-between;
-  // align-items: flex-end;
-  // position: absolute;
-  // background-color: red;
-  // height: 500px;
-  // width: 20%;
-  z-index: -1;
-  // animation: 10s linear 0s infinite move_stripe;
-}
-
-.stripes .single-stripe {
-  // display: flex;
-  // flex-direction: column;
-  // position: absolute;
-}
-
-// .single-stripe {
-//   position: absolute;
-//   height: 50px;
-//   // width: 20%;
-//   z-index: -1;
-//   animation: 10s linear 0s infinite move_stripe;
-// }
-//   @keyframes move_stripe { from { margin-left: -20%; } to { margin-left: 100%; }  }
 
 /// SEARCH BY GROUP
 
