@@ -28,7 +28,11 @@ class Group < ApplicationRecord
 
 
   def self.search(query)
-    self.where("name ILIKE ? OR description ILIKE ? OR location ILIKE ?", "%#{query}%", "%#{query}%", "%#{query}%")
+    self.where(
+      "name ILIKE ? OR
+      description ILIKE ? OR
+      location ILIKE ?",
+       "%#{query}%", "%#{query}%", "%#{query}%")
   end
 
   def geocode

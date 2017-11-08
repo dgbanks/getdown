@@ -53,7 +53,7 @@
   font-size: 30px;
   font-weight: bold;
   // color: white;
-  color:pink;
+  color:#355e3b;
 }
 
 .show-header button {
@@ -61,7 +61,7 @@
   cursor: pointer;
   border-radius: 10px;
   padding: 10px;
-  background-color: pink;
+  background-color: #355e3b;
   font-size: 15px;
   color: white;
   border: 0px;
@@ -74,12 +74,12 @@
   padding: 10px;
   background-color: white;
   font-size: 15px;
-  color: pink;
+  color: #355e3b;
   border: 0px;
 }
 
 .show-header button:hover {
-  background-color: darken(pink, 10);
+  background-color: darken(#355e3b, 10);
   color: white;
 }
 
@@ -116,7 +116,7 @@
 
 .left-nav {
   width: 250px;
-  background-color: pink;
+  background-color: #355e3b;
   margin-right: 50px;
   border-radius: 10px;
 }
@@ -139,7 +139,7 @@
 
 .show-details {
   width: 500px;
-  background-color: pink;
+  background-color: #355e3b;
   border-radius: 10px;
   padding: 15px;
 }
@@ -179,7 +179,7 @@
   width: 500px;
   display: flex;
   justify-content: center;
-  background-color: pink;
+  background-color: #355e3b;
   border-radius: 10px;
   // margin-bottom: 10px;
 }

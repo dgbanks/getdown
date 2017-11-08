@@ -1,5 +1,6 @@
 .navbar {
-  background-color: pink;
+  // position: relative;
+  background-color: #355e3b;
   // background-color: gray;
   display: flex;
   justify-content: space-between;
@@ -28,7 +29,8 @@
 
 .logo {
   color: white;
-  font-size: 45px;
+  font-size: 50px;
+  font-family: cursive;
   font-weight: bold;
 }
 
@@ -65,7 +67,7 @@
   cursor: pointer;
   border-radius: 0px;
   padding: 0px;
-  background-color: pink;
+  background-color: #355e3b;
   // background-color: gray;
   font-family: serif;
   font-size: 30px;
@@ -74,7 +76,7 @@
 }
 
 .dropdown .dropdown-button:hover {
-  background-color: pink;
+  background-color: #355e3b;
   // background-color: gray;
   color:gray;
   // color:pink;
