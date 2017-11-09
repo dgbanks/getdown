@@ -48,10 +48,7 @@ class SessionLinks extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.changeForm = this.changeForm.bind(this);
     this.navLink = this.navLink.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    // this.update = this.update.bind(this);
     this.determine = this.determine.bind(this);
-    // this.renderErrors = this.renderErrors.bind(this);
     this.demoLogin = this.demoLogin.bind(this);
   }
 
@@ -140,7 +137,17 @@ class SessionLinks extends React.Component {
     return(
       <div>
 
+
         <nav className='signup-login'>
+
+          <img
+            className='account-icon'
+            src='https://cdn2.iconfinder.com/data/icons/finances/512/client-512.png'
+            style={{
+              height: '50px',
+              width: '50px'
+            }}/>
+
           <button onClick={() => this.openModal('signup')}>
             Sign Up
           </button>

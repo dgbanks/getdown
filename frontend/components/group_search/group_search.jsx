@@ -40,8 +40,8 @@ class GroupSearch extends React.Component {
           onChange={this.update}
         />
 
+        <GroupIndexContainer />
         <div className='results'>
-          <GroupIndexContainer />
         </div>
 
       </div>

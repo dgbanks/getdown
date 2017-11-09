@@ -21,7 +21,8 @@ class Homepage extends React.Component {
         position: 'absolute',
         height: '50px',
         zIndex: '-1',
-        backgroundColor: this.color,
+        backgroundColor: SplashUtil.randomColor(),
+        // mixBlendMode: 'multiply',
         opacity: SplashUtil.randomOpacity(),
         width: this.width,
         marginTop: `${this.margin}px`,
@@ -39,7 +40,7 @@ class Homepage extends React.Component {
 
   makeStripe() {
     return (
-      <div className='single-stripe' style={this.getRandomStyles()}>
+      <div className='single-stripe other-class' style={this.getRandomStyles()}>
       </div>
     );
   }
@@ -77,13 +78,14 @@ class Homepage extends React.Component {
 
         <GroupSearchContainer />
 
-        <div>
-          <EventIndexContainer />
-        </div>
 
       </div>
     );
   }
 }
+
+// <div>
+//   <EventIndexContainer />
+// </div>
 
 export default Homepage;
