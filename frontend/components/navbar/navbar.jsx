@@ -16,7 +16,12 @@ const getSessionLinks = (currentUser) => (
 const NavBar = ({currentUser}) => (
   <nav className='navbar'>
     <div className='logo'>
-      <Link to='/' style={{color: 'white', textDecoration: 'none'}}>
+      <Link to='/' style={{
+        color: 'black',
+        fontSize: '50px',
+        fontFamily: 'cursive',
+        fontWeight: 'bold',
+        textDecoration: 'none'}}>
         <h1>getdown</h1>
       </Link>
     </div>

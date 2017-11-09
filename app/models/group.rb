@@ -32,7 +32,7 @@ class Group < ApplicationRecord
       "name ILIKE ? OR
       description ILIKE ? OR
       location ILIKE ?",
-       "%#{query}%", "%#{query}%", "%#{query}%")
+       "%#{query}%", "%#{query}%", "%#{query}%").limit(4)
   end
 
   def geocode

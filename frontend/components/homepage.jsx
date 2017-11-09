@@ -21,16 +21,17 @@ class Homepage extends React.Component {
         position: 'absolute',
         height: '50px',
         zIndex: '-1',
-        backgroundColor: SplashUtil.randomColor(),
+        backgroundColor: this.color,
         opacity: SplashUtil.randomOpacity(),
         width: this.width,
         marginTop: `${this.margin}px`,
+        marginLeft: `-${this.width}px`,
         animationName: 'moveStripe',
         animationDuration: `${SplashUtil.randomTime()}s`,
         animationDelay: `${SplashUtil.randomDelay()}s`,
         animationFillMode: 'none',
         animationIterationCount: 'infinite',
-        animationDirection: 'alternate-reverse',
+        animationDirection: 'alternate',
         animationTimingFunction: 'linear'
       }
     );
@@ -64,12 +65,13 @@ class Homepage extends React.Component {
 
           <div className='splash-text'>
             <h1>Looking for something to do?</h1>
-            <h1>find a group you can
-              <h2 style={{color: this.color, fontWeight: 'bold', margin: '0px 15px'}}>
-                getdown</h2>with
-            </h1>
+            <h1>find a group you can<h2 style={{
+              display: 'inline',
+              color: this.color,
+              fontFamily: 'cursive',
+              fontWeight: 'bold',
+              margin: '0px 15px'}}>getdown</h2>with</h1>
           </div>
-
 
         </div>
 
