@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SessionFormContainer from '../session_form/session_form_container';
+import SessionLinksContainer from '../session_links/session_links_container';
 import DashboardMenuContainer from '../dashboard_menu/dashboard_menu_container';
 
 const getSessionLinks = (currentUser) => (
@@ -8,7 +8,7 @@ const getSessionLinks = (currentUser) => (
     { currentUser ? (
       <DashboardMenuContainer />
     ) : (
-      <SessionFormContainer />
+      <SessionLinksContainer />
     )}
   </div>
 );

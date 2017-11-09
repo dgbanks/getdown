@@ -5,18 +5,14 @@ import SessionForm from './session_form';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    loggedIn: Boolean(state.session.currentUser),
-    errors: state.errors.session,
-    modalIsOpen: state.ui.modalIsOpen
+    errors: state.errors.session
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     login: user => dispatch(login(user)),
-    signup: user => dispatch(signup(user)),
-    clearErrors: () => dispatch(clearErrors()),
-    toggleModal: () => dispatch(toggleModal())
+    clearErrors: () => dispatch(clearErrors())
   };
 };
 

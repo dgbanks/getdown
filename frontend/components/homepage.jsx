@@ -21,7 +21,7 @@ class Homepage extends React.Component {
         position: 'absolute',
         height: '50px',
         zIndex: '-1',
-        backgroundColor: this.color,
+        backgroundColor: SplashUtil.randomColor(),
         opacity: SplashUtil.randomOpacity(),
         width: this.width,
         marginTop: `${this.margin}px`,
