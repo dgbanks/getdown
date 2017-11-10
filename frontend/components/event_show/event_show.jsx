@@ -27,11 +27,40 @@ class EventShow extends React.Component {
       return null;
     }
     return (
-      <div className='event-container'>
+
+      <div className='event-page group-body-main'>
+
+        <div className='event-header'>
+
+          <h1>{event.name}</h1>
+
+          <div className='event-rsvp-info'>
+            <h5>Host: {event.host.name}</h5>
+            <h6>{event.attendance} people are down</h6>
+            <button onClick={this.handleJoinEvent}>I'm Down!</button>
+          </div>
+
+        </div>
+
+
+        <div className='event-details'>
+
+          <h2>{event.date}</h2>
+          <h3>{event.time}</h3>
+          <h4>{event.location}</h4>
+
+        </div>
+
+        <div className='event-description'>
+          <p>{event.description}</p>
+        </div>
+
+
+
+
+
         <div className='image-container'>
-          <img
-            src='https://images.unsplash.com/photo-1465060810938-30bbe7c40e76?dpr=1&auto=compress,format&fit=crop&w=1630&h=&q=80&cs=tinysrgb&crop='
-            className='image' />
+
         </div>
         <div className='show-header'>
           <div className='header-left'>
