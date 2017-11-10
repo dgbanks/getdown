@@ -19,7 +19,6 @@ const App = () => (
       <Switch>
         <Route exact path='/' component={Homepage}/>
         <Route path='/groups/:groupId' component={GroupShowContainer}/>
-        <Route path='/events/:eventId' component={EventShowContainer}/>
       </Switch>
     </main>
 

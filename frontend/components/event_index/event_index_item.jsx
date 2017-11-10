@@ -8,7 +8,8 @@ const EventIndexItem = ({event}) => {
 
       <div className='event-index-item-details'>
 
-        <Link to={`/events/${event.id}`} style={{color: 'black', textDecoration: 'none'}}>
+
+        <Link to={`/groups/${event.group.id}/events/${event.id}`} style={{color: 'black', textDecoration: 'none'}}>
           {event.name}
         </Link>
 
@@ -27,7 +28,7 @@ const EventIndexItem = ({event}) => {
 
         <h2>{event.time}</h2>
 
-        <Link to={`/events/${event.id}`} style={{color: 'black', textDecoration: 'none'}}>
+        <Link to={`/groups/${event.group.id}/events/${event.id}`} style={{color: 'black', textDecoration: 'none'}}>
           I'm down!
         </Link>
 

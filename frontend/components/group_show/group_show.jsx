@@ -34,6 +34,7 @@ class GroupShow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {modalIsOpen: false};
+    // this.group = this.props.group;
     this.formType = "";
 
     this.openModal = this.openModal.bind(this);
@@ -61,18 +62,6 @@ class GroupShow extends React.Component {
     });
   }
 
-  // determine() {
-  //   if (this.formType === 'createEvent') {
-  //     return(
-  //       <EventFormContainer groupId={this.props.group.id}/>
-  //     );
-  //   } else {
-  //     return (
-  //       'something'
-  //     );
-  //   }
-  // }
-
 //////////
 
   isMember() {
@@ -84,21 +73,22 @@ class GroupShow extends React.Component {
   }
 
   getMainBody() {
-    if (this.props.match.params.eventId) {
+    if (this.props.location.pathname.includes('events/')) {
+      let eventId = this.props.location.pathname.split('/').slice(-1)[0];
       return (
-        <EventShowContainer />
+        <EventShowContainer eventId={ eventId }/>
       );
     } else {
       return (
           <div className='group-body-main'>
 
               <div className='group-description'>
-                <p>{group.description}</p>
+                <p>{this.props.group.description}</p>
               </div>
 
               <div className='group-events'>
 
-                <h1>Upcoming {group.name} Events</h1>
+                <h1>Upcoming {this.props.group.name} Events</h1>
 
 
                 <EventIndexContainer />
@@ -109,11 +99,6 @@ class GroupShow extends React.Component {
       );
     }
   }
-
-
-/// this file still needs:
-// getButtons() => decide between joinGroup and leaveGroup/createEvent
-// getMainBody() => decide between group description/calendar and event show page
 
   componentDidMount() {
     this.props.fetchGroup(this.props.match.params.groupId);
@@ -128,11 +113,6 @@ class GroupShow extends React.Component {
   }
 
   handleCreateEvent() {
-    // if (this.props.currentUser) {
-    //   this.openModal('createEvent');
-    // } else {
-    //   this.props.toggleModal();
-    // }
     this.setState({modalIsOpen: true});
   }
 
@@ -170,6 +150,8 @@ class GroupShow extends React.Component {
       );
     }
 
+    const david = this.getMainBody();
+
     return (
       <div className='group-page'>
 
@@ -197,18 +179,7 @@ class GroupShow extends React.Component {
 
               <div className='group-body-main'>
 
-                  <div className='group-description'>
-                    <p>{group.description}</p>
-                  </div>
-
-                  <div className='group-events'>
-
-                    <h1>Upcoming {group.name} Events</h1>
-
-
-                    <EventIndexContainer />
-
-                  </div>
+                  {this.getMainBody()}
 
               </div>
 
@@ -224,49 +195,6 @@ class GroupShow extends React.Component {
 
           </Modal>
 
-
-
-
-
-
-        <div className='show-header'>
-          <div className='header-left'>
-            <h3>{group.name}</h3>
-            <button onClick={this.handleJoinGroup}>Join Group</button>
-          </div>
-          <div className='header-right'>
-            <p>{group.description}</p>
-          </div>
-        </div>
-
-        <br/>
-
-        <div className='show-main'>
-          <div className='left-nav'>
-
-            <div className='left-content'>
-              <br/>
-              <h3>Location:</h3>
-              <h1>{group.address}</h1>
-              <br/>
-              <h3>Organizer:</h3>
-              <h1>{group.organizer.name}</h1>
-              <br/>
-              <h3>Members: ({group.memberCount})</h3>
-              <br/>
-              <button onClick={this.handleCreateEvent}>Create Event</button>
-            </div>
-
-          </div>
-          <br/>
-          <div className='show-details'>
-          </div>
-        </div>
-
-
-
-
-
       </div>
     );
 
@@ -274,10 +202,3 @@ class GroupShow extends React.Component {
 }
 
 export default GroupShow;
-
-
-// <div className='group-subhead'>
-//   <h1>{group.address}</h1>
-//     <h1>Organized by {group.organizer.name}</h1>
-//       <h1>{group.memberCount} members</h1>
-//       </div>
