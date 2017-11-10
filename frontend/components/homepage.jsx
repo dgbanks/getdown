@@ -8,7 +8,7 @@ class Homepage extends React.Component {
   constructor() {
     super();
     this.color = SplashUtil.randomColor();
-    this.width = SplashUtil.randomWidth();
+    this.width = '1000';
     this.margin = 0;
   }
 
@@ -23,8 +23,8 @@ class Homepage extends React.Component {
         zIndex: '-1',
         backgroundColor: SplashUtil.randomColor(),
         mixBlendMode: 'multiply',
-        opacity: '.5',
-        width: this.width,
+        opacity: '1',
+        width: `${this.width}px`,
         marginTop: `${this.margin}px`,
         marginLeft: `-${this.width}px`,
         animationName: 'moveStripe',

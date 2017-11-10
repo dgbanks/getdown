@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 import EventIndexContainer from '../event_index/event_index_container';
 import EventFormContainer from '../event_form/event_form_container';
+import EventShowContainer from '../event_show/event_show_container';
 
 const customStyles = {
   overlay : {
@@ -43,6 +44,7 @@ class GroupShow extends React.Component {
     this.handleCreateEvent = this.handleCreateEvent.bind(this);
     this.handleJoinGroup = this.handleJoinGroup.bind(this);
     this.getButtons = this.getButtons.bind(this);
+    this.getMainBody = this.getMainBody.bind(this);
   }
 
 //////////
@@ -77,6 +79,33 @@ class GroupShow extends React.Component {
     if (this.props.group.isCurrentUserMember) {
       return (
         <p>you are a member</p>
+      );
+    }
+  }
+
+  getMainBody() {
+    if (this.props.match.params.eventId) {
+      return (
+        <EventShowContainer />
+      );
+    } else {
+      return (
+          <div className='group-body-main'>
+
+              <div className='group-description'>
+                <p>{group.description}</p>
+              </div>
+
+              <div className='group-events'>
+
+                <h1>Upcoming {group.name} Events</h1>
+
+
+                <EventIndexContainer />
+
+              </div>
+
+          </div>
       );
     }
   }
