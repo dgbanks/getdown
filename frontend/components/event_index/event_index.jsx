@@ -26,9 +26,7 @@ class EventIndex extends React.Component {
 
   render() {
     return (
-      <div className='event-index-container'>
-        <h1>Upcoming Events:</h1>
-
+      
         <div className='event-index'>
           <ul>
             {
@@ -40,7 +38,7 @@ class EventIndex extends React.Component {
             }
           </ul>
         </div>
-      </div>
+
     );
   }
 }

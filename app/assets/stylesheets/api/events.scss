@@ -2,6 +2,42 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// EVENT INDEX // (found on group page and user homepage)
+
+.event-index {
+  border: 1px solid blue;
+  margin: 2%;
+}
+
+.event-index-item {
+  border: 1px solid green;
+  width: auto;
+  padding: 2%;
+  display: flex;
+  justify-content: center;
+}
+
+.event-index-item-details {
+  border: 5px solid yellow;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.event-index-item-rsvp {
+  border: 1px solid yellow;
+  float: right;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+
+
 .event-container {
   display: flex;
   flex-direction: column;

@@ -29,7 +29,7 @@
 }
 
 .other-class {
-  padding: 20px, 0px;
+  padding: 20px 0px;
 }
 
 /// SEARCH BY GROUP
@@ -67,7 +67,7 @@
   justify-content: center;
   width: 500px;
   background-color: black;
-  z-index: -1;
+  // z-index: -1;
   padding-top: 10px;
   margin-top: -10px;
   border-bottom-left-radius: 10px;
@@ -88,21 +88,21 @@
   cursor: pointer;
 }
 
-.item-content {
-  display: flex;
-  flex-direction: row;
-}
-
-.item-content h1 {
-  font-weight: bold;
-}
-
-.item-content p {
-  margin-left: 10px;
-  margin-top: 3px;
-}
-
-.item-content p, .group-item p, .event-item p {
-  color: gray;
-  margin-top: 0px;
-}
+// .item-content {
+//   display: flex;
+//   flex-direction: row;
+// }
+//
+// .item-content h1 {
+//   font-weight: bold;
+// }
+//
+// .item-content p {
+//   margin-left: 10px;
+//   margin-top: 3px;
+// }
+//
+// .item-content p, .group-item p, .event-item p {
+//   color: gray;
+//   margin-top: 0px;
+// }

@@ -109,12 +109,56 @@ class GroupShow extends React.Component {
     }
 
     return (
-      <div className='show-container'>
-        <div className='image-container'>
-          <img
-            src='https://images.unsplash.com/photo-1416453072034-c8dbfa2856b5?dpr=1&auto=compress,format&fit=crop&w=1516&h=&q=80&cs=tinysrgb&crop='
-            className='image' />
-        </div>
+      <div className='group-page'>
+
+          <div className='group-header'>
+            <h1>{group.name}</h1>
+          </div>
+          <div className='group-subhead'>
+            <h1>{group.address}</h1>
+            <h1>Organized by {group.organizer.name}</h1>
+            <h1>{group.member_count} members</h1>
+          </div>
+
+          <div className='group-body'>
+
+            <div className='group-body-left'>
+
+              <div className='group-image'></div>
+
+              <div className='group-info' >
+                <h1>{group.address}</h1>
+                <h1>{group.member_count} members ||| Organized by {group.organizer.name}</h1>
+              </div>
+
+              <div className='group-actions'>
+                <button onClick={this.handleJoinGroup}>Join Group</button>
+              </div>
+
+            </div>
+
+
+            <div className='group-body-main'>
+
+                <div className='group-description'>
+                  <p>{group.description}</p>
+                </div>
+
+                <div className='group-events'>
+
+                  <h1>Upcoming {group.name} Events</h1>
+
+
+                  <EventIndexContainer />
+
+                </div>
+
+            </div>
+
+          </div>
+
+
+
         <div className='show-header'>
           <div className='header-left'>
             <h3>{group.name}</h3>
@@ -146,7 +190,6 @@ class GroupShow extends React.Component {
           </div>
           <br/>
           <div className='show-details'>
-            <EventIndexContainer />
           </div>
         </div>
 
