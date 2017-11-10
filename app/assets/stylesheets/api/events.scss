@@ -53,12 +53,20 @@
   width: 95%;
 }
 
-.event-header h1 {
-  color: purple;
+.event-and-group-name {
+  display: flex;
+  flex-direction: column;
+}
+
+.event-and-group-name h1 {
+  color: black;
   font-size: 50px;
   font-family: sans-serif;
 }
 
+.event-and-group-name h2 {
+  color: gray;
+}
 
 .event-rsvp-info {
   border: 1px solid yellow;

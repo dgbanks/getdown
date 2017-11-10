@@ -117,7 +117,7 @@ class GroupShow extends React.Component {
   }
 
   getButtons() {
-    if (this.props.currentUser) {
+    // if (this.props.currentUser) {
           if (this.props.group.isCurrentUserMember) {
             ////// still need leaveGroup utils and actions
             return (
@@ -133,13 +133,13 @@ class GroupShow extends React.Component {
               </div>
             );
           }
-    } else {
-      return (
-        <div className='group-actions'>
-          <button onClick={this.handleJoinGroup}>Join Group</button>
-        </div>
-      );
-    }
+    // } else {
+    //   return (
+    //     <div className='group-actions'>
+    //       <button onClick={this.handleJoinGroup}>Join Group</button>
+    //     </div>
+    //   );
+    // }
   }
 
   render () {
@@ -158,7 +158,9 @@ class GroupShow extends React.Component {
           {this.isMember()}
 
           <div className='group-header'>
-            <h1>{group.name}</h1>
+            <Link to={`/groups/${group.id}`} style={{textDecoration: 'none'}}>
+              <h1>{group.name}</h1>
+            </Link>
           </div>
 
           <div className='group-body'>
@@ -176,12 +178,7 @@ class GroupShow extends React.Component {
 
               </div>
 
-
-              <div className='group-body-main'>
-
-                  {this.getMainBody()}
-
-              </div>
+              {this.getMainBody()}
 
           </div>
 

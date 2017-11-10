@@ -51,10 +51,15 @@ class EventShow extends React.Component {
 
         <div className='event-header'>
 
-          <h1>{event.name}</h1>
-          <Link to={`/groups/${event.group.id}`} style={{color: 'black', fontSize: '20px', textDecoration: 'none'}}>
-            <h2>{event.group.name}</h2>
-          </Link>
+          <div className='event-and-group-name'>
+
+            <h1>{event.name}</h1>
+
+            <Link to={`/groups/${event.group.id}`} style={{color: 'black', fontSize: '20px', textDecoration: 'none'}}>
+              <h2>{event.group.name}</h2>
+            </Link>
+
+          </div>
 
           <div className='event-rsvp-info'>
             <h5>Host: {event.host.name}</h5>

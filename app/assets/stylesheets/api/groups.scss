@@ -28,6 +28,7 @@
 .group-header h1 {
   color: white;
   font-size: 50px;
+  font-family: sans-serif;
 }
 
 .group-subhead {
@@ -79,7 +80,7 @@
 ///////////////////
 
 .group-body-main {
-  border: 1px solid black;
+  border: 3px solid purple;
   width: 68%;
   display: flex;
   flex-direction: column;
@@ -87,7 +88,7 @@
 }
 
 .group-description {
-  border: 1px solid black;
+  border: 1px solid orange;
   width: 90%;
   margin: 5%;
 }
