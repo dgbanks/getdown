@@ -6,7 +6,7 @@ const EventIndexItem = ({event}) => {
     <div className='event-index-item'>
 
 
-      <div class='event-index-item-details'>
+      <div className='event-index-item-details'>
 
         <Link to={`/events/${event.id}`} style={{color: 'black', textDecoration: 'none'}}>
           {event.name}

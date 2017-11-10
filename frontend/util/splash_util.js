@@ -1,5 +1,8 @@
+// export const randomColor = () => {
+//   return ['red', 'blue', 'green', 'yellow', 'purple', 'orange'][Math.floor(Math.random() * 6)];
+// };
 export const randomColor = () => {
-  return ['red', 'blue', 'green', 'yellow', 'purple', 'orange'][Math.floor(Math.random() * 6)];
+  return ['rgb(255, 255, 0)', 'rgb(255, 0, 255)', 'rgb(0, 255, 255)'][Math.floor(Math.random() * 3)];
 };
 // consider CMYK colors and css blend mode
 

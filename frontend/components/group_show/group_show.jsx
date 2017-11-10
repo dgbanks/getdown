@@ -37,11 +37,12 @@ class GroupShow extends React.Component {
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.determine = this.determine.bind(this);
+    // this.determine = this.determine.bind(this);
 
+    this.isMember = this.isMember.bind(this);
     this.handleCreateEvent = this.handleCreateEvent.bind(this);
     this.handleJoinGroup = this.handleJoinGroup.bind(this);
-    this.eventButton = this.eventButton.bind(this);
+    this.getButtons = this.getButtons.bind(this);
   }
 
 //////////
@@ -58,19 +59,32 @@ class GroupShow extends React.Component {
     });
   }
 
-  determine() {
-    if (this.formType === 'createEvent') {
-      return(
-        <EventFormContainer groupId={this.props.group.id}/>
-      );
-    } else {
+  // determine() {
+  //   if (this.formType === 'createEvent') {
+  //     return(
+  //       <EventFormContainer groupId={this.props.group.id}/>
+  //     );
+  //   } else {
+  //     return (
+  //       'something'
+  //     );
+  //   }
+  // }
+
+//////////
+
+  isMember() {
+    if (this.props.group.isCurrentUserMember) {
       return (
-        'something'
+        <p>you are a member</p>
       );
     }
   }
 
-//////////
+
+/// this file still needs:
+// getButtons() => decide between joinGroup and leaveGroup/createEvent
+// getMainBody() => decide between group description/calendar and event show page
 
   componentDidMount() {
     this.props.fetchGroup(this.props.match.params.groupId);
@@ -85,17 +99,36 @@ class GroupShow extends React.Component {
   }
 
   handleCreateEvent() {
-    if (this.props.currentUser) {
-      this.openModal('createEvent');
-    } else {
-      this.props.toggleModal();
-    }
+    // if (this.props.currentUser) {
+    //   this.openModal('createEvent');
+    // } else {
+    //   this.props.toggleModal();
+    // }
+    this.setState({modalIsOpen: true});
   }
 
-  eventButton() {
+  getButtons() {
     if (this.props.currentUser) {
+          if (this.props.group.isCurrentUserMember) {
+            ////// still need leaveGroup utils and actions
+            return (
+              <div className='group-actions'>
+                <button onClick={this.getEventForm}>Leave Group</button>
+                <button onClick={this.handleCreateEvent}>Create Event</button>
+              </div>
+            );
+          } else {
+            return (
+              <div className='group-actions'>
+                <button onClick={this.handleJoinGroup}>Join Group</button>
+              </div>
+            );
+          }
+    } else {
       return (
-        <button onClick={this.getEventForm}>Create Event</button>
+        <div className='group-actions'>
+          <button onClick={this.handleJoinGroup}>Join Group</button>
+        </div>
       );
     }
   }
@@ -111,51 +144,59 @@ class GroupShow extends React.Component {
     return (
       <div className='group-page'>
 
+          {this.isMember()}
+
           <div className='group-header'>
             <h1>{group.name}</h1>
-          </div>
-          <div className='group-subhead'>
-            <h1>{group.address}</h1>
-            <h1>Organized by {group.organizer.name}</h1>
-            <h1>{group.member_count} members</h1>
           </div>
 
           <div className='group-body'>
 
-            <div className='group-body-left'>
+              <div className='group-body-left'>
 
-              <div className='group-image'></div>
+                <div className='group-image'></div>
 
-              <div className='group-info' >
-                <h1>{group.address}</h1>
-                <h1>{group.member_count} members ||| Organized by {group.organizer.name}</h1>
-              </div>
-
-              <div className='group-actions'>
-                <button onClick={this.handleJoinGroup}>Join Group</button>
-              </div>
-
-            </div>
-
-
-            <div className='group-body-main'>
-
-                <div className='group-description'>
-                  <p>{group.description}</p>
+                <div className='group-info' >
+                  <h1>{group.address}</h1>
+                  <h1>{group.memberCount} members ||| Organized by {group.organizer.name}</h1>
                 </div>
 
-                <div className='group-events'>
+                {this.getButtons()}
 
-                  <h1>Upcoming {group.name} Events</h1>
+              </div>
 
 
-                  <EventIndexContainer />
+              <div className='group-body-main'>
 
-                </div>
+                  <div className='group-description'>
+                    <p>{group.description}</p>
+                  </div>
 
-            </div>
+                  <div className='group-events'>
+
+                    <h1>Upcoming {group.name} Events</h1>
+
+
+                    <EventIndexContainer />
+
+                  </div>
+
+              </div>
 
           </div>
+
+          <Modal
+            isOpen={this.state.modalIsOpen}
+            onRequestClose={() => this.closeModal()}
+            contentLabel="Modal"
+            style={customStyles}>
+
+            <EventFormContainer groupId={this.props.group.id}/>
+
+          </Modal>
+
+
+
 
 
 
@@ -182,7 +223,7 @@ class GroupShow extends React.Component {
               <h3>Organizer:</h3>
               <h1>{group.organizer.name}</h1>
               <br/>
-              <h3>Members: ({group.member_count})</h3>
+              <h3>Members: ({group.memberCount})</h3>
               <br/>
               <button onClick={this.handleCreateEvent}>Create Event</button>
             </div>
@@ -194,14 +235,8 @@ class GroupShow extends React.Component {
         </div>
 
 
-        <Modal
-          isOpen={this.state.modalIsOpen}
-          onRequestClose={() => this.closeModal()}
-          contentLabel="Modal"
-          style={customStyles}
-        >
-          {this.determine()}
-        </Modal>
+
+
 
       </div>
     );
@@ -210,3 +245,10 @@ class GroupShow extends React.Component {
 }
 
 export default GroupShow;
+
+
+// <div className='group-subhead'>
+//   <h1>{group.address}</h1>
+//     <h1>Organized by {group.organizer.name}</h1>
+//       <h1>{group.memberCount} members</h1>
+//       </div>

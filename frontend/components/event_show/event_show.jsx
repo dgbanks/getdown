@@ -6,6 +6,7 @@ class EventShow extends React.Component {
     super(props);
 
     this.handleJoinEvent = this.handleJoinEvent.bind(this);
+    this.getButtons = this.getButtons.bind(this);
   }
 
   componentDidMount() {
@@ -18,6 +19,23 @@ class EventShow extends React.Component {
       this.props.joinEvent(this.props.event.id);
     } else {
       this.props.toggleModal();
+    }
+  }
+  //need to pass in an actionType or something here to differentiate between possibilities
+
+  getButtons() {
+    if (this.props.event.group.isCurrentUserMember) {
+      return (
+        <div>
+          <button onClick={this.handleJoinEvent}>I'm Down!</button>
+        </div>
+      );
+    } else {
+      return (
+        <div className='event-actions'>
+          <button onClick={this.handleJoinEvent}>Join and RSVP</button>
+        </div>
+      );
     }
   }
 
@@ -37,7 +55,7 @@ class EventShow extends React.Component {
           <div className='event-rsvp-info'>
             <h5>Host: {event.host.name}</h5>
             <h6>{event.attendance} people are down</h6>
-            <button onClick={this.handleJoinEvent}>I'm Down!</button>
+            {this.getButtons()}
           </div>
 
         </div>
