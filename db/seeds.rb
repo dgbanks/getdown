@@ -9,6 +9,15 @@
 
 
 
+### CATEGORIES
+
+Category.destroy_all
+
+category = Category.create({
+  name: 'The Only Category'
+  })
+
+
 ### USERS
 
 User.destroy_all
@@ -140,77 +149,88 @@ bookclub = Group.create({
   name: 'Book Club',
   description: 'We read a book every month and then talk about it!',
   zip_code: david.zip_code,
-  organizer_id: david.id
+  organizer_id: david.id,
+  category_id: category.id
   })
 
 betterbookclub = Group.create({
   name: 'Better Book Club',
   description: 'We read two books each month and then talk about it with beer and snacks',
   zip_code: andres.zip_code,
-  organizer_id: andres.id
+  organizer_id: andres.id,
+  category_id: category.id
   })
 
 rails = Group.create({
   name: 'Ruby on Rails Developers',
   description: 'We get together to collaborate on Rails projects',
   zip_code: peter.zip_code,
-  organizer_id: peter.id
+  organizer_id: peter.id,
+  category_id: category.id
   })
 
 react = Group.create({
   name: 'React Developers',
   description: 'We get together every month to share and collaborate our React projects',
   zip_code: ryan.zip_code,
-  organizer_id: ryan.id
+  organizer_id: ryan.id,
+  category_id: category.id
   })
 
 dog_walk = Group.create({
   name: 'Dog Walking',
   description: 'We\'re taking weekend dog-walks, all are invited. BYO dog.',
   zip_code: kate.zip_code,
-  organizer_id: kate.id
+  organizer_id: kate.id,
+  category_id: category.id
   })
 
 climbers = Group.create({
   name: 'Bay Area Climbing',
   description: 'All rock climbing entusiasts are welcome. Both indoor and outdoor events to come',
   zip_code: ryan.zip_code,
-  organizer_id: ryan.id
+  organizer_id: ryan.id,
+  category_id: category.id
   })
 
 wings = Group.create({
   name: 'Wings Fanatics',
   description: 'NOT the band. Please don\'t even. Our group is on a mission to find the best wings in the city. Join us.',
   zip_code: aj.zip_code,
-  organizer_id: aj.id
+  organizer_id: aj.id,
+  category_id: category.id
   })
 
 yoyo = Group.create({
   name: 'Yoyo-ers',
   description: 'Gotta practice our yoyo skills. Nationals in Chico this year! Stay tuned for regular meetings/practices',
   zip_code: andres.zip_code,
-  organizer_id: andres.id
+  organizer_id: andres.id,
+  category_id: category.id
   })
 
 runners = Group.create({
   name: 'Runners and Joggers',
   description: 'Group runs three times a week! All speeds and abilities welcome.',
   zip_code: david.zip_code,
-  organizer_id: david.id
+  organizer_id: david.id,
+  category_id: category.id
   })
 
 pokemon = Group.create({
   name: 'Pokemon Posse',
   description: 'Gotta catch em all',
   zip_code: jerry.zip_code,
-  organizer_id: jerry.id
+  organizer_id: jerry.id,
+  category_id: category.id
   })
 
 music = Group.create({
   name: 'Area Musicians',
   description: 'We get together once a week to play some sweet tunes! Must be an excellent musician to join.',
   zip_code: johnny.zip_code,
-  organizer_id: johnny.id
+  organizer_id: johnny.id,
+  category_id: category.id
   })
 
 ### EVENTS
@@ -366,5 +386,3 @@ yosemite = Event.create({
   group_id: climbers.id,
   host_id: climbers.organizer_id
   })
-
-  
