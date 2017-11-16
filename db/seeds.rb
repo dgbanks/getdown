@@ -7,15 +7,37 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+require "Nokogiri"
+require "open-uri"
 
 
 ### CATEGORIES
 
+def get_meetup_categories(url)
+  html = Nokogiri::HTML(open(url))
+  categories_grid = html.at_css('.gridList').children
+  categories = []
+  categories_grid.children.each do |child|
+    next if categories.length == 12
+    hash = {}
+    hash['name'] = child.content.strip unless child.content.strip == ''
+    hash['url'] = child['href'] unless child['href'].nil?
+    categories << hash unless hash == {}
+  end
+  return categories
+end
+
+homepage = "https://www.meetup.com/"
+
+meetup_categories = get_meetup_categories(homepage)
+
 Category.destroy_all
 
-category = Category.create({
-  name: 'The Only Category'
-  })
+meetup_categories.each do |category|
+  Category.create({
+    name: category['name']
+    })
+end
 
 
 ### USERS
@@ -150,7 +172,7 @@ bookclub = Group.create({
   description: 'We read a book every month and then talk about it!',
   zip_code: david.zip_code,
   organizer_id: david.id,
-  category_id: category.id
+  category_id: Category.all.first
   })
 
 betterbookclub = Group.create({
@@ -158,7 +180,7 @@ betterbookclub = Group.create({
   description: 'We read two books each month and then talk about it with beer and snacks',
   zip_code: andres.zip_code,
   organizer_id: andres.id,
-  category_id: category.id
+  category_id: Category.all.first
   })
 
 rails = Group.create({
@@ -166,7 +188,7 @@ rails = Group.create({
   description: 'We get together to collaborate on Rails projects',
   zip_code: peter.zip_code,
   organizer_id: peter.id,
-  category_id: category.id
+  category_id: Category.all.first
   })
 
 react = Group.create({
@@ -174,7 +196,7 @@ react = Group.create({
   description: 'We get together every month to share and collaborate our React projects',
   zip_code: ryan.zip_code,
   organizer_id: ryan.id,
-  category_id: category.id
+  category_id: Category.all.first
   })
 
 dog_walk = Group.create({
@@ -182,7 +204,7 @@ dog_walk = Group.create({
   description: 'We\'re taking weekend dog-walks, all are invited. BYO dog.',
   zip_code: kate.zip_code,
   organizer_id: kate.id,
-  category_id: category.id
+  category_id: Category.all.first
   })
 
 climbers = Group.create({
@@ -190,7 +212,7 @@ climbers = Group.create({
   description: 'All rock climbing entusiasts are welcome. Both indoor and outdoor events to come',
   zip_code: ryan.zip_code,
   organizer_id: ryan.id,
-  category_id: category.id
+  category_id: Category.all.first
   })
 
 wings = Group.create({
@@ -198,7 +220,7 @@ wings = Group.create({
   description: 'NOT the band. Please don\'t even. Our group is on a mission to find the best wings in the city. Join us.',
   zip_code: aj.zip_code,
   organizer_id: aj.id,
-  category_id: category.id
+  category_id: Category.all.first
   })
 
 yoyo = Group.create({
@@ -206,7 +228,7 @@ yoyo = Group.create({
   description: 'Gotta practice our yoyo skills. Nationals in Chico this year! Stay tuned for regular meetings/practices',
   zip_code: andres.zip_code,
   organizer_id: andres.id,
-  category_id: category.id
+  category_id: Category.all.first
   })
 
 runners = Group.create({
@@ -214,7 +236,7 @@ runners = Group.create({
   description: 'Group runs three times a week! All speeds and abilities welcome.',
   zip_code: david.zip_code,
   organizer_id: david.id,
-  category_id: category.id
+  category_id: Category.all.first
   })
 
 pokemon = Group.create({
@@ -222,7 +244,7 @@ pokemon = Group.create({
   description: 'Gotta catch em all',
   zip_code: jerry.zip_code,
   organizer_id: jerry.id,
-  category_id: category.id
+  category_id: Category.all.first
   })
 
 music = Group.create({
@@ -230,7 +252,7 @@ music = Group.create({
   description: 'We get together once a week to play some sweet tunes! Must be an excellent musician to join.',
   zip_code: johnny.zip_code,
   organizer_id: johnny.id,
-  category_id: category.id
+  category_id: Category.all.first
   })
 
 ### EVENTS
