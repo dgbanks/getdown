@@ -1,6 +1,6 @@
 class Group < ApplicationRecord
 
-  validates :name, :description, :zip_code, :organizer_id, :latitude, :longitude, :location, presence: true
+  validates :name, :description, :zip_code, :organizer_id, :category_id, :latitude, :longitude, :location, presence: true
   validates :name, uniqueness: true
 
   after_save :ensure_organizer_membership, on: :create
@@ -26,6 +26,11 @@ class Group < ApplicationRecord
     primary_key: :id,
     foreign_key: :group_id,
     class_name: :Event
+
+  belongs_to :category,
+    primary_key: :id,
+    foreign_key: :category_id,
+    class_name: :Category
 
 
   def self.search(query)
