@@ -11,7 +11,7 @@ export const randomOpacity = () => {
 };
 
 export const randomWidth = () => {
-  return ['500', '750', '1000', '1250', '1500'][Math.floor(Math.random() * 5)];
+  return ['1000', '1250', '1500'][Math.floor(Math.random() * 3)];
 };
 
 export const randomDelay = () => {
@@ -31,12 +31,20 @@ export const randomTime = () => {
 
 export const insertKeyframes = (width) => {
   let styleSheet = document.styleSheets[0];
-  let keyframes = `@keyframes moveStripe {
+  let keyframesOne = `@keyframes moveLeftStripe {
     from
     { margin-left: -${width}px; }
     to
     { margin-left: 100%; }
     }`;
 
-  styleSheet.insertRule(keyframes);
+  let keyframesTwo = `@keyframes moveRightStripe {
+    from
+    { margin-left: 100%; }
+    to
+    { margin-left: -${width}px; }
+    }`;
+
+  styleSheet.insertRule(keyframesOne);
+  styleSheet.insertRule(keyframesTwo);
 };

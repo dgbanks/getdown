@@ -366,3 +366,5 @@ yosemite = Event.create({
   group_id: climbers.id,
   host_id: climbers.organizer_id
   })
+
+  

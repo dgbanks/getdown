@@ -23,11 +23,37 @@ class Homepage extends React.Component {
         zIndex: '-1',
         backgroundColor: SplashUtil.randomColor(),
         mixBlendMode: 'multiply',
-        opacity: '1',
+        opacity: '.3',
         width: `${this.width}px`,
         marginTop: `${this.margin}px`,
         marginLeft: `-${this.width}px`,
-        animationName: 'moveStripe',
+        animationName: 'moveLeftStripe',
+        animationDuration: `${SplashUtil.randomTime()}s`,
+        animationDelay: `${SplashUtil.randomDelay()}s`,
+        animationFillMode: 'none',
+        animationIterationCount: 'infinite',
+        animationDirection: 'alternate',
+        animationTimingFunction: 'linear'
+      }
+    );
+  }
+
+  getMoreStyles() {
+    // let width = randomWidth();
+    SplashUtil.insertKeyframes(this.width);
+
+    return (
+      {
+        position: 'absolute',
+        height: '50px',
+        zIndex: '-1',
+        backgroundColor: SplashUtil.randomColor(),
+        mixBlendMode: 'multiply',
+        opacity: '.3',
+        width: `${this.width}px`,
+        marginTop: `${this.margin}px`,
+        marginLeft: `-${this.width}px`,
+        animationName: 'moveRightStripe',
         animationDuration: `${SplashUtil.randomTime()}s`,
         animationDelay: `${SplashUtil.randomDelay()}s`,
         animationFillMode: 'none',
@@ -45,6 +71,13 @@ class Homepage extends React.Component {
     );
   }
 
+  otherStripe() {
+    return (
+      <div className='single-stripe other-class' style={this.getMoreStyles()}>
+      </div>
+    );
+  }
+
   tenStripes() {
     let count = 0;
     const array = [];
@@ -53,6 +86,16 @@ class Homepage extends React.Component {
       count ++;
       this.margin += 50;
     }
+
+    this.margin = 25;
+
+    count = 0;
+    while (count < 9) {
+      array.push(this.otherStripe());
+      count ++;
+      this.margin += 50;
+    }
+
     return array;
   }
 

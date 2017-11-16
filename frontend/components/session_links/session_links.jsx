@@ -140,14 +140,6 @@ class SessionLinks extends React.Component {
 
         <nav className='signup-login'>
 
-          <img
-            className='account-icon'
-            src='https://cdn2.iconfinder.com/data/icons/finances/512/client-512.png'
-            style={{
-              height: '50px',
-              width: '50px'
-            }}/>
-
           <button onClick={() => this.openModal('signup')}>
             Sign Up
           </button>
