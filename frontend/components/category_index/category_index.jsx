@@ -20,15 +20,20 @@ class CategoryIndex extends React.Component {
   render() {
     return (
       <div className='category-index'>
-        <ul>
+
+        <h1> Explore </h1>
+
+        <div className='index-grid'>
+
           {
             this.props.categories.map(category => (
               <CategoryIndexItem
                 key={category.id}
                 category={category} />
-            ))
-          }
-        </ul>
+              ))
+            }
+
+        </div>
       </div>
     );
   }

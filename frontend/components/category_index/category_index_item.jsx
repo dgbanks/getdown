@@ -6,14 +6,14 @@ import {
 
 const CategoryIndexItem = ({category}) => {
   return (
-    <div className='category-index-item'>
+    <div className='category-item'>
       <Link
         to={`/categories/${category.id}`}
         style={{color: 'black', textDecoration: 'none'}}
       >
 
         <div className='inner-div-wrapper category-item'>
-          {category.name}
+          <h2>{category.name}</h2>
         </div>
 
       </Link>
