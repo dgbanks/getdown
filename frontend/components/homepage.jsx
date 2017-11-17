@@ -1,6 +1,7 @@
 import React from 'react';
 import GroupSearchContainer from './group_search/group_search_container';
 import EventIndexContainer from './event_index/event_index_container';
+import CategoryIndexContainer from './category_index/category_index_container';
 import * as SplashUtil from '../util/splash_util';
 
 
@@ -119,13 +120,14 @@ class Homepage extends React.Component {
 
         </div>
 
-        <GroupSearchContainer />
+        <CategoryIndexContainer />
 
 
       </div>
     );
   }
 }
+// <GroupSearchContainer />
 
 // <div>
 //   <EventIndexContainer />

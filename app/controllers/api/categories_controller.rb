@@ -1,7 +1,7 @@
 class Api::CategoriesController < ApplicationController
 
   def create
-    @category = Category.new
+    @category = Category.new(category_params)
     if @category.save
       render "api/categories/show"
     else
