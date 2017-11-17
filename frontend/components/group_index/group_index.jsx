@@ -19,16 +19,19 @@ class GroupIndex extends React.Component {
   render() {
     return (
         <div className='group-index'>
-          <ul>
+
+          <h1> Sorted By: </h1>
+
+          <div className='index-grid'>
             {
               this.props.groups.map(group => (
                 <GroupIndexItem
-                  className='group-item'
                   key={group.id}
                   group={group} />
-              ))
-            }
-          </ul>
+                ))
+              }
+
+          </div>
         </div>
     );
   }

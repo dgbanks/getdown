@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import GroupIndexContainer from '../';
+import GroupIndexContainer from '../group_index/group_index_container';
 
 class CategoryShow extends React.Component {
   constructor(props) {
@@ -8,7 +8,7 @@ class CategoryShow extends React.Component {
   }
 
   componentDidMount() {
-  this.props.fetchCategory(this.props.category.id);
+  this.props.fetchCategory(this.props.match.params.categoryId);
   }
 
   render() {
@@ -23,7 +23,7 @@ class CategoryShow extends React.Component {
       <div className='category-page'>
 
         <div className='category-header'>
-          <h1>{category.name}</h1>
+          <div className='category-header-text'><h1>{category.name}</h1></div>
         </div>
 
         <GroupIndexContainer />
@@ -32,3 +32,5 @@ class CategoryShow extends React.Component {
     );
   }
 }
+
+export default CategoryShow;

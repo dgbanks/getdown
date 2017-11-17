@@ -4,7 +4,7 @@ import { fetchCategory } from '../../actions/category_actions';
 import CategoryShow from './category_show';
 
 const mapStateToProps = (state, ownProps) => ({
-  category: state.entities.categories[ownProps.categoryId]
+  category: state.entities.categories[ownProps.match.params.categoryId]
 });
 
 const mapDispatchToProps = dispatch => ({
