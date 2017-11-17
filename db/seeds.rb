@@ -31,13 +31,17 @@ homepage = "https://www.meetup.com/"
 
 meetup_categories = get_meetup_categories(homepage)
 
-Category.destroy_all
+# Category.destroy_all
+#
+# meetup_categories.each do |category|
+#   Category.create({
+#     name: category['name']
+#     })
+# end
 
-meetup_categories.each do |category|
-  Category.create({
-    name: category['name']
-    })
-end
+Category.create({
+  name: 'Other'
+  })
 
 
 ### USERS

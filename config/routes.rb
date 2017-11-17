@@ -18,5 +18,6 @@ Rails.application.routes.draw do
     resources :events, only: [:index, :update, :destroy, :show] do
       resources :rsvps, only: [:create, :destroy]
     end
+    resources :categories, only: [:index, :show]
   end
 end
