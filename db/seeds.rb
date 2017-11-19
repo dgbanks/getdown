@@ -11,7 +11,7 @@ require "Nokogiri"
 require "open-uri"
 
 
-### CATEGORIES
+### GET CATEGORIES ###
 
 def get_meetup_categories(url)
   html = Nokogiri::HTML(open(url))
@@ -31,233 +31,115 @@ homepage = "https://www.meetup.com/"
 
 meetup_categories = get_meetup_categories(homepage)
 
+### CREATE CATEGORIES ###
+
 # Category.destroy_all
 #
 # meetup_categories.each do |category|
-#   Category.create({
-#     name: category['name']
-#     })
+#   Category.create({ name: category['name'] })
 # end
 
-Category.create({
-  name: 'Other'
-  })
+Category.create({ name: 'Other' })
 
-
-### USERS
+### CREATE FAKER USERS ###
 
 User.destroy_all
 
-david = User.create({
-  name: 'david',
-  email: 'email1',
-  password: 'password',
-  zip_code: 94103
-  })
+zip_codes = [94103, 94132, 94608, 94901, 94602, 94505]
+fake_users = []
 
-guest = User.create({
-  name: 'guest',
-  email: 'email2',
-  password: 'password',
-  zip_code: 94577
-  })
+50.times {
+  first = Faker::Name.first_name
+  last = Faker::Name.last_name
 
-andres = User.create({
-  name: 'andres',
-  email: 'email3',
-  password: 'password',
-  zip_code: 94103
-  })
+  fake_users << User.create({
+    name: "#{first} #{last}",
+    email: "#{first[0].downcase}.#{last.downcase}#{rand(100)}@email.com",
+    password: "password",
+    zip_code: zip_codes[rand(6)]
+    })
+}
 
-peter = User.create({
-  name: 'peter',
-  email: 'email4',
-  password: 'password',
-  zip_code: 94103
-  })
+### CREATE SUBSCRIPTIONS ###
 
-ryan = User.create({
-  name: 'ryan',
-  email: 'email5',
-  password: 'password',
-  zip_code: 22031
-  })
+fake_users.each do |user|
 
-aj = User.create({
-  name: 'aj',
-  email: 'email6',
-  password: 'password',
-  zip_code: 94103
-  })
+  rand(Category.all.length).times do
+    Subscription.create({
+      user: user,
+      category: Category.all[rand(Category.all.length)]
+      })
+  end
 
-rachel = User.create({
-  name: 'rachel',
-  email: 'email7',
-  password: 'password',
-  zip_code: 94103
-  })
+end
 
-lisa = User.create({
-  name: 'lisa',
-  email: 'email8',
-  password: 'password',
-  zip_code: 94103
-  })
+### GET GROUPS ###
 
-jerry = User.create({
-  name: 'jerry',
-  email: 'email9',
-  password: 'password',
-  zip_code: 94105
-  })
+def get_groups_of_category(category)
+  html = Nokogiri::HTML(open(category['url']))
+  group_list_items = html.at_css('.j-groupCard-list').children
 
-priya = User.create({
-  name: 'priya',
-  email: 'email10',
-  password: 'password',
-  zip_code: 94105
-  })
+  groups = []
 
-alex = User.create({
-  name: 'alex',
-  email: 'email11',
-  password: 'password',
-  zip_code: 94105
-  })
+  group_list_items.children.each do |child|
+    next if groups.length == 10
+    unless child.content.gsub(/\s+/, "") == ''
+      hash = {}
+      hash['name'] = child.first_element_child.content unless child.first_element_child.content[0] == "\n"
+      hash['url'] = child.first_element_child['href']
+      groups << hash if hash['name']
+    end
+  end
 
-tommy = User.create({
-  name: 'tommy',
-  email: 'email12',
-  password: 'password',
-  zip_code: 22030
-  })
+  return groups
+end
 
-joey = User.create({
-  name: 'joey',
-  email: 'email13',
-  password: 'password',
-  zip_code: 22030
-  })
+# all_groups = []
 
-johnny = User.create({
-  name: 'johnny',
-  email: 'email14',
-  password: 'password',
-  zip_code: 22030
-  })
+meetup_categories.each do |category|
 
-alison = User.create({
-  name: 'alison',
-  email: 'email15',
-  password: 'password',
-  zip_code: 22030
-  })
+  category_groups = get_groups_of_category(category)
 
-parsely = User.create({
-  name: 'parsely',
-  email: 'email16',
-  password: 'password',
-  zip_code: 78214
-  })
+  category_groups.each do |group|
 
-kate = User.create({
-  name: 'kate',
-  email: 'email17',
-  password: 'password',
-  zip_code: 78214
-  })
+    subscribers = category.subscribers
 
-### GROUPS ###
+    organizer = subscribers.rotate(rand(subscribers.length)).shift
 
-Group.destroy_all
+    members = []
 
-bookclub = Group.create({
-  name: 'Book Club',
-  description: 'We read a book every month and then talk about it!',
-  zip_code: david.zip_code,
-  organizer_id: david.id,
-  category_id: Category.all.first
-  })
+    while members.length <= (subscribers.length / rand(2, 4))
+      members << subscribers[rand(subscribers.length)]
+    end
 
-betterbookclub = Group.create({
-  name: 'Better Book Club',
-  description: 'We read two books each month and then talk about it with beer and snacks',
-  zip_code: andres.zip_code,
-  organizer_id: andres.id,
-  category_id: Category.all.first
-  })
+    Group.destroy_all
 
-rails = Group.create({
-  name: 'Ruby on Rails Developers',
-  description: 'We get together to collaborate on Rails projects',
-  zip_code: peter.zip_code,
-  organizer_id: peter.id,
-  category_id: Category.all.first
-  })
+    Group.create({
+      name:
+      description:
+      zip_code:
+      organizer_id:
+      category_id:
+      })
 
-react = Group.create({
-  name: 'React Developers',
-  description: 'We get together every month to share and collaborate our React projects',
-  zip_code: ryan.zip_code,
-  organizer_id: ryan.id,
-  category_id: Category.all.first
-  })
+    members.each do |member|
 
-dog_walk = Group.create({
-  name: 'Dog Walking',
-  description: 'We\'re taking weekend dog-walks, all are invited. BYO dog.',
-  zip_code: kate.zip_code,
-  organizer_id: kate.id,
-  category_id: Category.all.first
-  })
+      Membership.create({ user: member, group: group })
 
-climbers = Group.create({
-  name: 'Bay Area Climbing',
-  description: 'All rock climbing entusiasts are welcome. Both indoor and outdoor events to come',
-  zip_code: ryan.zip_code,
-  organizer_id: ryan.id,
-  category_id: Category.all.first
-  })
+    end
 
-wings = Group.create({
-  name: 'Wings Fanatics',
-  description: 'NOT the band. Please don\'t even. Our group is on a mission to find the best wings in the city. Join us.',
-  zip_code: aj.zip_code,
-  organizer_id: aj.id,
-  category_id: Category.all.first
-  })
+    host = members.rotate(rand(members.length)).shift
 
-yoyo = Group.create({
-  name: 'Yoyo-ers',
-  description: 'Gotta practice our yoyo skills. Nationals in Chico this year! Stay tuned for regular meetings/practices',
-  zip_code: andres.zip_code,
-  organizer_id: andres.id,
-  category_id: Category.all.first
-  })
+    attendees = []
 
-runners = Group.create({
-  name: 'Runners and Joggers',
-  description: 'Group runs three times a week! All speeds and abilities welcome.',
-  zip_code: david.zip_code,
-  organizer_id: david.id,
-  category_id: Category.all.first
-  })
 
-pokemon = Group.create({
-  name: 'Pokemon Posse',
-  description: 'Gotta catch em all',
-  zip_code: jerry.zip_code,
-  organizer_id: jerry.id,
-  category_id: Category.all.first
-  })
 
-music = Group.create({
-  name: 'Area Musicians',
-  description: 'We get together once a week to play some sweet tunes! Must be an excellent musician to join.',
-  zip_code: johnny.zip_code,
-  organizer_id: johnny.id,
-  category_id: Category.all.first
-  })
+
+end
+
+### CREATE GROUPS ###
+
+
 
 ### EVENTS
 
