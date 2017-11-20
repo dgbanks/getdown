@@ -282,7 +282,8 @@ Category.all.each do |category|
       Event.create({
         name: event['name'],
         description: event['description'],
-        location: event['location'],
+        venue: event['venue'],
+        address: event['address'],
         date: Date.parse(event['date']),
         time: event['time'],
         group_id: group.id,
