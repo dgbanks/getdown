@@ -50,7 +50,7 @@ class User < ApplicationRecord
   has_many :interests,
     through: :subscriptions,
     source: :category
-    
+
   ##### Methods #####
 
   def self.find_by_credentials(email, password)
@@ -78,8 +78,8 @@ class User < ApplicationRecord
   end
 
   def geocode
-    geocode = Geocoder.coordinates(self.zip_code)
-    self.latitude = geocode.first
-    self.longitude = geocode.last
+    coords = Geocoder.coordinates(self.zip_code)
+    self.latitude = coords.first
+    self.longitude = coords.last
   end
 end
