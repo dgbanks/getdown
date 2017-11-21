@@ -40,13 +40,20 @@ class GroupSearch extends React.Component {
           onChange={this.update}
         />
 
-        <GroupIndexContainer />
-        <div className='results'>
+        <h1> within X miles of Y </h1>
+
+        <div>
+          <button className='search-options'>Groups</button>
+          <button className='search-options'>Events</button>
         </div>
+
 
       </div>
     );
   }
 }
+// <GroupIndexContainer />
+// <div className='results'>
+// </div>
 
 export default GroupSearch;

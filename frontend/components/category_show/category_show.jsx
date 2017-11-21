@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import GroupIndexContainer from '../group_index/group_index_container';
+import GroupSearchContainer from '../group_search/group_search_container';
 
 class CategoryShow extends React.Component {
   constructor(props) {
@@ -25,6 +26,8 @@ class CategoryShow extends React.Component {
         <div className='category-header'>
           <div className='category-header-text'><h1>{category.name}</h1></div>
         </div>
+
+        <GroupSearchContainer />
 
         <GroupIndexContainer />
 
