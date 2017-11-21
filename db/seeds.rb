@@ -39,21 +39,22 @@ require "faker"
 # Category.destroy_all
 #
 # meetup_categories.each do |category|
-#   Category.create({ name: category['name'] })
+#   Category.create({
+#     name: category['name'],
+#     img_url: category['url']
+#     })
 # end
-
-# Category.create({ name: 'Other' })
 
 
 
 ### CREATE 'FAKER' USERS ###
 
 # User.destroy_all
+# Subscription.destroy_all
 #
 # zip_codes = [94103, 94132, 94608, 94901, 94602, 94505]
-# fake_users = []
 #
-# 100.times {
+# 100.times do
 #   first = Faker::Name.first_name
 #   last = Faker::Name.last_name
 #
@@ -64,14 +65,7 @@ require "faker"
 #     zip_code: zip_codes[rand(6)]
 #   })
 #
-#   fake_users << user
-# }
-
-
-
-### CREATE SUBSCRIPTIONS ###
-
-# fake_users.each do |user|
+#   ### CREATE SUBSCRIPTIONS ###
 #
 #   4.times do # every user gets 4 subscriptions
 #
@@ -86,18 +80,21 @@ require "faker"
 #
 #     end
 #   end
-#
 # end
-
 
 
 
 ### METHDODS FOR COLLECTING GROUP AND EVENT DATA ###
 
 def get_groups_of_category(category)
-  html = Nokogiri::HTML(open(category['url']))
-  group_list_items = html.at_css('.j-groupCard-list').children
+  begin
+    html = Nokogiri::HTML(open(category['img_url']))
+  rescue OpenURI::HTTPError => error
+    puts error
+    retry
+  end
 
+  group_list_items = html.css('.j-groupCard-list').children
   groups = []
 
   group_list_items.children.each do |child|
@@ -106,7 +103,7 @@ def get_groups_of_category(category)
       hash = {}
       hash['name'] = child.first_element_child.content unless child.first_element_child.content[0] == "\n"
       hash['url'] = child.first_element_child['href']
-      groups << hash if hash['name']
+      groups << hash if hash['name'] # && Group.where("name = '#{hash['name']}'").empty?
     end
   end
 
@@ -114,7 +111,12 @@ def get_groups_of_category(category)
 end
 
 def get_group_info(group_hash) ## calls a chain of 4 methods ##
-  html = Nokogiri::HTML(open(group_hash['url']))
+  begin
+    html = Nokogiri::HTML(open(group_hash['url']))
+  rescue OpenURI::HTTPError => error
+    puts error
+    retry
+  end
 
   banner_style = html.at_css('.groupHomeHeader-banner')['style']
   group_hash['img_url'] = banner_style[(banner_style.index('(') + 1)...-1]
@@ -130,8 +132,12 @@ def get_group_info(group_hash) ## calls a chain of 4 methods ##
 end
 
 def get_events_of_group(group_hash) #HERE %
-
-  html = Nokogiri::HTML(open(group_hash['url'] + 'events'))
+  begin
+    html = Nokogiri::HTML(open(group_hash['url'] + 'events'))
+  rescue OpenURI::HTTPError => error
+    puts error
+    retry
+  end
 
   script = find_script(html) #HERE @
 
@@ -163,16 +169,13 @@ def get_event_url_extensions(script) #HERE $
   arr = script.to_s.split("/events/")
 
   arr.each_with_index do |str, idx|
-    next if idx == 0 || event_url_extensions.length == 3
+    next if idx == 0 || !str[0].between?('0', '9') || event_url_extensions.length == 3
     idx2 = 0
     loop do
-      # terminate = false
       if str[idx2] == '/'
-        event_url_extensions << str[0..idx2]
+        event_url_extensions << str[0..idx2] unless idx2 >= 10
         break
-        # terminate = true
       end
-      # break if terminate
       idx2 += 1
     end
   end
@@ -180,7 +183,13 @@ def get_event_url_extensions(script) #HERE $
 end
 
 def get_event_info(event_hash)
-  html = Nokogiri::HTML(open(event_hash['url']))
+  begin
+    html = Nokogiri::HTML(open(event_hash['url']))
+  rescue OpenURI::HTTPError => error
+    puts error
+    puts event_hash['url']
+    retry
+  end
 
   event_hash['name'] = html.at_css('.pageHead-headline').content
 
@@ -192,17 +201,29 @@ def get_event_info(event_hash)
     end
   end
 
-  html.at_css('.venueDisplay').child.children.each do |child|
-    value = child.content.strip
-    unless value == ''
-      event_hash['venue'] = value unless event_hash['venue']
-      unless event_hash['address'] || value == event_hash['venue']
-        event_hash['address'] = value
+  if html.at_css('.venueDisplay-venue-noVenue') ||
+    html.at_css('.venueDisplay-venue-locationHidden')
+    event_hash['address'] = "#{Faker::Address.street_address} · #{Group.last.location}"
+  else
+    html.at_css('.venueDisplay').child.children.each do |child|
+      value = child.content.strip
+      unless value == ''
+        event_hash['venue'] = value unless event_hash['venue']
+        unless event_hash['address'] || value == event_hash['venue']
+          event_hash['address'] = value
+        end
       end
     end
   end
 
-  event_hash['description'] = html.at_css('.event-description').content
+
+  # description = html.at_css('.event-description')
+
+  if html.at_css('.event-description')
+    event_hash['description'] = html.at_css('.event-description').content
+  else
+    event_hash['description'] = "[No description provided]"
+  end
 
   return event_hash
 end
@@ -211,9 +232,16 @@ end
 
 
 
+Group.destroy_all
+Membership.destroy_all
+Event.destroy_all
+Rsvp.destroy_all
+
 ### GET GROUPS ###
 
 Category.all.each do |category|
+
+  puts category.name
 
   category_groups = get_groups_of_category(category)
 
@@ -221,7 +249,8 @@ Category.all.each do |category|
 
     group = get_group_info(group)
 
-    subscribers = category.subscribers
+    # every group draws members randomly from ALL of its category's subscribers
+    subscribers = category.subscribers.to_a
 
     organizer = subscribers.rotate(rand(subscribers.length)).shift
 
@@ -229,15 +258,13 @@ Category.all.each do |category|
 
     fraction_of_subscription_size = rand(4) + 2
 
-    while members.length <= (subscribers.length / fraction_of_subscription_size)
+    while members.length < (subscribers.length / fraction_of_subscription_size)
       members << subscribers.rotate(rand(subscribers.length)).shift
     end
 
     ### CREATE GROOUPS ###
 
-    Group.destroy_all
-
-    Group.create({
+    new_group = Group.create!({
       name: group['name'],
       description: group['description'],
       location: group['location'],
@@ -246,14 +273,14 @@ Category.all.each do |category|
       category_id: category.id
       })
 
+    puts "=> #{new_group.name}"
+
     ### CREATE MEMBERSHIPS ###
 
-    Membership.destroy_all
-
     members.each do |member|
-      Membership.create({
+      Membership.create!({
         user: member,
-        group: group
+        group: new_group
         })
     end
 
@@ -263,7 +290,7 @@ Category.all.each do |category|
 
       event = get_event_info(event)
 
-      members = group.members
+      # members = new_group.members.to_a
 
       host = members.rotate(rand(members.length)).shift
 
@@ -271,36 +298,33 @@ Category.all.each do |category|
 
       fraction_of_membership_size = rand(3) + 2
 
-      while attendees.length <= (members.length / fraction_of_membership_size)
+      while attendees.length < (members.length / fraction_of_membership_size)
         attendees << members.rotate(rand(members.length)).shift
       end
 
       ### CREATE EVENTS ###
 
-      Event.destroy_all
-
-      Event.create({
+      new_event = Event.create!({
         name: event['name'],
         description: event['description'],
         venue: event['venue'],
         address: event['address'],
         date: Date.parse(event['date']),
         time: event['time'],
-        group_id: group.id,
+        group_id: new_group.id,
         host_id: host.id
         })
 
+      puts "==> #{new_event.name}"
+
       ### CREATE RSVPs ###
 
-      Rsvp.destroy_all
-
       attendees.each do |attendee|
-        Rsvp.create({
+        Rsvp.create!({
           user: attendee,
-          event: event
+          event: new_event
         })
       end
-
 
     end
   end
