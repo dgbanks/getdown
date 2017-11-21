@@ -2,6 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.group-index {
+  margin: 100px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 75%;
+}
+
+.group-index h1 {
+  font-size: 50px;
+  font-family: sans-serif;
+  margin: 20px 0px
+}
+
+// .group-item {
+//
+// }
+
 .group-page {
   display: flex;
   flex-direction: column;
@@ -63,8 +81,9 @@
 .group-image {
   height: 300px;
   width: 90%;
-  background-color: black;
+  // background-color: black;
   margin: 5%;
+  border: 1px solid black;
 }
 
 .group-info {

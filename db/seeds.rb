@@ -232,8 +232,8 @@ end
 
 
 
-Group.destroy_all
-Membership.destroy_all
+# Group.destroy_all
+# Membership.destroy_all
 Event.destroy_all
 Rsvp.destroy_all
 
@@ -241,21 +241,16 @@ Rsvp.destroy_all
 
 Category.all.each do |category|
 
-  puts category.name
+  puts category.name # for troubleshooting
 
   category_groups = get_groups_of_category(category)
 
   category_groups.each do |group|
 
     group = get_group_info(group)
-
-    # every group draws members randomly from ALL of its category's subscribers
     subscribers = category.subscribers.to_a
-
     organizer = subscribers.rotate(rand(subscribers.length)).shift
-
     members = []
-
     fraction_of_subscription_size = rand(4) + 2
 
     while members.length < (subscribers.length / fraction_of_subscription_size)
@@ -273,7 +268,7 @@ Category.all.each do |category|
       category_id: category.id
       })
 
-    puts "=> #{new_group.name}"
+    puts "=> #{new_group.name}" # for troubleshooting
 
     ### CREATE MEMBERSHIPS ###
 
@@ -289,13 +284,8 @@ Category.all.each do |category|
     group['events'].each do |event|
 
       event = get_event_info(event)
-
-      # members = new_group.members.to_a
-
       host = members.rotate(rand(members.length)).shift
-
       attendees = []
-
       fraction_of_membership_size = rand(3) + 2
 
       while attendees.length < (members.length / fraction_of_membership_size)
@@ -315,7 +305,7 @@ Category.all.each do |category|
         host_id: host.id
         })
 
-      puts "==> #{new_event.name}"
+      puts "==> #{new_event.name}" # for troubleshooting
 
       ### CREATE RSVPs ###
 

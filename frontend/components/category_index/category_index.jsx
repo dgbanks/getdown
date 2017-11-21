@@ -8,13 +8,6 @@ class CategoryIndex extends React.Component {
 
   componentDidMount() {
     this.props.fetchCategories();
-    console.log('CATEGORY INDEX');
-    // console.log(this.props.fetchCategories());
-    // if (this.props.match.params.categoryId) {
-    //   this.props.fetchCategory(this.props.match.params.categoryId);
-    // } else {
-    //   this.props.fetchCategories();
-    // }
   }
 
   render() {

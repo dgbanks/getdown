@@ -1,8 +1,8 @@
-json.extract! group, :id, :name, :description, :img_url
+json.extract! group, :id, :name, :description, :img_url, :category, :location
 
 json.memberCount group.members.count
 
-json.address group.location
+# json.address group.location
 
 json.isCurrentUserMember current_user.groups.include?(group) if current_user
 

@@ -167,7 +167,7 @@ class GroupShow extends React.Component {
 
               <div className='group-body-left'>
 
-                <div className='group-image'></div>
+                <div className='group-image' style={{backgroundImage: `url(${group.img_url})`}}></div>
 
                 <div className='group-info' >
                   <h1>{group.address}</h1>

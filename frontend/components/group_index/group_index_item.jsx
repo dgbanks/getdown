@@ -7,9 +7,15 @@ const GroupIndexItem = ({group}) => {
 
       <Link
         to={`/groups/${group.id}`}
-        style={{color: 'black', textDecoration: 'none'}}
+        style={{
+          color: 'black',
+          textDecoration: 'none'}}
         >
-        <div className='inner-div-wrapper group-item'>
+        <div
+          className='inner-div-wrapper group-item'
+          style={{
+            backgroundImage: `url(${group.img_url})`
+          }}>
           <h2>{group.name}</h2>
         </div>
 
