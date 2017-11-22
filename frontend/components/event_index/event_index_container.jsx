@@ -7,18 +7,16 @@ import {
 } from '../../actions/event_actions';
 import EventIndex from './event_index';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   events: Object.keys(state.entities.events)
     .map(id => state.entities.events[id])
     .sort(function (a, b) {
-      if (a.date < b.date) {
-        return -1;
-      } if (a.date > b.date) {
-        return 1;
-      }
+      if (a.date < b.date) { return -1; }
+      if (a.date > b.date) { return 1; }
       return 0;
     }),
-  currentUser: state.session.currentUser
+  currentUser: state.session.currentUser,
+  itemSize: ownProps.itemSize
 });
 
 const mapDispatchToProps = dispatch => ({

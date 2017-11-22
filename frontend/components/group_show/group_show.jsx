@@ -174,6 +174,41 @@ class GroupShow extends React.Component {
               </div>
 
             </div>
+            <div className='group-subheader'>
+              <div className='subheader-tabs'>
+
+                <Link
+                  className='hover-text'
+                  to={`/groups/${group.id}`}
+                  style={{
+                    color: 'inherit',
+                    textDecoration: 'inherit'
+                  }}>
+                  Our group
+                </Link>
+
+                <Link
+                  className='hover-text'
+                  to={`/groups/${group.id}/events`}
+                  style={{
+                    color: 'inherit',
+                    textDecoration: 'inherit'
+                  }}>
+                  Getdowns
+                </Link>
+
+                <Link
+                  className='hover-text'
+                  to={`/groups/${group.id}`}
+                  style={{
+                    color: 'inherit',
+                    textDecoration: 'inherit'
+                  }}>
+                  Members
+                </Link>
+              </div>
+
+            </div>
           </div>
 
           <div className='next-event'>
@@ -189,8 +224,18 @@ class GroupShow extends React.Component {
             </div>
 
             <div className='group-event-index'>
-              <h1>Upcoming getdowns</h1>
-              <EventIndexContainer />
+              <div className='event-index-label'>
+                <h1>Upcoming getdowns</h1>
+                <Link
+                  to={`/groups/${group.id}`}
+                  style={{
+                    textDecoration: 'none',
+                    color:'blue'
+                  }}>
+                  See all
+                </Link>
+              </div>
+              <EventIndexContainer itemSize={"small"}/>
             </div>
 
 

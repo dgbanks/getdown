@@ -7,9 +7,33 @@
 .event-index {
   border: 1px solid blue;
   width: 100%;
-  // margin: 2% 0%;
-
+  // margin-top: -10px;
+  // display: flex;
 }
+
+.small-event-item {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: auto;
+  font-size: 15px;
+  font-family: sans-serif;
+  margin: 10px 0px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: white;
+  transition: all .2s ease-in-out;
+}
+
+.small-event-item h1 {
+  font-size: 5px;
+  margin: 0px;
+}
+
+.small-event-item:hover {
+  transform: scale(1.05)
+}
+
 
 .event-index-item {
   border: 1px solid green;
@@ -18,6 +42,7 @@
   display: flex;
   justify-content: space-between;
 }
+
 
 .event-index-item-details {
   border: 1px solid yellow;

@@ -1,5 +1,6 @@
-json.extract! event, :id, :name, :description, :location, :date, :time, :img_url
+json.extract! event, :id, :name, :description, :address, :venue, :date, :time
 json.attendance event.attendees.count
+
 json.group do
   json.extract! event.group, :id, :name
 end

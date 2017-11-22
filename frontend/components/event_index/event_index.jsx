@@ -26,14 +26,15 @@ class EventIndex extends React.Component {
 
   render() {
     return (
-      
+
         <div className='event-index'>
           <ul>
             {
               this.props.events.map(event => (
                 <EventIndexItem
                   key={event.id}
-                  event={event} />
+                  event={event}
+                  itemSize={this.props.itemSize} />
               ))
             }
           </ul>

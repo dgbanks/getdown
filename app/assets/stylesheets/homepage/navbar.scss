@@ -1,13 +1,13 @@
 .navbar {
   // position: relative;
   background-color: white;
-  // background-color: gray;
   display: flex;
   justify-content: space-between;
   height: 100px;
   padding: 0px 100px;
   margin: auto;
   align-items: center;
+  border-bottom: 1px solid lightgray;
 }
 
 .navbar button {
