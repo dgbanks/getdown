@@ -25,15 +25,18 @@
   transition: all .2s ease-in-out;
 }
 
-.small-event-item h1 {
-  font-size: 5px;
-  margin: 0px;
-}
-
 .small-event-item:hover {
   transform: scale(1.05)
 }
 
+.small-event-item button {
+  width: 50%;
+  margin: 10px 0px 5px 25%;
+}
+
+.small-event-item button:hover {
+  cursor: pointer;
+}
 
 .event-index-item {
   border: 1px solid green;
@@ -73,12 +76,72 @@
 }
 
 .event-header {
-  margin-top: 2%;
-  border: 1px solid red;
+  width: 100%;
+  height: 200px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 50px;
+}
+
+.header-content {
+  height: 90%;
+  width: 75%;
   display: flex;
   justify-content: space-between;
-  width: 95%;
+  align-items: center;
 }
+
+.header-content h3 {
+  font-size: 15px;
+  font-family: sans-serif;
+  color: gray;
+  margin-bottom: 5px;
+}
+
+.event-header-info {
+  width: 70%;
+  height: auto;
+}
+
+.event-header-info h1 {
+  font-size: 30px;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: black;
+  margin: 5px 0px 15px 0px;
+}
+
+.event-header-info h2 {
+  font-size: 20px;
+  font-family: sans-serif;
+  color: gray;
+}
+
+.rsvp-info {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.event-actions {
+  margin-top: 5px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.event-actions button {
+  width: 75%;
+  height: 25px;
+  background-color: gray;
+  border-radius: 0px;
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+}
+
 
 .event-and-group-name {
   display: flex;
@@ -112,6 +175,12 @@
 .event-description {
   width: 95%;
   border: 1px solid green;
+}
+
+.event-info {
+  width: 35%;
+  background-color: white;
+  border-radius: 5px;
 }
 
 

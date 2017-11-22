@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
 
-  validates :name, :description, :address, :date, :time, :group_id, :host_id, presence: true
+  validates :name, :description, :address, :venue, :date, :time, :group_id, :host_id, presence: true
 
   after_save :ensure_host_attendance, on: :create
 

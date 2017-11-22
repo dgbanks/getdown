@@ -109,9 +109,6 @@
   color: black;
 }
 
-// .hover-text {
-// }
-
 .subheader-tabs:hover {
   font-weight: normal;
   color: blue;
@@ -141,21 +138,18 @@
   margin-bottom: 15px;
 }
 
+.page-details {
+  width: 55%;
+}
+
 .description {
   font-family: sans-serif;
   font-weight: lighter;
   font-size: 25px;
   line-height: 35px;
-
-}
-
-
-.page-details {
-  width: 55%;
 }
 
 .group-event-index {
-  // float: right;
   width: 35%;
 }
 

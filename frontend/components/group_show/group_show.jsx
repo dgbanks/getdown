@@ -174,6 +174,7 @@ class GroupShow extends React.Component {
               </div>
 
             </div>
+
             <div className='group-subheader'>
               <div className='subheader-tabs'>
 
@@ -227,20 +228,18 @@ class GroupShow extends React.Component {
               <div className='event-index-label'>
                 <h1>Upcoming getdowns</h1>
                 <Link
-                  to={`/groups/${group.id}`}
+                  to={`/groups/${group.id}/events`}
                   style={{
                     textDecoration: 'none',
-                    color:'blue'
+                    color:'blue',
+                    fontFamily: 'sans-serif',
+                    marginTop: '-10px'
                   }}>
                   See all
                 </Link>
               </div>
               <EventIndexContainer itemSize={"small"}/>
             </div>
-
-
-
-
 
           </div>
 

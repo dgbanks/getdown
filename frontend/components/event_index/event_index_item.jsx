@@ -15,7 +15,11 @@ const EventIndexItem = ({event, itemSize}) => {
               {`${event.date}, ${event.time}`}
             </h2>
 
-            <h1 style={{color:'black'}}>
+            <h1 style={{
+              color:'black',
+              fontSize: '15px',
+              fontWeight: 'bold'
+            }}>
               {event.name}
             </h1>
 
@@ -66,7 +70,12 @@ const EventIndexItem = ({event, itemSize}) => {
 
         <h2>{event.time}</h2>
 
-        <Link to={`/groups/${event.group.id}/events/${event.id}`} style={{color: 'black', textDecoration: 'none'}}>
+        <Link
+          to={`/groups/${event.group.id}/events/${event.id}`}
+          style={{
+            color: 'black',
+            textDecoration: 'none'
+          }}>
           I'm down!
         </Link>
 
