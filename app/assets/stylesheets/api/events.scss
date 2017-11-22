@@ -7,8 +7,6 @@
 .event-index {
   border: 1px solid blue;
   width: 100%;
-  // margin-top: -10px;
-  // display: flex;
 }
 
 .small-event-item {
@@ -125,6 +123,7 @@
   flex-direction: column;
   align-items: center;
 }
+
 .event-actions {
   margin-top: 5px;
   width: 100%;
@@ -141,7 +140,6 @@
   font-weight: bold;
   color: white;
 }
-
 
 .event-and-group-name {
   display: flex;

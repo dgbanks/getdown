@@ -178,35 +178,39 @@ class GroupShow extends React.Component {
             <div className='group-subheader'>
               <div className='subheader-tabs'>
 
-                <Link
-                  className='hover-text'
-                  to={`/groups/${group.id}`}
-                  style={{
-                    color: 'inherit',
-                    textDecoration: 'inherit'
-                  }}>
-                  Our group
-                </Link>
+                <div className='hover-text'>
+                  <Link
+                    to={`/groups/${group.id}`}
+                    style={{
+                      color: 'inherit',
+                      textDecoration: 'inherit'
+                    }}>
+                    Our group
+                  </Link>
+                </div>
 
-                <Link
-                  className='hover-text'
-                  to={`/groups/${group.id}/events`}
-                  style={{
-                    color: 'inherit',
-                    textDecoration: 'inherit'
-                  }}>
-                  Getdowns
-                </Link>
+                <div className='hover-text'>
+                  <Link
+                    to={`/groups/${group.id}/events`}
+                    style={{
+                      color: 'inherit',
+                      textDecoration: 'inherit'
+                    }}>
+                    Getdowns
+                  </Link>
+                </div>
 
-                <Link
-                  className='hover-text'
-                  to={`/groups/${group.id}`}
-                  style={{
-                    color: 'inherit',
-                    textDecoration: 'inherit'
-                  }}>
-                  Members
-                </Link>
+                <div className='hover-text'>
+                  <Link
+                    to={`/groups/${group.id}`}
+                    style={{
+                      color: 'inherit',
+                      textDecoration: 'inherit'
+                    }}>
+                    Members
+                  </Link>
+                </div>
+
               </div>
 
             </div>
