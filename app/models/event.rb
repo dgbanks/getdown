@@ -2,6 +2,7 @@ class Event < ApplicationRecord
 
   validates :name, :description, :address, :venue, :date, :time, :group_id, :host_id, presence: true
 
+  after_initialize :parse_date
   after_save :ensure_host_attendance, on: :create
 
   # after_initialize :geocode
@@ -25,13 +26,18 @@ class Event < ApplicationRecord
     through: :rsvps,
     source: :user
 
-  # def geocode
-  #   geocode = Geocoder.coordinates(self.location)
-  #   self.latitude = geocode.first
-  #   self.longitude = geocode.last
-  # end
+  def parse_date
+    date = self.date
+    self.date = Date.parse(date)
+  end
 
   def ensure_host_attendance
     Rsvp.create({event: self, user: self.host})
   end
 end
+
+# def geocode
+#   geocode = Geocoder.coordinates(self.location)
+#   self.latitude = geocode.first
+#   self.longitude = geocode.last
+# end

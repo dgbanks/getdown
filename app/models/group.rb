@@ -3,8 +3,8 @@ class Group < ApplicationRecord
   validates :name, :description, :location, :organizer_id, :category_id, presence: true
   # validates :name, uniqueness: true
 
-  after_save :ensure_organizer_membership, on: :create
   after_initialize :fix_png
+  after_save :ensure_organizer_membership, on: :create
   # after_initialize :get_address
   # after_initialize :geocode, :get_address
 
@@ -32,7 +32,6 @@ class Group < ApplicationRecord
     foreign_key: :category_id,
     class_name: :Category
 
-
   def self.search(query)
     self.where(
       "name ILIKE ? OR
@@ -40,16 +39,6 @@ class Group < ApplicationRecord
       location ILIKE ?",
        "%#{query}%", "%#{query}%", "%#{query}%").limit(3)
   end
-
-  # def geocode
-  #   geocode = Geocoder.coordinates(self.zip_code)
-  #   self.latitude = geocode.first
-  #   self.longitude = geocode.last
-  # end
-
-  # def get_address
-  #   self.location = Geocoder.address(self.zip_code)
-  # end
 
   def fix_png
     url = self.img_url
@@ -63,3 +52,13 @@ class Group < ApplicationRecord
   end
 
 end
+
+# def geocode
+#   geocode = Geocoder.coordinates(self.zip_code)
+#   self.latitude = geocode.first
+#   self.longitude = geocode.last
+# end
+
+# def get_address
+#   self.location = Geocoder.address(self.zip_code)
+# end

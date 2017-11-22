@@ -75,7 +75,6 @@
   font-family: sans-serif;
   font-weight: lighter;
   color: gray;
-
 }
 
 .group-actions button{
@@ -127,7 +126,7 @@
 
 .main-body {
   width: 75%;
-  height: auto;
+  // height: auto;
   display: flex;
   justify-content: space-between;
   border: 1px solid yellow;
@@ -137,7 +136,6 @@
 .main-body h1 {
   font-size: 30px;
   font-family: sans-serif;
-  // font-weight: bold;
   margin-bottom: 15px;
 }
 
@@ -148,8 +146,9 @@
 .description {
   font-family: sans-serif;
   font-weight: lighter;
-  font-size: 25px;
+  font-size: 20px;
   line-height: 35px;
+  word-wrap: break-word;
 }
 
 .group-event-index {
