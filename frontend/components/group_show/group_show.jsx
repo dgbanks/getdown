@@ -34,12 +34,10 @@ class GroupShow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {modalIsOpen: false};
-    // this.group = this.props.group;
     this.formType = "";
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    // this.determine = this.determine.bind(this);
 
     this.isMember = this.isMember.bind(this);
     this.handleCreateEvent = this.handleCreateEvent.bind(this);
@@ -76,8 +74,10 @@ class GroupShow extends React.Component {
     if (this.props.location.pathname.includes('events/')) {
       let eventId = this.props.location.pathname.split('/').slice(-1)[0];
       return (
-        <EventShowContainer eventId={ eventId }/>
+        <div>
+        </div>
       );
+      // <EventShowContainer eventId={ eventId }/>
     } else {
       return (
           <div className='group-body-main'>
@@ -87,12 +87,7 @@ class GroupShow extends React.Component {
               </div>
 
               <div className='group-events'>
-
                 <h1>Upcoming {this.props.group.name} Events</h1>
-
-
-                <EventIndexContainer />
-
               </div>
 
           </div>
@@ -143,6 +138,7 @@ class GroupShow extends React.Component {
   }
 
   render () {
+    console.log(this.props.group);
     const group = this.props.group;
     if (group === undefined) {
       return (
@@ -158,27 +154,48 @@ class GroupShow extends React.Component {
           {this.isMember()}
 
           <div className='group-header'>
-            <Link to={`/groups/${group.id}`} style={{textDecoration: 'none'}}>
-              <h1>{group.name}</h1>
-            </Link>
-          </div>
+            <div className='header-content'>
 
-          <div className='group-body'>
-
-              <div className='group-body-left'>
-
-                <div className='group-image' style={{backgroundImage: `url(${group.img_url})`}}></div>
-
-                <div className='group-info' >
-                  <h1>{group.address}</h1>
-                  <h1>{group.memberCount} members ||| Organized by {group.organizer.name}</h1>
-                </div>
-
-                {this.getButtons()}
-
+              <div
+                className='header-image'
+                style={{backgroundImage: `url(${group.img_url})`}}>
               </div>
 
-              {this.getMainBody()}
+              <div className='header-info'>
+                <h1>{group.name}</h1>
+                <p>Location</p>
+                <h2>{group.location}</h2>
+                <p>Members</p>
+                <h2>{group.memberCount}</h2>
+                <p>Organizer</p>
+                <h2>{group.organizer.name}</h2>
+
+                {this.getButtons()}
+              </div>
+
+            </div>
+          </div>
+
+          <div className='next-event'>
+          </div>
+
+          <div className='main-body'>
+
+            <div className='page-details'>
+              <h1>What we're about</h1>
+              <div className='description'>
+                <p>{group.description}</p>
+              </div>
+            </div>
+
+            <div className='group-event-index'>
+              <h1>Upcoming getdowns</h1>
+              <EventIndexContainer />
+            </div>
+
+
+
+
 
           </div>
 

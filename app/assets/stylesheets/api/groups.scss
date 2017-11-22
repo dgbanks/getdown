@@ -25,32 +25,113 @@
   background-color: lightgray;
 }
 
-// GROUP TITLE ( should persist to group's event page ) //
-
 .group-header {
-  margin-top: 50px;
-  width: 75%;
-  height: 100px;
-  background-color: black;
+  width: 100%;
+  height: 400px;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
-
 }
 
-.group-header h1 {
-  color: white;
-  font-size: 50px;
+.header-content {
+  height: 100%;
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-image {
+  height: 90%;
+  width: 70%;
+  border-radius: 5px;
+}
+
+.header-info {
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  width: 25%;
+}
+
+.header-info h1 {
+  margin-bottom: 25px;
+  font-size: 30px;
   font-family: sans-serif;
+  font-weight: bold;
+  color: black;
 }
 
-.group-subhead {
+.header-info h2 {
+  margin-bottom: 25px;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: black;
+}
+
+.header-info p {
+  margin-bottom: 5px;
+  font-family: sans-serif;
+  font-weight: lighter;
+  color: gray;
+
+}
+
+.group-actions button{
+  width: 75%;
+  height: 25px;
+  background-color: gray;
+  border-radius: 0px;
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+
+}
+
+.next-event {
+  margin: 50px 0px;
+  width: 75%;
+  height: 200px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.main-body {
   width: 75%;
   height: auto;
-  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  // align-items: center;
+  border: 1px solid yellow;
+}
+
+.main-body h1 {
+  font-size: 30px;
+  font-family: sans-serif;
+  // font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.description {
+  font-family: sans-serif;
+  font-weight: lighter;
+  font-size: 25px;
+  line-height: 35px;
 
 }
+
+
+.page-details {
+  width: 55%;
+}
+
+.group-event-index {
+  // float: right;
+  width: 35%;
+}
+
+
 
 ///// MAIN CONTENT ////////////
 
@@ -74,13 +155,7 @@
   flex-direction: column;
 }
 
-.group-image {
-  height: 300px;
-  width: 90%;
-  // background-color: black;
-  margin: 5%;
-  border: 1px solid black;
-}
+
 
 .group-info {
   float: left;
