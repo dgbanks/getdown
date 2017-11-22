@@ -7,6 +7,13 @@ export const fetchGroups = () => (
   })
 );
 
+export const fetchCategoryGroups = categoryId => (
+  $.ajax({
+    method: 'GET',
+    url: `api/categories/${categoryId}/groups`
+  })
+);
+
 /// DASHBOARD MENU
 
 export const createGroup = group => (

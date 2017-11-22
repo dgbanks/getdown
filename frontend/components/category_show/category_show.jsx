@@ -29,7 +29,7 @@ class CategoryShow extends React.Component {
 
         <GroupSearchContainer />
 
-        <GroupIndexContainer />
+        <GroupIndexContainer categoryId={category.id}/>
 
       </div>
     );

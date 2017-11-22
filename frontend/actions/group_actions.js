@@ -24,41 +24,54 @@ const removeGroup = group => ({
 // USER
 
 export const joinGroup = groupId => dispatch => (
-  UserApiUtil.joinGroup(groupId).then(group => dispatch(receiveGroup(group)))
+  UserApiUtil.joinGroup(groupId)
+    .then(group => dispatch(receiveGroup(group)))
 );
 
 /// INDEX AND SHOW THUNKS
 
 export const fetchGroups = () => dispatch => (
-  GroupApiUtil.fetchGroups().then(groups => dispatch(receiveGroups(groups)))
+  GroupApiUtil.fetchGroups()
+    .then(groups => dispatch(receiveGroups(groups)))
 );
 
 export const fetchGroup = id => dispatch => (
-  GroupApiUtil.fetchGroup(id).then(group => dispatch(receiveGroup(group)))
+  GroupApiUtil.fetchGroup(id)
+    .then(group => dispatch(receiveGroup(group)))
 );
 
 export const fetchUserGroups = userId => dispatch => (
-  GroupApiUtil.fetchUserGroups(userId).then(groups => dispatch(receiveGroups(groups)))
+  GroupApiUtil.fetchUserGroups(userId)
+    .then(groups => dispatch(receiveGroups(groups)))
+);
+
+export const fetchCategoryGroups = categoryId => dispatch => (
+  GroupApiUtil.fetchCategoryGroups(categoryId)
+    .then(groups => dispatch(receiveGroups(groups)))
 );
 
 /// FORM THUNKS
 
 export const createGroup = group => dispatch => (
-  GroupApiUtil.createGroup(group).then(group => dispatch(receiveGroup(group)))
+  GroupApiUtil.createGroup(group)
+    .then(newGroup => dispatch(receiveGroup(newGroup)))
 );
 
 export const updateGroup = group => dispatch => (
-  GroupApiUtil.updateGroup(group).then(group => dispatch(receiveGroup(group)))
+  GroupApiUtil.updateGroup(group)
+    .then(newGroup => dispatch(receiveGroup(newGroup)))
 );
 
 export const deleteGroup = id => dispatch => (
-  GroupApiUtil.deleteGroup(id).then(group => dispatch(removeGroup(group)))
+  GroupApiUtil.deleteGroup(id)
+    .then(group => dispatch(removeGroup(group)))
 );
 
 /// GROUP SEARCH
 
 export const searchGroups = group => dispatch => (
-  GroupApiUtil.searchGroups(group).then(groups => dispatch(receiveGroups(groups)))
+  GroupApiUtil.searchGroups(group)
+    .then(groups => dispatch(receiveGroups(groups)))
 );
 
 export const clearGroupSearch = () => ({
