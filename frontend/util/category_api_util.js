@@ -9,6 +9,13 @@ export const fetchCategories = () => (
   })
 );
 
+export const fetchGroupCategories = id => (
+  $.ajax({
+    method: 'GET',
+    url: `api/categories/${id}/groups`
+  })
+);
+
 export const fetchCategory = id => (
   $.ajax({
     method: 'GET',

@@ -4,7 +4,7 @@ class Group < ApplicationRecord
   # validates :name, uniqueness: true
 
   after_save :ensure_organizer_membership, on: :create
-
+  after_initialize :fix_png
   # after_initialize :get_address
   # after_initialize :geocode, :get_address
 
@@ -50,6 +50,13 @@ class Group < ApplicationRecord
   # def get_address
   #   self.location = Geocoder.address(self.zip_code)
   # end
+
+  def fix_png
+    url = self.img_url
+    if url[0] == '/'
+      self.img_url = 'https://secure.meetupstatic.com'.concat(url)
+    end
+  end
 
   def ensure_organizer_membership
     Membership.create({group: self, user: self.organizer})

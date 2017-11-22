@@ -21,13 +21,11 @@ class Api::GroupsController < ApplicationController
   end
 
   def index
-    @groups = Group.all
-    # if params[:user_id]
-    #   @groups = current_user.groups
-    # else
-    #   @groups = Group.all.sort_by {|group| group.members.count}[-5..-1]
-    #   # @groups = Group.limit(5)
-    # end
+    if params[:category_id]
+      @groups = Group.where(category_id: params[:category_id])
+    else
+      @groups = Group.all
+    end
     render "api/groups/index"
   end
 
