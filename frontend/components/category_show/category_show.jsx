@@ -13,13 +13,14 @@ class CategoryShow extends React.Component {
   }
 
   render() {
+    console.log(this.props.match.params.categoryId);
     const category = this.props.category;
     if (category === undefined) {
       return (
         <div>loading...</div>
       );
     }
-
+    console.log(category.id);
     return (
       <div className='category-page'>
 
@@ -33,6 +34,12 @@ class CategoryShow extends React.Component {
 
       </div>
     );
+
+    // return (
+    //   <div className='category-header'>
+    //     <div className='category-header-text'><h1>{category.name}</h1></div>
+    //   </div>
+    // );
   }
 }
 

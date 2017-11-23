@@ -13,9 +13,7 @@ const GroupIndexItem = ({group}) => {
         >
         <div
           className='inner-div-wrapper group-item'
-          style={{
-            backgroundImage: `url(${group.img_url})`
-          }}>
+          style={{ backgroundImage: `url(${group.img_url})` }}>
           <h2>{group.name}</h2>
         </div>
 
@@ -24,11 +22,4 @@ const GroupIndexItem = ({group}) => {
   );
 };
 
-// <li className='group-item'>
-//   <div className='item-content'>
-//     <h1>{group.name}</h1>
-//       <p> in {group.address}</p>
-//       </div>
-//       <p>{group.description}</p>
-//       </li>
 export default GroupIndexItem;

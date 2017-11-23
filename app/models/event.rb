@@ -28,7 +28,7 @@ class Event < ApplicationRecord
 
   def parse_date
     date = self.date
-    self.date = Date.parse(date)
+    self.date = date.strftime("%B %d, %Y")
   end
 
   def ensure_host_attendance

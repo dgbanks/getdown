@@ -59,7 +59,7 @@ const CategoryIndexItem = ({category}) => {
   return (
     <div className='category-item'>
       <Link
-        to={`/categories/${category.id}/groups`}
+        to={`/discover/categories/${category.id}/groups`}
         style={{color: 'black', textDecoration: 'none'}}
       >
 
