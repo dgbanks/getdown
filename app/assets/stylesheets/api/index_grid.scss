@@ -11,6 +11,8 @@
   width: 100%;
   background-color: gray;
   transition: all .2s ease-in-out;
+  display: flex;
+  align-items: flex-end;
 }
 
 .inner-div-wrapper:hover {
@@ -21,5 +23,6 @@
   font-size: 30px;
   font-family: sans-serif;
   color: white;
+  text-shadow: 2px 2px black;
   padding: 0px 0px 10px 10px;
 }

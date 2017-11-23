@@ -57,7 +57,6 @@ class SessionLinks extends React.Component {
       email: 'email2',
       password: 'password'
     }, () => this.props.login(this.state));
-
   }
 
 

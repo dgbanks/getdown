@@ -14,6 +14,14 @@ export const randomWidth = () => {
   return ['1000', '1250', '1500'][Math.floor(Math.random() * 3)];
 };
 
+export const randomPosition = (width) => {
+  let pos = [width, (width * .9), (width * .8), (width * .7),
+    (width * .6), (width * .5), (width * .4), (width * .3),
+    (width * .2), (width * .1)][Math.floor(Math.random() * 10)];
+  let neg = ['-', ''][Math.floor(Math.random() * 2)];
+  return `${neg}${pos}px`;
+};
+
 export const randomDelay = () => {
   return ['0', '.1', '.2', '.3',
                 '.4', '.5', '.6', '.7',

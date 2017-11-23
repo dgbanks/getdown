@@ -9,13 +9,13 @@ class Homepage extends React.Component {
   constructor() {
     super();
     this.color = SplashUtil.randomColor();
-    this.width = '1000';
+    this.width = 1000;
     this.margin = 0;
   }
 
   getRandomStyles() {
     // let width = randomWidth();
-    SplashUtil.insertKeyframes(this.width);
+    // SplashUtil.insertKeyframes(this.width);
 
     return (
       {
@@ -27,21 +27,21 @@ class Homepage extends React.Component {
         opacity: '.3',
         width: `${this.width}px`,
         marginTop: `${this.margin}px`,
-        marginLeft: `-${this.width}px`,
-        animationName: 'moveLeftStripe',
-        animationDuration: `${SplashUtil.randomTime()}s`,
-        animationDelay: `${SplashUtil.randomDelay()}s`,
-        animationFillMode: 'none',
-        animationIterationCount: 'infinite',
-        animationDirection: 'alternate',
-        animationTimingFunction: 'linear'
+        marginLeft: SplashUtil.randomPosition(this.width),
+        // animationName: 'moveLeftStripe',
+        // animationDuration: `${SplashUtil.randomTime()}s`,
+        // animationDelay: `${SplashUtil.randomDelay()}s`,
+        // animationFillMode: 'none',
+        // animationIterationCount: 'infinite',
+        // animationDirection: 'alternate',
+        // animationTimingFunction: 'linear'
       }
     );
   }
 
   getMoreStyles() {
     // let width = randomWidth();
-    SplashUtil.insertKeyframes(this.width);
+    // SplashUtil.insertKeyframes(this.width);
 
     return (
       {
@@ -53,14 +53,14 @@ class Homepage extends React.Component {
         opacity: '.3',
         width: `${this.width}px`,
         marginTop: `${this.margin}px`,
-        marginLeft: `-${this.width}px`,
-        animationName: 'moveRightStripe',
-        animationDuration: `${SplashUtil.randomTime()}s`,
-        animationDelay: `${SplashUtil.randomDelay()}s`,
-        animationFillMode: 'none',
-        animationIterationCount: 'infinite',
-        animationDirection: 'alternate',
-        animationTimingFunction: 'linear'
+        marginLeft: SplashUtil.randomPosition(this.width),
+        // animationName: 'moveRightStripe',
+        // animationDuration: `${SplashUtil.randomTime()}s`,
+        // animationDelay: `${SplashUtil.randomDelay()}s`,
+        // animationFillMode: 'none',
+        // animationIterationCount: 'infinite',
+        // animationDirection: 'alternate',
+        // animationTimingFunction: 'linear'
       }
     );
   }
@@ -105,17 +105,28 @@ class Homepage extends React.Component {
       <div className='homepage'>
 
         <div className='splash-container'>
-
-          {this.tenStripes()}
+          <video
+            className='splash-video'
+            src="https://secure.meetupstatic.com/s/img/457419671895069178/guest_home/video.mp4"
+            autoPlay="autoplay"
+            loop="loop">
+          </video>
 
           <div className='splash-text'>
             <h1>Looking for something to do?</h1>
-            <h1>find a group you can<h2 style={{
-              display: 'inline',
-              color: this.color,
-              fontFamily: 'cursive',
-              fontWeight: 'bold',
-              margin: '0px 15px'}}>getdown</h2>with</h1>
+            <h1>find a group you can
+              <h2 style={{
+                display: 'inline',
+                color: '#FF0B55',
+                fontFamily: 'cursive',
+                fontWeight: 'bold',
+                margin: '0px 15px'}}>
+                getdown
+              </h2>
+              with
+            </h1>
+            <div className='fake-button'>Sign Up</div>
+
           </div>
 
         </div>
