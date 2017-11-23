@@ -37,22 +37,14 @@ export const randomTime = () => {
           '10'][Math.floor(Math.random() * 21)];
 };
 
-export const insertKeyframes = (width) => {
+export const insertKeyframes = (width, margin) => {
   let styleSheet = document.styleSheets[0];
-  let keyframesOne = `@keyframes moveLeftStripe {
+  let keyframes = `@keyframes moveStripe {
     from
     { margin-left: -${width}px; }
     to
     { margin-left: 100%; }
     }`;
 
-  let keyframesTwo = `@keyframes moveRightStripe {
-    from
-    { margin-left: 100%; }
-    to
-    { margin-left: -${width}px; }
-    }`;
-
-  styleSheet.insertRule(keyframesOne);
-  styleSheet.insertRule(keyframesTwo);
+  styleSheet.insertRule(keyframes);
 };

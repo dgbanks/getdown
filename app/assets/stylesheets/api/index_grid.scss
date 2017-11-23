@@ -9,14 +9,17 @@
 .inner-div-wrapper {
   height: 200px;
   width: 100%;
-  background-color: gray;
+  // background-color: white;
   transition: all .2s ease-in-out;
   display: flex;
   align-items: flex-end;
+  opacity: .7;
+  // border: 1px solid black;
 }
 
-.inner-div-wrapper:hover {
-  transform: scale(1.05)
+.category-item:hover {
+  transform: scale(1.05);
+  opacity: 1;
 }
 
 .inner-div-wrapper h2 {
@@ -25,4 +28,14 @@
   color: white;
   text-shadow: 2px 2px black;
   padding: 0px 0px 10px 10px;
+  z-index: 0;
 }
+
+// .animation {
+//   width: 100%;
+//   // margin-top: 0px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   overflow: hidden;
+// }

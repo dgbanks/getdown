@@ -138,10 +138,6 @@ class Homepage extends React.Component {
     );
   }
 }
-// <GroupSearchContainer />
 
-// <div>
-//   <EventIndexContainer />
-// </div>
 
 export default Homepage;
