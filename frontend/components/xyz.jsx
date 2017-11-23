@@ -8,6 +8,7 @@ import EventShowContainer from './event_show/event_show_container';
 // import EventIndexContainer from './event_index/event_index_container';
 import CategoryShowContainer from './category_show/category_show_container';
 import Homepage from './homepage';
+import FooterContainer from './footer/footer_container';
 
 const App = () => (
   <div>
@@ -24,6 +25,10 @@ const App = () => (
         <Route path='/events/:eventId' component={EventShowContainer}/>
       </Switch>
     </main>
+
+    <footer>
+      <FooterContainer />
+    </footer>
 
   </div>
 );
