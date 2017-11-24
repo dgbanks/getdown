@@ -21,17 +21,16 @@ class Discover extends React.Component {
     // fetchCategory(this.props.match.params.categoryId);
   }
 
-  getCategoryId() {
-    if (this.props.match.params.categoryId) {
-      console.log('got categoryId');
+  getIndex(categoryId) {
+    if (this.props.location.pathname.includes('events/')) {
       return (
-        this.props.match.params.categoryId
+        "event index"
+        // <EventIndexContainer
       );
     } else {
-      console.log('NO CATEGORY ID PASSED IN');
-      // return (
-      //   <CategoryIndexContainer />
-      // );
+      return (
+        <GroupIndexContainer categoryId={categoryId}/>
+      );
     }
   }
 
@@ -51,10 +50,11 @@ class Discover extends React.Component {
 
         <GroupSearchContainer />
 
-        <GroupIndexContainer categoryId={categoryId}/>
+        {this.getIndex(categoryId)}
       </div>
     );
   }
 }
+// <GroupIndexContainer categoryId={categoryId}/>
 
 export default Discover;
