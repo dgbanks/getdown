@@ -72,25 +72,43 @@ class GroupShow extends React.Component {
 
   getMainBody() {
     if (this.props.location.pathname.includes('events/')) {
-      let eventId = this.props.location.pathname.split('/').slice(-1)[0];
+      console.log('INSIDE');
+      // let eventId = this.props.location.pathname.split('/').slice(-1)[0];
       return (
-        <div>
+        <div className='main-body'>
+          <EventIndexContainer groupId={this.props.group.id} />
         </div>
       );
       // <EventShowContainer eventId={ eventId }/>
     } else {
       return (
-          <div className='group-body-main'>
+        <div className='main-body'>
 
-              <div className='group-description'>
-                <p>{this.props.group.description}</p>
-              </div>
-
-              <div className='group-events'>
-                <h1>Upcoming {this.props.group.name} Events</h1>
-              </div>
-
+          <div className='page-details'>
+            <h1>What we're about</h1>
+            <div className='description'>
+              <p>{this.props.group.description}</p>
+            </div>
           </div>
+
+          <div className='group-event-index'>
+            <div className='event-index-label'>
+              <h1>Upcoming getdowns</h1>
+              <Link
+                to={`/groups/${this.props.group.id}/events`}
+                style={{
+                  textDecoration: 'none',
+                  color:'blue',
+                  fontFamily: 'sans-serif',
+                  marginTop: '-10px'
+                }}>
+                See all
+              </Link>
+            </div>
+            <EventIndexContainer itemSize={"small"}/>
+          </div>
+
+        </div>
       );
     }
   }
@@ -147,7 +165,7 @@ class GroupShow extends React.Component {
     }
 
     const david = this.getMainBody();
-
+    console.log(group);
     return (
       <div className='group-page'>
 
@@ -219,33 +237,7 @@ class GroupShow extends React.Component {
           <div className='next-event'>
           </div>
 
-          <div className='main-body'>
-
-            <div className='page-details'>
-              <h1>What we're about</h1>
-              <div className='description'>
-                <p>{group.description}</p>
-              </div>
-            </div>
-
-            <div className='group-event-index'>
-              <div className='event-index-label'>
-                <h1>Upcoming getdowns</h1>
-                <Link
-                  to={`/groups/${group.id}/events`}
-                  style={{
-                    textDecoration: 'none',
-                    color:'blue',
-                    fontFamily: 'sans-serif',
-                    marginTop: '-10px'
-                  }}>
-                  See all
-                </Link>
-              </div>
-              <EventIndexContainer itemSize={"small"}/>
-            </div>
-
-          </div>
+          {david}
 
           <Modal
             isOpen={this.state.modalIsOpen}

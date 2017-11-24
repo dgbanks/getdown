@@ -15,8 +15,10 @@ const mapStateToProps = (state, ownProps) => ({
       if (a.date > b.date) { return 1; }
       return 0;
     }),
+  // groupId: ownProps.groupId,
   currentUser: state.session.currentUser,
   itemSize: ownProps.itemSize
+
 });
 
 const mapDispatchToProps = dispatch => ({

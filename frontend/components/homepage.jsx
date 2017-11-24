@@ -125,7 +125,11 @@ class Homepage extends React.Component {
               </h2>
               with
             </h1>
-            <div className='fake-button'>Sign Up</div>
+            <button
+              onClick={() => this.openModal('signup')}
+              className='splash-button'>
+              Sign Up
+            </button>
 
           </div>
 

@@ -13,8 +13,6 @@
 .navbar button {
   margin-left: 10px;
   cursor: pointer;
-  border-radius: 10px;
-  padding: 10px;
   background-color: white;
   font-size: 15px;
   color: gray;
@@ -22,9 +20,7 @@
 }
 
 .navbar button:hover {
-  background-color: gray;
-  // background-color: pink;
-  color: white;
+  color: blue;
 }
 
 .navbar img:hover {
@@ -33,7 +29,7 @@
 }
 
 .logo h1:hover {
-  color: gray;
+  color: darken(#FF0B55, 15);
 }
 
 .session-links {

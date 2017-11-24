@@ -13,7 +13,7 @@
   height: 500px;
   width: 100%;
   // background-color: white;
-  z-index: -2;
+  // z-index: -2;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,14 +23,14 @@
 .splash-video {
   // height: 700px;
   width: 100%;
-  z-index: -1;
+  // z-index: -1;
 }
 
 .splash-text {
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 1;
+  // z-index: 1;
   position: absolute;
   margin-top: -50px;
 }
@@ -43,11 +43,12 @@
   margin-bottom: 25px;
 }
 
-.fake-button {
+.splash-text button {
   height: 30px;
   width: 200px;
   background-color: #FF0B55;
   border-radius: 5px;
+  border: 0px;
   display:flex;
   justify-content: center;
   align-items: center;
@@ -55,11 +56,13 @@
   font-family: sans-serif;
   font-size: 15px;
   font-weight: bold;
+  z-index: 10;
 }
 
-.fake-button:hover {
+.splash-container button:hover {
   cursor: pointer;
   background-color: darken(#FF0B55, 10);
+  color: darken(white, 10);
 }
 
 // .other-class {

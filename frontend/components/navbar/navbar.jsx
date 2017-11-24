@@ -17,7 +17,7 @@ const NavBar = ({currentUser}) => (
   <nav className='navbar'>
     <div className='logo'>
       <Link to='/' style={{
-        color: 'black',
+        color: '#FF0B55',
         fontSize: '50px',
         fontFamily: 'cursive',
         fontWeight: 'bold',
