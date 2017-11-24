@@ -21,25 +21,25 @@ class CategoryShow extends React.Component {
       );
     }
     console.log(category.id);
-    return (
-      <div className='category-page'>
-
-        <div className='category-header'>
-          <div className='category-header-text'><h1>{category.name}</h1></div>
-        </div>
-
-        <GroupSearchContainer />
-
-        <GroupIndexContainer categoryId={category.id}/>
-
-      </div>
-    );
-
     // return (
-    //   <div className='category-header'>
-    //     <div className='category-header-text'><h1>{category.name}</h1></div>
+    //   <div className='category-page'>
+    //
+    //     <div className='category-header'>
+    //       <div className='category-header-text'><h1>{category.name}</h1></div>
+    //     </div>
+    //
+    //     <GroupSearchContainer />
+    //
+    //     <GroupIndexContainer categoryId={category.id}/>
+    //
     //   </div>
     // );
+
+    return (
+      <div className='category-header'>
+        <div className='category-header-text'><h1>{category.name}</h1></div>
+      </div>
+    );
   }
 }
 

@@ -23,7 +23,7 @@ const App = () => (
         <Route exact path='/' component={Homepage}/>
         <Route path='/discover/groups' component={Discover}/>
         <Route path='/discover/events' component={Discover}/>
-        <Route path='/discover/categories/:categoryId/groups' component={CategoryShowContainer}/>
+        <Route path='/discover/categories/:categoryId/groups' component={Discover}/>
         <Route path='/discover/categories/:categoryId/events' component={CategoryShowContainer}/>
         <Route path='/groups/:groupId' component={GroupShowContainer}/>
         <Route path='/groups/:groupId/events' component={GroupShowContainer}/>

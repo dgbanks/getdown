@@ -8,31 +8,38 @@ import { fetchCategory } from '../actions/category_actions';
 class Discover extends React.Component {
   constructor() {
     super();
-    // this.categoryId;
+    // this.categoryId = 38;
   }
 
   componentDidMount() {
-    this.categoryId = this.getCategoryId();
-    console.log(this.categoryId, 'SET CATEGORY ID');
-    fetchCategory(this.categoryId);
+    if (this.props.match.params.categoryId) {
+      fetchCategory(this.props.match.params.categoryId);
+    }
+    console.log('componentDidMount', this.props.match.params.categoryId);
+    // this.categoryId = this.getCategoryId();
+    // console.log(this.categoryId, 'SET CATEGORY ID');
+    // fetchCategory(this.props.match.params.categoryId);
   }
 
   getCategoryId() {
     if (this.props.match.params.categoryId) {
+      console.log('got categoryId');
       return (
         this.props.match.params.categoryId
       );
     } else {
       console.log('NO CATEGORY ID PASSED IN');
-      return (
-        <CategoryIndexContainer />
-      );
+      // return (
+      //   <CategoryIndexContainer />
+      // );
     }
   }
 
   render() {
-    console.log(this.categoryId);
-    if (this.categoryId === undefined) {
+    // console.log(this.props.match.params.categoryId);
+    console.log('render', this.categoryId);
+    const categoryId = this.props.match.params.categoryId;
+    if (categoryId === undefined) {
       return (
         <div>loading...</div>
       );
@@ -40,11 +47,11 @@ class Discover extends React.Component {
 
     return (
       <div className='category-page'>
-        <CategoryShowContainer categoryId={this.categoryId}/>
+        <CategoryShowContainer categoryId={categoryId}/>
 
         <GroupSearchContainer />
 
-        <GroupIndexContainer categoryId={this.categoryId}/>
+        <GroupIndexContainer categoryId={categoryId}/>
       </div>
     );
   }

@@ -86,16 +86,20 @@
   height: 100%;
 }
 
-.search-bar:hover {
-  background-color: darken(white, 10);
-}
-
 .search-bar {
   -webkit-appearance: none;
   padding-left: 10px;
   width: 50%;
   height: 100%;
   font-size: 20px;
+}
+
+.search-bar input {
+  width: 100%;
+}
+
+.search-bar input:hover {
+  background-color: darken(white, 10);
 }
 
 .search-options {

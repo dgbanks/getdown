@@ -33,12 +33,17 @@ class GroupSearch extends React.Component {
     return (
       <div className='search'>
 
-        <input
-          className='search-bar'
-          type='search'
-          placeholder='Search for groups by name, description, or location'
-          onChange={this.update}
-        />
+        <div className='search-bar'>
+          <input
+            className='search-bar'
+            type='search'
+            placeholder='Search for groups by name, description, or location'
+            onChange={this.update}
+          />
+          <div className='categories-menu'>
+             
+          </div>
+        </div>
 
         <h1> within X miles of San Francisco </h1>
 
