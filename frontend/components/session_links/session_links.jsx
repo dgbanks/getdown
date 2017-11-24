@@ -54,9 +54,12 @@ class SessionLinks extends React.Component {
 
   demoLogin() {
     this.setState({
-      email: 'email2',
-      password: 'password'
-    }, () => this.props.login(this.state));
+      name: 'Guest User',
+      email: `${Date.now()}@email.com`,
+      password: 'password',
+      zip_code: 94103,
+      interests: ""
+    }, () => this.props.signup(this.state));
   }
 
 

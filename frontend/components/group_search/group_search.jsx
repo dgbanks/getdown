@@ -40,7 +40,7 @@ class GroupSearch extends React.Component {
           onChange={this.update}
         />
 
-        <h1> within X miles of Y </h1>
+        <h1> within X miles of San Francisco </h1>
 
         <div>
           <button className='search-options'>Groups</button>
