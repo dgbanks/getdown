@@ -23,10 +23,10 @@ const removeGroup = group => ({
 
 // USER
 
-export const joinGroup = groupId => dispatch => (
-  UserApiUtil.joinGroup(groupId)
-    .then(group => dispatch(receiveGroup(group)))
-);
+// export const joinGroup = groupId => dispatch => (
+//   UserApiUtil.joinGroup(groupId)
+//     .then(group => dispatch(receiveGroup(group)))
+// );
 
 /// INDEX AND SHOW THUNKS
 

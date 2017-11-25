@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     end
 
     resources :categories, only: [:index, :show] do
+      resources :subscriptions, only: [:create, :destroy]
       resources :groups, only: [:index]
       resources :create, only: [:index]
     end

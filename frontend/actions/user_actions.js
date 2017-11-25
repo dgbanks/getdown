@@ -13,22 +13,37 @@ const removeUser = user => ({
   user
 });
 
-// export const joinGroup = groupId => dispatch => (
-//   UserApiUtil.joinGroup(groupId).then(group => dispatch(receiveUser(group)))
-// );
+export const joinCategory = categoryId => dispatch => (
+  UserApiUtil.joinCategory(categoryId)
+    .then(user => dispatch(receiveUser(user)))
+);
+
+export const leaveCategory = categoryId => dispatch => (
+  UserApiUtil.leaveCategory(categoryId)
+    .then(user => dispatch(receiveUser(user)))
+);
+
+export const joinGroup = groupId => dispatch => (
+  UserApiUtil.joinGroup(groupId)
+    .then(user => dispatch(receiveUser(user)))
+);
 
 export const leaveGroup = (groupId) => dispatch => (
-  UserApiUtil.leaveGroup(groupId).then(user => dispatch(removeUser(user)))
+  UserApiUtil.leaveGroup(groupId)
+    .then(user => dispatch(removeUser(user)))
 );
 
 export const joinEvent = eventId => dispatch => (
-  UserApiUtil.joinEvent(eventId).then(user => dispatch(receiveUser(user)))
+  UserApiUtil.joinEvent(eventId)
+    .then(user => dispatch(receiveUser(user)))
 );
 
 export const leaveEvent = eventId => dispatch => (
-  UserApiUtil.leaveEvent(eventId).then(user => dispatch(receiveUser(user)))
+  UserApiUtil.leaveEvent(eventId)
+    .then(user => dispatch(receiveUser(user)))
 );
 
 export const updateUser = userId => dispatch => (
-  UserApiUtil.updateUser(userId).then(user => dispatch(receiveUser(user)))
+  UserApiUtil.updateUser(userId)
+    .then(user => dispatch(receiveUser(user)))
 );

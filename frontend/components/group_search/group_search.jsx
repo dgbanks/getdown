@@ -42,7 +42,7 @@ class GroupSearch extends React.Component {
             onChange={this.update}
           />
           <div className='categories-menu'>
-
+            
           </div>
         </div>
 

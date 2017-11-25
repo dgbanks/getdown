@@ -24,7 +24,8 @@ const removeEvent = event => ({
 // USER
 
 export const joinEvent = eventId => dispatch => (
-  UserApiUtil.joinEvent(eventId).then(event => dispatch(receiveEvent(event)))
+  UserApiUtil.joinEvent(eventId)
+    .then(event => dispatch(receiveEvent(event)))
 );
 
 /// INDEX AND SHOW THUNKS
