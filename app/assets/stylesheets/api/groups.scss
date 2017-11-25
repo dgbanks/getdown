@@ -77,14 +77,19 @@
   color: gray;
 }
 
-.group-actions button{
+.page-actions button{
   width: 75%;
   height: 25px;
-  background-color: gray;
+  background-color: #FF0B55;
   border-radius: 0px;
   font-size: 15px;
   font-weight: bold;
   color: white;
+}
+
+.page-actions button:hover {
+  cursor: pointer;
+  background-color: darken(#FF0B55, 15);
 }
 
 .group-subheader {

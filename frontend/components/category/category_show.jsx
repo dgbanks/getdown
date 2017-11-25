@@ -61,6 +61,30 @@ class CategoryShow extends React.Component {
   this.props.fetchCategory(this.props.match.params.categoryId);
   }
 
+  handleSubscribe(magicWord) {
+    if (magicWord === 'subscribe') {
+      this.props.subscribeToCategory(this.props.category.id);
+    } else {
+      this.props.unsubscribeFromCategory(this.props.categoryId);
+    }
+  }
+
+  renderButtons() {
+    if (this.props.category.isCurrentUserSubscriber) {
+      return (
+        <button onClick={() => this.handleSubscribe('unsubscribe')}>
+          Add to my interests
+        </button>
+      );
+    } else {
+      return (
+        <button onClick={() => this.handleSubscribe('subscribe')}>
+          Remove from my interests
+        </button>
+      );
+    }
+  }
+
   render() {
     console.log(this.props.match.params.categoryId);
     const category = this.props.category;
@@ -70,24 +94,15 @@ class CategoryShow extends React.Component {
       );
     }
     console.log(category.id);
-    // return (
-    //   <div className='category-page'>
-    //
-    //     <div className='category-header'>
-    //       <div className='category-header-text'><h1>{category.name}</h1></div>
-    //     </div>
-    //
-    //     <GroupSearchContainer />
-    //
-    //     <GroupIndexContainer categoryId={category.id}/>
-    //
-    //   </div>
-    // );
+
 
     return (
       <div className='category-header'>
         {this.eightStripes()}
         <div className='category-header-text'><h1>{category.name}</h1></div>
+
+        <div className='page-actions'>{this.renderButtons()}</div>
+
       </div>
     );
   }

@@ -6,7 +6,7 @@ class EventShow extends React.Component {
     super(props);
 
     this.handleJoinEvent = this.handleJoinEvent.bind(this);
-    this.getButtons = this.getButtons.bind(this);
+    this.renderButtons = this.renderButtons.bind(this);
   }
 
   componentDidMount() {
@@ -24,18 +24,14 @@ class EventShow extends React.Component {
   }
   //need to pass in an actionType or something here to differentiate between possibilities
 
-  getButtons() {
+  renderButtons() {
     if (this.props.event.group.isCurrentUserMember) {
       return (
-        <div className='event-actions'>
-          <button onClick={this.handleJoinEvent}>I'm Down!</button>
-        </div>
+        <button onClick={this.handleJoinEvent}>I'm Down!</button>
       );
     } else {
       return (
-        <div className='event-actions'>
-          <button onClick={this.handleJoinEvent}>Join and RSVP</button>
-        </div>
+        <button onClick={this.handleJoinEvent}>Join and RSVP</button>
       );
     }
   }
@@ -67,7 +63,11 @@ class EventShow extends React.Component {
 
             <div className='rsvp-info'>
               <h3>{event.attendance} people are down</h3>
-              {this.getButtons()}
+
+              <div className='page-actions'>
+                {this.renderButtons()}
+              </div>
+
             </div>
 
           </div>
@@ -99,37 +99,5 @@ class EventShow extends React.Component {
     );
   }
 }
-//     <div className='event-and-group-name'>
-//
-//       <h1>{event.name}</h1>
-//
-//       <Link to={`/groups/${event.group.id}`} style={{color: 'black', fontSize: '20px', textDecoration: 'none'}}>
-//         <h2>{event.group.name}</h2>
-//       </Link>
-//
-//     </div>
-//
-//     <div className='event-rsvp-info'>
-//       <h5>Host: {event.host.name}</h5>
-//       <h6>{event.attendance} people are down</h6>
-//       {this.getButtons()}
-//     </div>
-//
-//   </div>
-//
-//
-//   <div className='event-details'>
-//
-//     <h2>{event.date}</h2>
-//     <h3>{event.time}</h3>
-//     <h4>{event.location}</h4>
-//
-//   </div>
-//
-//   <div className='event-description'>
-//     <p>{event.description}</p>
-//   </div>
-//
-// </div>
 
 export default EventShow;

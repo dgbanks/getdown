@@ -188,7 +188,9 @@ class GroupShow extends React.Component {
                 <p>Organizer</p>
                 <h2>{group.organizer.name}</h2>
 
-                {this.getButtons()}
+                <div className='page-actions'>
+                  {this.getButtons()}
+                </div>                  
               </div>
 
             </div>
