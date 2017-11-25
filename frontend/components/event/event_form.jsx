@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import Datepicker from '../datepicker';
+import Datepicker from './datepicker';
 
 class EventForm extends React.Component {
 

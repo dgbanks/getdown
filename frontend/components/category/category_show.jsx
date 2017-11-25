@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import GroupIndexContainer from '../group_index/group_index_container';
-import GroupSearchContainer from '../group_search/group_search_container';
+import GroupIndexContainer from '../group/group_index_container';
+import GroupSearchContainer from '../group/group_search_container';
 import * as SplashUtil from '../../util/splash_util';
 
 class CategoryShow extends React.Component {

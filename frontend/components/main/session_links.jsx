@@ -1,8 +1,8 @@
 import React from 'react';
 import Modal from 'react-modal';
 
-import UserFormContainer from '../user_form/user_form_container';
-import SessionFormContainer from '../session_form/session_form_container';
+import UserFormContainer from '../user/user_form_container';
+import SessionFormContainer from '../session/session_form_container';
 
 const customStyles = {
   overlay : {

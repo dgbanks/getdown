@@ -1,9 +1,9 @@
 import React from 'react';
-import CategoryShowContainer from './category_show/category_show_container';
-import GroupSearchContainer from './group_search/group_search_container';
-import GroupIndexContainer from './group_index/group_index_container';
-import * as SplashUtil from '../util/splash_util';
-import { fetchCategory } from '../actions/category_actions';
+import CategoryShowContainer from '../category/category_show_container';
+import GroupSearchContainer from '../group/group_search_container';
+import GroupIndexContainer from '../group/group_index_container';
+import * as SplashUtil from '../../util/splash_util';
+import { fetchCategory } from '../../actions/category_actions';
 
 class Discover extends React.Component {
   constructor() {

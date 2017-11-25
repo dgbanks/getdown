@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SessionLinksContainer from '../session_links/session_links_container';
-import DashboardMenuContainer from '../dashboard_menu/dashboard_menu_container';
+import SessionLinksContainer from './session_links_container';
+import DashboardMenuContainer from './dashboard_menu_container';
 
 const getSessionLinks = (currentUser) => (
   <div className='session-links'>

@@ -1,9 +1,9 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
-import EventIndexContainer from '../event_index/event_index_container';
-import EventFormContainer from '../event_form/event_form_container';
-import EventShowContainer from '../event_show/event_show_container';
+import EventIndexContainer from '../event/event_index_container';
+import EventFormContainer from '../event/event_form_container';
+import EventShowContainer from '../event/event_show_container';
 
 const customStyles = {
   overlay : {

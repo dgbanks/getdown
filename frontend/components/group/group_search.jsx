@@ -1,5 +1,5 @@
 import React from 'react';
-import GroupIndexContainer from '../group_index/group_index_container';
+import GroupIndexContainer from './group_index_container';
 import Link from 'react-router-dom';
 
 class GroupSearch extends React.Component {
@@ -42,7 +42,7 @@ class GroupSearch extends React.Component {
             onChange={this.update}
           />
           <div className='categories-menu'>
-            
+
           </div>
         </div>
 

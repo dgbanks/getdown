@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
-import GroupFormContainer from '../group_form/group_form_container';
-import GroupIndexContainer from '../group_index/group_index_container';
+import GroupFormContainer from '../group/group_form_container';
+import GroupIndexContainer from '../group/group_index_container';
 
 const customStyles = {
   overlay : {
