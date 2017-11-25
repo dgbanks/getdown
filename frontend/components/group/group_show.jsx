@@ -134,16 +134,14 @@ class GroupShow extends React.Component {
           if (this.props.group.isCurrentUserMember) {
             ////// still need leaveGroup utils and actions
             return (
-              <div className='group-actions'>
+              <div>
                 <button onClick={this.getEventForm}>Leave Group</button>
                 <button onClick={this.handleCreateEvent}>Create Event</button>
               </div>
             );
           } else {
             return (
-              <div className='group-actions'>
-                <button onClick={this.handleJoinGroup}>Join Group</button>
-              </div>
+              <button onClick={this.handleJoinGroup}>Join Group</button>
             );
           }
     // } else {
@@ -190,7 +188,7 @@ class GroupShow extends React.Component {
 
                 <div className='page-actions'>
                   {this.getButtons()}
-                </div>                  
+                </div>
               </div>
 
             </div>

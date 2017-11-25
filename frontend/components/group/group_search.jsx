@@ -12,8 +12,10 @@ class GroupSearch extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props.categories, 'group search componentDidMount');
     // this.props.fetchGroups();
     this.props.clearGroupSearch();
+    // this.props.fetchCategories();
   }
 
   update(e) {
@@ -31,6 +33,7 @@ class GroupSearch extends React.Component {
   }
 
   render() {
+    console.log(this.props.categories, "group search");
     return (
       <div className='search'>
 
@@ -42,7 +45,9 @@ class GroupSearch extends React.Component {
             onChange={this.update}
           />
           <div className='categories-menu'>
-
+            {
+            
+            }
           </div>
         </div>
 

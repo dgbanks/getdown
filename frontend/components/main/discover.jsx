@@ -16,6 +16,7 @@ class Discover extends React.Component {
       fetchCategory(this.props.match.params.categoryId);
     }
     console.log('componentDidMount', this.props.match.params.categoryId);
+    this.props.fetchCategories();
     // this.categoryId = this.getCategoryId();
     // console.log(this.categoryId, 'SET CATEGORY ID');
     // fetchCategory(this.props.match.params.categoryId);
@@ -43,12 +44,12 @@ class Discover extends React.Component {
         <div>loading...</div>
       );
     }
-
+    // console.log(this.props.categories, 'discover');
     return (
       <div className='category-page'>
         <CategoryShowContainer categoryId={categoryId}/>
 
-        <GroupSearchContainer />
+        <GroupSearchContainer categories={this.props.categories}/>
 
         {this.getIndex(categoryId)}
       </div>

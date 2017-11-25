@@ -25,11 +25,14 @@
 }
 
 .category-header-text {
+  z-index: 10;
   margin: 100px 0px;
   width: 75%;
   color: black;
   font-size: 50px;
   font-family: sans-serif;
+  display: flex;
+  justify-content: space-between;
 }
 
 .category-page {

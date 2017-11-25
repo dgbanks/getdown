@@ -26,7 +26,7 @@ class CategoryShow extends React.Component {
         opacity: '.3',
         width: `${width}px`,
         // marginTop: `${this.margin}px`,
-        marginLeft: `-${width}`,
+        marginLeft: `-${width}px`,
         // marginLeft: SplashUtil.randomPosition(width),
         animationName: 'moveStripe',
         animationDuration: `${SplashUtil.randomTime()}s`,
@@ -52,7 +52,6 @@ class CategoryShow extends React.Component {
     while (count < 3) {
       array.push(this.makeStripe());
       count ++;
-      // this.margin += 50;
     }
     return array;
   }
@@ -73,13 +72,13 @@ class CategoryShow extends React.Component {
     if (this.props.category.isCurrentUserSubscriber) {
       return (
         <button onClick={() => this.handleSubscribe('unsubscribe')}>
-          Add to my interests
+          I'm Interested
         </button>
       );
     } else {
       return (
         <button onClick={() => this.handleSubscribe('subscribe')}>
-          Remove from my interests
+          Not Interested
         </button>
       );
     }
@@ -99,9 +98,10 @@ class CategoryShow extends React.Component {
     return (
       <div className='category-header'>
         {this.eightStripes()}
-        <div className='category-header-text'><h1>{category.name}</h1></div>
-
-        <div className='page-actions'>{this.renderButtons()}</div>
+        <div className='category-header-text'>
+          <h1>{category.name}</h1>
+          <div className='page-actions'>{this.renderButtons()}</div>
+        </div>
 
       </div>
     );
