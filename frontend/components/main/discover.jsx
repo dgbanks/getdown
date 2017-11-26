@@ -2,6 +2,7 @@ import React from 'react';
 import CategoryShowContainer from '../category/category_show_container';
 import GroupSearchContainer from '../group/group_search_container';
 import GroupIndexContainer from '../group/group_index_container';
+import EventIndexContainer from '../event/event_index_container';
 import * as SplashUtil from '../../util/splash_util';
 import { fetchCategory } from '../../actions/category_actions';
 
@@ -69,7 +70,8 @@ class Discover extends React.Component {
     // console.log(this.props.match.params.categoryId);
     // console.log('render', this.categoryId);
     const categoryId = this.props.match.params.categoryId;
-    if (categoryId === undefined) {
+    const category = this.props.category;
+    if (category === undefined) {
       return (
         <div>loading...</div>
       );
@@ -78,13 +80,13 @@ class Discover extends React.Component {
     return (
       <div className='category-page'>
 
-        {this.renderHeader(categoryId)}
+        {this.renderHeader(category.id)}
 
         <GroupSearchContainer
-          placeholder={this.props.category.name}
-          categoryId={categoryId}/>
+          placeholder={category.name}
+          categoryId={category.id}/>
 
-        {this.renderIndex(categoryId)}
+        {this.renderIndex(category.id)}
 
       </div>
     );
