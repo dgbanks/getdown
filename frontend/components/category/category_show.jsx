@@ -11,54 +11,48 @@ class CategoryShow extends React.Component {
     // console.log(this.props.category, "constructor of categoryShow");
   }
 
-  // getRandomStyles() {
-  //   let width = 1500;
-  //   SplashUtil.insertKeyframes(width);
-  //
-  //   return (
-  //     {
-  //       position: 'absolute',
-  //       height: 'inherit',
-  //       zIndex: '1',
-  //       backgroundColor: this.color,
-  //       mixBlendMode: 'multiply',
-  //       opacity: '.3',
-  //       width: `${width}px`,
-  //       // marginTop: `${this.margin}px`,
-  //       marginLeft: `-${width}px`,
-  //       // marginLeft: SplashUtil.randomPosition(width),
-  //       animationName: 'moveStripe',
-  //       animationDuration: `${SplashUtil.randomTime()}s`,
-  //       animationDelay: `${SplashUtil.randomDelay()}s`,
-  //       animationFillMode: 'none',
-  //       animationIterationCount: 'infinite',
-  //       animationDirection: 'alternate',
-  //       animationTimingFunction: 'linear'
-  //     }
-  //   );
-  // }
-  //
-  // makeStripe(num) {
-  //   return (
-  //     <div key={num} style={this.getRandomStyles()}></div>
-  //   );
-  // }
-  //
-  // threeStripes() {
-  //   let count = 0;
-  //   const array = [];
-  //   while (count < 3) {
-  //     array.push(this.makeStripe(count));
-  //     count ++;
-  //   }
-  //   return array;
-  // }
+  getRandomStyles() {
+    let width = 1500;
+    SplashUtil.insertKeyframes(width);
 
-  // componentWillMount() {
-  //   console.log('CategoryShow.componentWillMount: this.props.category=', this.props.category);
-  //
-  // // this.props.fetchCategory(this.props.match.params.categoryId);
-  // }
+    return (
+      {
+        position: 'absolute',
+        height: 'inherit',
+        zIndex: '1',
+        backgroundColor: this.color,
+        mixBlendMode: 'multiply',
+        opacity: '.3',
+        width: `${width}px`,
+        // marginTop: `${this.margin}px`,
+        marginLeft: `-${width}px`,
+        // marginLeft: SplashUtil.randomPosition(width),
+        animationName: 'moveStripe',
+        animationDuration: `${SplashUtil.randomTime()}s`,
+        animationDelay: `${SplashUtil.randomDelay()}s`,
+        animationFillMode: 'none',
+        animationIterationCount: 'infinite',
+        animationDirection: 'alternate',
+        animationTimingFunction: 'linear'
+      }
+    );
+  }
+
+  makeStripe(num) {
+    return (
+      <div key={num} style={this.getRandomStyles()}></div>
+    );
+  }
+
+  threeStripes() {
+    let count = 0;
+    const array = [];
+    while (count < 3) {
+      array.push(this.makeStripe(count));
+      count ++;
+    }
+    return array;
+  }
 
   handleSubscribe(magicWord) {
     if (magicWord === 'subscribe') {
@@ -101,13 +95,10 @@ class CategoryShow extends React.Component {
         <div>loading...</div>
       );
     }
-    // console.log('CategoryShow.render : this.props.category=', category);
-    // console.log(category.id);
-    // console.log(this.props.category, "render of categoryShow");
-
 
     return (
       <div className='category-header'>
+        {this.threeStripes()}
         <div className='category-header-text'>
           <h1>{category.name}</h1>
           {this.renderButtons(category)}

@@ -12,7 +12,6 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
   // fetchUserEvents: (userId) => dispatch(fetchUserEvents(userId)),
   fetchCategory: categoryId => dispatch(fetchCategory(categoryId))
-  // fetchCategories: () => dispatch(fetchCategories())
 });
 
 export default withRouter(connect(

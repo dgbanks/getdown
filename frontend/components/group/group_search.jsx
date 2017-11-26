@@ -9,6 +9,8 @@ class GroupSearch extends React.Component {
     this.state = { query: ""};
     this.update = this.update.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.getPlaceholder = this.getPlaceholder.bind(this);
+    // console.log(this.props);
   }
 
   componentDidMount() {
@@ -16,6 +18,14 @@ class GroupSearch extends React.Component {
     this.props.clearGroupSearch();
     this.props.fetchCategories();
     // console.log(this.props.categories, 'group search componentDidMount');
+  }
+
+  getPlaceholder() {
+    let placeholder = 'Search for groups by name, description, or location';
+    if (this.props.placeholder) {
+      placeholder = this.props.placeholder;
+    }
+    return placeholder;
   }
 
   update(e) {
@@ -40,10 +50,11 @@ class GroupSearch extends React.Component {
           <input
             className='search-bar'
             type='search'
-            placeholder='Search for groups by name, description, or location'
+            placeholder={this.getPlaceholder()}
             onChange={this.update}
           />
           <div className='categories-menu'>
+            <h1>Getdown Categories</h1>
             {
               this.props.categories.map(category => (
                 <Link

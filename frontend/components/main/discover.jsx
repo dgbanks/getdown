@@ -10,44 +10,12 @@ class Discover extends React.Component {
   constructor(props) {
     super(props);
   }
-  //
-  // componentWillMount() {
-  //   if (this.props.match.params.categoryId) {
-  //     // console.log('fetching category inside discover componentDidMount');
-  //     this.props.fetchCategory(this.props.match.params.categoryId);
-  //   }
-  //
-  //   console.log('DISCOVER componentWillMount this.props.match.params.categoryId=', this.props.match.params.categoryId);
-  //   console.log('DISCOVER componentWillMount this.props.category=', this.props.category);
-  // }
 
-
-  // componentDidMount() {
-  //   // console.log('discover component did mount!!');
-  //   // console.log('HERE', this.props.fetchCategory());
-  //   if (this.props.match.params.categoryId) {
-  //     // console.log('fetching category inside discover componentDidMount');
-  //     // this.props.fetchCategory(this.props.match.params.categoryId);
-  //   }
-  //
-  //   console.log('DISCOVER componentDidMount this.props.match.params.categoryId=', this.props.match.params.categoryId);
-  //   console.log('DISCOVER componentDidMount this.props.category=', this.props.category);
-  // }
-  //
-
-  // componentWillReceiveProps(newProps) {
-  //   console.log('DISCOVER componentWillReceiveProps: NOW newProps=', newProps);
-  //   this.props.fetchCategory(newProps.match.params.categoryId);
-  // }
-
-
-
-  //   // console.log('componentDidMount', this.props.match.params.categoryId);
-  //   // this.props.fetchCategories();
-  //   // this.categoryId = this.getCategoryId();
-  //   // console.log(this.categoryId, 'SET CATEGORY ID');
-  //   // fetchCategory(this.props.match.params.categoryId);
-  // } APPARENTLY WE DON'T NEED TO RUN ANY METHOD HERE--- BUT STILL WHY WAS THERE AN ERROR "THIS.PROPS.FETCHCATEGORY IS NOT A FUNCTION"????
+  componentDidMount() {
+    if (this.props.match.params.categoryId) {
+      this.props.fetchCategory(this.props.match.params.categoryId)
+    }
+  }
 
   renderHeader(categoryId) {
     if (this.props.match.params.categoryId) {
@@ -106,7 +74,7 @@ class Discover extends React.Component {
 
         {this.renderHeader(categoryId)}
 
-        <GroupSearchContainer />
+        <GroupSearchContainer placeholder={this.props.category.name}/>
 
         {this.renderIndex(categoryId)}
 
