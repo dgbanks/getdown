@@ -74,7 +74,7 @@ class GroupSearch extends React.Component {
           <div className='search-button'>
             <Link
               to={`/discover/categories/${this.props.categoryId}/groups`}
-              style={{textDecoration: 'none'}}>
+              style={{color: 'white', textDecoration: 'none'}}>
               Groups
             </Link>
           </div>
@@ -82,7 +82,7 @@ class GroupSearch extends React.Component {
           <div className='search-button'>
             <Link
               to={`/discover/categories/${this.props.categoryId}/events`}
-              style={{textDecoration: 'none'}}>
+              style={{color: 'white', textDecoration: 'none'}}>
               Events
             </Link>
           </div>

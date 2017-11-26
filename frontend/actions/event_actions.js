@@ -31,31 +31,45 @@ export const joinEvent = eventId => dispatch => (
 /// INDEX AND SHOW THUNKS
 
 export const fetchEvents = () => dispatch => (
-  EventApiUtil.fetchEvents().then(events => dispatch(receiveEvents(events)))
+  EventApiUtil.fetchEvents()
+    .then(events => dispatch(receiveEvents(events)))
 );
 
 export const fetchUserEvents = (userId) => dispatch => (
-  EventApiUtil.fetchUserEvents(userId).then(events => dispatch(receiveEvents(events)))
+  EventApiUtil.fetchUserEvents(userId)
+    .then(events => dispatch(receiveEvents(events)))
 );
 
 export const fetchGroupEvents = groupId => dispatch => (
-  EventApiUtil.fetchGroupEvents(groupId).then(events => dispatch(receiveEvents(events)))
+  EventApiUtil.fetchGroupEvents(groupId)
+    .then(events => dispatch(receiveEvents(events)))
 );
 
+export const fetchCategoryEvents = categoryId => dispatch => (
+  EventApiUtil.fetchCategoryEvents(categoryId)
+    .then(events => dispatch(receiveEvents(events)))
+);
+
+
+
 export const fetchEvent = id => dispatch => (
-  EventApiUtil.fetchEvent(id).then(event => dispatch(receiveEvent(event)))
+  EventApiUtil.fetchEvent(id)
+    .then(event => dispatch(receiveEvent(event)))
 );
 
 /// FORM THUNKS
 
 export const createEvent = (groupId, event) => dispatch => (
-  EventApiUtil.createEvent(groupId, event).then(event => dispatch(receiveEvent(event)))
+  EventApiUtil.createEvent(groupId, event)
+    .then(newEvent => dispatch(receiveEvent(newEvent)))
 );
 
 export const updateEvent = event => dispatch => (
-  EventApiUtil.updateEvent(event).then(event => dispatch(receiveEvent(event)))
+  EventApiUtil.updateEvent(event)
+    .then(newEvent => dispatch(receiveEvent(newEvent)))
 );
 
 export const deleteEvent = id => dispatch => (
-  EventApiUtil.deleteEvent(id).then(event => dispatch(removeEvent(event)))
+  EventApiUtil.deleteEvent(id)
+    .then(event => dispatch(removeEvent(event)))
 );

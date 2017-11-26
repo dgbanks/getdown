@@ -33,8 +33,6 @@ class GroupIndex extends React.Component {
     }
   }
 
-
-
   render() {
     // console.log('GroupIndex.render: this.props.categoryId=', this.props.categoryId);
     return (

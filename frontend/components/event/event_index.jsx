@@ -9,6 +9,8 @@ class EventIndex extends React.Component {
   componentDidMount() {
     if (this.props.match.params.groupId) {
       this.props.fetchGroupEvents(this.props.match.params.groupId);
+    } else if (this.props.match.params.categoryId) {
+      this.props.fetchCategoryEvents(this.props.match.params.categoryId);
     } else if (this.props.currentUser) {
       this.props.fetchUserEvents(this.props.currentUser.id);
     } else {
