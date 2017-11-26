@@ -110,7 +110,12 @@
   color: white;
   background-color: black;
   border: 1px solid gray;
-  border-radius: 0px
+  border-radius: 0px;
+  display: flex;
+}
+
+.search-button {
+  border: 1px solid gray;
 }
 
 

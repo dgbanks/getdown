@@ -24,7 +24,7 @@ const App = () => (
         <Route path='/discover/groups' component={DiscoverContainer}/>
         <Route path='/discover/events' component={DiscoverContainer}/>
         <Route path='/discover/categories/:categoryId/groups' component={DiscoverContainer}/>
-        <Route path='/discover/categories/:categoryId/events' component={CategoryShowContainer}/>
+        <Route path='/discover/categories/:categoryId/events' component={DiscoverContainer}/>
         <Route path='/groups/:groupId' component={GroupShowContainer}/>
         <Route path='/groups/:groupId/events' component={GroupShowContainer}/>
         <Route path='/events/:eventId' component={EventShowContainer}/>

@@ -17,6 +17,11 @@ class Discover extends React.Component {
     }
   }
 
+  componentWillReceiveProps(newProps) {
+    console.log('Discover.componentWillReceiveProps: newProps=', newProps);
+  }
+
+
   renderHeader(categoryId) {
     if (this.props.match.params.categoryId) {
       return (
@@ -46,13 +51,14 @@ class Discover extends React.Component {
   }
 
   renderIndex(categoryId) {
-    if (this.props.location.pathname.includes('events/')) {
+    if (this.props.location.pathname.split('/').includes('events')) {
+      // console.log('TIME FOR SOME EVENTINDEXXXXXX');
       return (
-        "event index"
-        // return <EventIndexContainer categoryId={categoryId} />
+        <EventIndexContainer categoryId={categoryId} />
       );
     } else {
-      console.log('GroupIndexContainer', categoryId);
+      console.log(this.props.location.pathname);
+      // console.log('GroupIndexContainer', categoryId);
       return (
         <GroupIndexContainer categoryId={categoryId}/>
       );
@@ -74,7 +80,9 @@ class Discover extends React.Component {
 
         {this.renderHeader(categoryId)}
 
-        <GroupSearchContainer placeholder={this.props.category.name}/>
+        <GroupSearchContainer
+          placeholder={this.props.category.name}
+          categoryId={categoryId}/>
 
         {this.renderIndex(categoryId)}
 

@@ -10,7 +10,7 @@ class GroupSearch extends React.Component {
     this.update = this.update.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.getPlaceholder = this.getPlaceholder.bind(this);
-    // console.log(this.props);
+    // this.currentCategory = this.props.currentCategory;
   }
 
   componentDidMount() {
@@ -70,9 +70,22 @@ class GroupSearch extends React.Component {
 
         <h1> within X miles of San Francisco </h1>
 
-        <div>
-          <button className='search-options'>Groups</button>
-          <button className='search-options'>Events</button>
+        <div className='search-options'>
+          <div className='search-button'>
+            <Link
+              to={`/discover/categories/${this.props.categoryId}/groups`}
+              style={{textDecoration: 'none'}}>
+              Groups
+            </Link>
+          </div>
+
+          <div className='search-button'>
+            <Link
+              to={`/discover/categories/${this.props.categoryId}/events`}
+              style={{textDecoration: 'none'}}>
+              Events
+            </Link>
+          </div>
 
         </div>
 
