@@ -1,6 +1,6 @@
 import React from 'react';
 import GroupIndexContainer from './group_index_container';
-import Link from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class GroupSearch extends React.Component {
 
@@ -12,10 +12,10 @@ class GroupSearch extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.categories, 'group search componentDidMount');
     // this.props.fetchGroups();
     this.props.clearGroupSearch();
-    // this.props.fetchCategories();
+    this.props.fetchCategories();
+    // console.log(this.props.categories, 'group search componentDidMount');
   }
 
   update(e) {
@@ -33,7 +33,6 @@ class GroupSearch extends React.Component {
   }
 
   render() {
-    console.log(this.props.categories, "group search");
     return (
       <div className='search'>
 
@@ -46,7 +45,14 @@ class GroupSearch extends React.Component {
           />
           <div className='categories-menu'>
             {
-            
+              this.props.categories.map(category => (
+                <Link
+                  key={category.id}
+                  to={`/discover/categories/${category.id}/groups`}
+                  style={{color: 'black', textDecoration: 'none'}}>
+                    {category.name}
+                </Link>
+              ))
             }
           </div>
         </div>
@@ -64,8 +70,5 @@ class GroupSearch extends React.Component {
     );
   }
 }
-// <GroupIndexContainer />
-// <div className='results'>
-// </div>
 
 export default GroupSearch;

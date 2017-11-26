@@ -4,7 +4,8 @@ import { fetchGroups, fetchUserGroups, fetchCategoryGroups } from '../../actions
 import GroupIndex from './group_index';
 
 const mapStateToProps = (state, ownProps) => ({
-  groups: Object.keys(state.entities.groups).map(id => state.entities.groups[id]),
+  groups: Object.keys(state.entities.groups)
+    .map(id => state.entities.groups[id]),
   currentUser: state.session.currentUser,
   categoryId: ownProps.categoryId
 });
