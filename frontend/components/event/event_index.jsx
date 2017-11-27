@@ -4,6 +4,7 @@ import EventIndexItem from './event_index_item';
 class EventIndex extends React.Component {
   constructor(props) {
     super(props);
+    this.prevDate;
   }
 
   componentDidMount() {
@@ -26,22 +27,41 @@ class EventIndex extends React.Component {
     }
   }
 
+  resizeIndexItems() {
+    if (!this.props.itemSize) {
+      return 'large-event-item';
+    } else {
+      return '';
+    }
+  }
+
+  renderItemDates(event) {
+    if (event.date !== this.prevDate) {
+      this.prevDate = event.date;
+      return (
+        <h1>{event.date}</h1>
+      );
+    }
+  }
+
   render() {
     return (
-
         <div className='event-index'>
-          <ul>
+
+          <div className={this.resizeIndexItems()}>
             {
               this.props.events.map(event => (
-                <EventIndexItem
-                  key={event.id}
-                  event={event}
-                  itemSize={this.props.itemSize} />
+                <div>
+                  {this.renderItemDates(event)}
+                  <EventIndexItem
+                    key={event.id}
+                    event={event}
+                    itemSize={this.props.itemSize} />
+                </div>
               ))
             }
-          </ul>
+          </div>
         </div>
-
     );
   }
 }
