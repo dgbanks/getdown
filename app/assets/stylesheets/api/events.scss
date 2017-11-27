@@ -6,6 +6,9 @@
 
 .wrapper {
   width: 100%;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
 }
 
 .small-event-index {
@@ -21,17 +24,17 @@
 }
 
 .large-event-index {
-  width: 75%;
+  width: 65%;
   display: flex;
   flex-direction: column;
   margin-bottom: 50px;
 }
 
-.large-event-index div:first-child h6 {
-  margin-top: 25px;
-}
+// .large-event-index div:first-child h6 {
+//   margin-top: 25px;
+// }
 
-.large-event-index h6 {
+.full-page-event-index h6 {
   display: block;
   font-size: 20px;
   font-family: sans-serif;
@@ -41,7 +44,7 @@
 }
 
 .large-event-item {
-  width: 65%;
+  width: 100%;
   border-radius: 5px;
   background-color: white;
   border: 1px solid gray;
@@ -118,7 +121,26 @@
   cursor: pointer;
 }
 
+.full-page-event-index {
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+  margin-top: 50px;
+}
 
+.calendar-container {
+  height: 100%;
+  width: 30%;
+  border: 1px solid purple;
+}
+
+.calendar {
+  height: 200px;
+  width: 100%;
+  background-color: red;
+
+}
 
 ///////// EVENT PAGE /////////
 

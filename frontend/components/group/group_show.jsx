@@ -102,9 +102,7 @@ class GroupShow extends React.Component {
       // let eventId = this.props.location.pathname.split('/').slice(-1)[0];
       this.displayEvents();
       return (
-        <div className='main-body'>
-          <EventIndexContainer groupId={this.props.group.id} />
-        </div>
+            <EventIndexContainer groupId={this.props.group.id} />
       );
     } else {
       return (

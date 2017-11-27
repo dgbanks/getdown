@@ -36,6 +36,20 @@ class EventIndex extends React.Component {
     }
   }
 
+  renderCalendar() {
+    if (!this.props.itemSize) {
+      console.log('HERE IS THE CALENDAR');
+      return (
+        <div className='calendar-container'>
+          <h6>Calendar:</h6>
+          <div className='calendar'>
+          </div>
+        </div>
+
+      );
+    }
+  }
+
   renderItemDates(event) {
     if (event.date !== this.prevDate) {
       this.prevDate = event.date;
@@ -46,7 +60,26 @@ class EventIndex extends React.Component {
   }
 
   render() {
-    return (
+    if (this.props.itemSize) {
+      console.log('SMALL ITEM');
+      return (
+        <div className={this.resizeIndexItems()}>
+          {
+            this.props.events.map(event => (
+              <div className='wrapper' key={event.id}>
+                {this.renderItemDates(event)}
+                <EventIndexItem
+                  key={event.id}
+                  event={event}
+                  itemSize={this.props.itemSize} />
+              </div>
+            ))
+          }
+        </div>
+      );
+    } else {
+      return (
+        <div className='full-page-event-index'>
 
           <div className={this.resizeIndexItems()}>
             {
@@ -55,13 +88,20 @@ class EventIndex extends React.Component {
                   {this.renderItemDates(event)}
                   <EventIndexItem
                     key={event.id}
-                    event={event}
-                    itemSize={this.props.itemSize} />
-                </div>
-              ))
-            }
+                    event={event} />
+                  </div>
+                ))
+              }
+            </div>
+
+            {this.renderCalendar()}
+
           </div>
-    );
+
+        );
+
+    }
+
   }
 }
 
