@@ -59,26 +59,30 @@
 .categories-menu {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   display: none;
-  // border-radius: 10px;
   position: absolute;
   background-color: white;
-  width: 400px;
-  height: 200px;
+  width: 500px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 10000;
+  font-family: sans-serif;
   color:black;
-  font-size: 25px;
+  font-size: 15px;
 }
 
 .search-bar:hover .categories-menu {
   display: block;
-  height: 300px;
+  height: 200px;
+  display: grid;
+  grid-template-columns: 48% 48%;
+  grid-column-gap: 4%;
 }
 
 .categories-menu a {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: lighter;
 }
 
 .categories-menu a:hover {

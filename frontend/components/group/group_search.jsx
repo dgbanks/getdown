@@ -54,7 +54,7 @@ class GroupSearch extends React.Component {
             onChange={this.update}
           />
           <div className='categories-menu'>
-            <h1>Getdown Categories</h1>
+
             {
               this.props.categories.map(category => (
                 <Link
