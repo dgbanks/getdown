@@ -16,6 +16,7 @@ class Datepicker extends React.Component {
   }
 
   handleChange(date) {
+    console.log(date);
     this.setState({
       startDate: date
     });
@@ -26,8 +27,7 @@ class Datepicker extends React.Component {
     return <DatePicker
       selected={this.state.startDate}
       onChange={this.handleChange}
-      showTimeSelect
-      timeIntervals={15}
+      inline
       dateFormat="LLL"
     />;
   }

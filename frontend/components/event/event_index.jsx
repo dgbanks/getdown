@@ -1,5 +1,6 @@
 import React from 'react';
 import EventIndexItem from './event_index_item';
+import Datepicker from './datepicker';
 
 class EventIndex extends React.Component {
   constructor(props) {
@@ -38,11 +39,11 @@ class EventIndex extends React.Component {
 
   renderCalendar() {
     if (!this.props.itemSize) {
-      console.log('HERE IS THE CALENDAR');
       return (
         <div className='calendar-container'>
           <h6>Calendar:</h6>
           <div className='calendar'>
+            <Datepicker />
           </div>
         </div>
 
