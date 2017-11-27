@@ -43,7 +43,7 @@ class GroupShow extends React.Component {
     this.handleCreateEvent = this.handleCreateEvent.bind(this);
     this.handleJoinGroup = this.handleJoinGroup.bind(this);
     this.getButtons = this.getButtons.bind(this);
-    this.getMainBody = this.getMainBody.bind(this);
+    this.renderMainBody = this.renderMainBody.bind(this);
   }
 
 //////////
@@ -70,19 +70,45 @@ class GroupShow extends React.Component {
     }
   }
 
-  getMainBody() {
-    if (this.props.location.pathname.includes('events/')) {
-      console.log('INSIDE');
-      // let eventId = this.props.location.pathname.split('/').slice(-1)[0];
+  displayEvents() {
+    if (this.props.group.events) {
       return (
         <div className='main-body'>
           <EventIndexContainer groupId={this.props.group.id} />
         </div>
       );
-      // <EventShowContainer eventId={ eventId }/>
+    } else {
+      return (
+        <p>No upcoming events</p>
+      );
+    }
+  }
+
+  renderNextEvent() {
+    if (this.props.group.events) {
+      const event = this.props.group.events[0];
+      return (
+        <div className='next-event'>
+          <p>{event.name}</p>
+        </div>
+      );
+    }
+  }
+
+  renderMainBody() {
+    if (this.props.location.pathname.split('/').includes('events')) {
+      console.log('GroupShow.renderMainBody: EVENTS in pathname');
+      // let eventId = this.props.location.pathname.split('/').slice(-1)[0];
+      this.displayEvents();
+      return (
+        <div className='main-body'>
+          <EventIndexContainer groupId={this.props.group.id} />
+        </div>
+      );
     } else {
       return (
         <div className='main-body'>
+
 
           <div className='page-details'>
             <h1>What we're about</h1>
@@ -235,7 +261,7 @@ class GroupShow extends React.Component {
           <div className='next-event'>
           </div>
 
-          {this.getMainBody()}
+          {this.renderMainBody()}
 
           <Modal
             isOpen={this.state.modalIsOpen}
