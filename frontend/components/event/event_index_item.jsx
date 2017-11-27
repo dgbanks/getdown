@@ -52,7 +52,7 @@ const EventIndexItem = ({event, itemSize}) => {
           style={{textDecoration: 'none'}}>
 
 
-            <div className='event-time'>
+            <div className='event-item-time'>
               <h3>{event.time}</h3>
             </div>
 
