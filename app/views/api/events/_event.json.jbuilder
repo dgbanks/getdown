@@ -6,6 +6,10 @@ json.group do
   json.extract! event.group, :id, :name
 end
 
+json.category do
+  json.extract! event.category, :id, :name
+end
+
 json.host do
   json.extract! event.host, :id, :name
 end

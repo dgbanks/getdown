@@ -55,7 +55,7 @@ class Discover extends React.Component {
     if (this.props.location.pathname.split('/').includes('events')) {
       // console.log('TIME FOR SOME EVENTINDEXXXXXX');
       return (
-        <EventIndexContainer categoryId={categoryId} />
+        <EventIndexContainer categoryId={categoryId}/>
       );
     } else {
       console.log(this.props.location.pathname);

@@ -46,7 +46,7 @@ const EventIndexItem = ({event, itemSize}) => {
 
   }
   return (
-    <div className='small-event-item'>
+    <div className='event-index-item'>
       <Link
         to={`/events/${event.id}`}
         style={{textDecoration: 'none'}}

@@ -22,9 +22,12 @@ class Api::EventsController < ApplicationController
   end
 
   def index
-    # if params[:user_id]
-    #   @events = current_user.appearances
-    if params[:group_id]
+    if params[:category_id]
+      @events = []
+      Group.where(category_id: params[:category_id]).each do |group|
+        @events.concat(group.events)
+      end
+    elsif params[:group_id]
       @events = Event.where(group_id: params[:group_id])
     else
       @events = Event.all

@@ -17,7 +17,7 @@ export const fetchUserEvents = (userId) => (
   })
 );
 
-export const fetchCategoryEvents = (categoryId) => (
+export const fetchCategoryEvents = categoryId => (
   $.ajax({
     method: 'GET',
     url: `api/categories/${categoryId}/events`

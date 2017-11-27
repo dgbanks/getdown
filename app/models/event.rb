@@ -12,6 +12,10 @@ class Event < ApplicationRecord
     foreign_key: :group_id,
     class_name: :Group
 
+  has_one :category,
+    through: :group,
+    source: :category
+
   belongs_to :host,
     primary_key: :id,
     foreign_key: :host_id,
