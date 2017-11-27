@@ -1,0 +1,30 @@
+.index-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 32% 32% 32%;
+  grid-column-gap: 2%;
+  grid-row-gap: 1em;
+}
+
+.inner-div-wrapper {
+  height: 200px;
+  width: 100%;
+  transition: all .2s ease-in-out;
+  display: flex;
+  align-items: flex-end;
+  opacity: .7;
+}
+
+.category-item:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.inner-div-wrapper h2 {
+  font-size: 30px;
+  font-family: sans-serif;
+  color: white;
+  text-shadow: 2px 2px black;
+  padding: 0px 0px 10px 10px;
+  z-index: 0;
+}

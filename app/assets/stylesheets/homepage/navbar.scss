@@ -1,20 +1,18 @@
 .navbar {
   // position: relative;
-  background-color: #355e3b;
-  // background-color: gray;
+  background-color: white;
   display: flex;
   justify-content: space-between;
   height: 100px;
   padding: 0px 100px;
   margin: auto;
   align-items: center;
+  border-bottom: 1px solid lightgray;
 }
 
 .navbar button {
   margin-left: 10px;
   cursor: pointer;
-  border-radius: 10px;
-  padding: 10px;
   background-color: white;
   font-size: 15px;
   color: gray;
@@ -22,21 +20,16 @@
 }
 
 .navbar button:hover {
-  background-color: gray;
-  // background-color: pink;
-  color: white;
+  color: blue;
 }
 
-.logo {
-  color: white;
-  font-size: 50px;
-  font-family: cursive;
-  font-weight: bold;
+.navbar img:hover {
+  background-color: pink;
+  color: lighten(white, 20);
 }
 
 .logo h1:hover {
-  color: gray;
-  // color:pink;
+  color: darken(#FF0B55, 15);
 }
 
 .session-links {
@@ -62,24 +55,20 @@
 }
 
 .dropdown .dropdown-button {
-  // margin-top: 5px;
   margin-right: 15px;
   cursor: pointer;
   border-radius: 0px;
   padding: 0px;
-  background-color: #355e3b;
-  // background-color: gray;
+  background-color: white;
   font-family: serif;
   font-size: 30px;
   font-weight: bold;
-  color: white;
+  color: black;
 }
 
 .dropdown .dropdown-button:hover {
-  background-color: #355e3b;
-  // background-color: gray;
+  background-color: white;
   color:gray;
-  // color:pink;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -108,5 +97,4 @@
 
 .dropdown-menu .dropdown-option:hover {
   background-color: gray;
-  // background-color: pink;
 }

@@ -10,15 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170929174317) do
+ActiveRecord::Schema.define(version: 20171120231106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "img_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
-    t.string "location", null: false
     t.float "latitude"
     t.float "longitude"
     t.date "date", null: false
@@ -28,6 +34,8 @@ ActiveRecord::Schema.define(version: 20170929174317) do
     t.integer "host_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "venue"
+    t.string "address", null: false
     t.index ["group_id"], name: "index_events_on_group_id"
     t.index ["host_id"], name: "index_events_on_host_id"
   end
@@ -43,6 +51,8 @@ ActiveRecord::Schema.define(version: 20170929174317) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "location"
+    t.integer "category_id"
+    t.index ["category_id"], name: "index_groups_on_category_id"
     t.index ["organizer_id"], name: "index_groups_on_organizer_id"
   end
 
@@ -62,6 +72,15 @@ ActiveRecord::Schema.define(version: 20170929174317) do
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_rsvps_on_event_id"
     t.index ["user_id"], name: "index_rsvps_on_user_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_subscriptions_on_category_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

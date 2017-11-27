@@ -7,6 +7,22 @@ export const updateUser = user => (
   })
 );
 
+/// USER => CATEGORY
+
+export const joinCategory = categoryId => (
+  $.ajax({
+    method: 'POST',
+    url: `api/categories/${categoryId}/subscriptions`
+  })
+);
+
+export const leaveCategory = categoryId => (
+  $.ajax({
+    method: 'DELETE',
+    url: `api/categories/${categoryId}/subscriptions`
+  })
+);
+
 /// USER => GROUP
 
 export const joinGroup = groupId => (

@@ -7,362 +7,315 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+require "Nokogiri"
+require "open-uri"
+require "faker"
 
 
-### USERS
+### GET CATEGORIES ###
 
-User.destroy_all
+# def get_meetup_categories(url)
+#   html = Nokogiri::HTML(open(url))
+#   categories_grid = html.at_css('.gridList').children
+#   categories = []
+#   categories_grid.children.each do |child|
+#     next if categories.length == 12
+#     hash = {}
+#     hash['name'] = child.content.strip unless child.content.strip == ''
+#     hash['url'] = child['href'] unless child['href'].nil?
+#     categories << hash unless hash == {}
+#   end
+#   return categories
+# end
+#
+# homepage = "https://www.meetup.com/"
+#
+# meetup_categories = get_meetup_categories(homepage)
 
-david = User.create({
-  name: 'david',
-  email: 'email1',
-  password: 'password',
-  zip_code: 94103
-  })
 
-guest = User.create({
-  name: 'guest',
-  email: 'email2',
-  password: 'password',
-  zip_code: 94577
-  })
 
-andres = User.create({
-  name: 'andres',
-  email: 'email3',
-  password: 'password',
-  zip_code: 94103
-  })
+### CREATE CATEGORIES ###
 
-peter = User.create({
-  name: 'peter',
-  email: 'email4',
-  password: 'password',
-  zip_code: 94103
-  })
+# Category.destroy_all
+#
+# meetup_categories.each do |category|
+#   Category.create({
+#     name: category['name'],
+#     img_url: category['url']
+#     })
+# end
 
-ryan = User.create({
-  name: 'ryan',
-  email: 'email5',
-  password: 'password',
-  zip_code: 22031
-  })
 
-aj = User.create({
-  name: 'aj',
-  email: 'email6',
-  password: 'password',
-  zip_code: 94103
-  })
 
-rachel = User.create({
-  name: 'rachel',
-  email: 'email7',
-  password: 'password',
-  zip_code: 94103
-  })
+### CREATE 'FAKER' USERS ###
 
-lisa = User.create({
-  name: 'lisa',
-  email: 'email8',
-  password: 'password',
-  zip_code: 94103
-  })
+# User.destroy_all
+# Subscription.destroy_all
+#
+# zip_codes = [94103, 94132, 94608, 94901, 94602, 94505]
+#
+# 100.times do
+#   first = Faker::Name.first_name
+#   last = Faker::Name.last_name
+#
+#   user = User.create({
+#     name: "#{first} #{last}",
+#     email: "#{first[0].downcase}.#{last.downcase}#{rand(100)}@email.com",
+#     password: "password",
+#     zip_code: zip_codes[rand(6)]
+#   })
+#
+#   ### CREATE SUBSCRIPTIONS ###
+#
+#   4.times do # every user gets 4 subscriptions
+#
+#     category = Category.all[rand(Category.all.length)] # choose random categories
+#
+#     unless user.interests.include?(category)
+#
+#       Subscription.create({
+#         user: user,
+#         category: category
+#       })
+#
+#     end
+#   end
+# end
 
-jerry = User.create({
-  name: 'jerry',
-  email: 'email9',
-  password: 'password',
-  zip_code: 94105
-  })
 
-priya = User.create({
-  name: 'priya',
-  email: 'email10',
-  password: 'password',
-  zip_code: 94105
-  })
 
-alex = User.create({
-  name: 'alex',
-  email: 'email11',
-  password: 'password',
-  zip_code: 94105
-  })
+### METHDODS FOR COLLECTING GROUP AND EVENT DATA ###
 
-tommy = User.create({
-  name: 'tommy',
-  email: 'email12',
-  password: 'password',
-  zip_code: 22030
-  })
+def get_groups_of_category(category)
+  begin
+    html = Nokogiri::HTML(open(category['img_url']))
+  rescue OpenURI::HTTPError => error
+    puts error
+    retry
+  end
 
-joey = User.create({
-  name: 'joey',
-  email: 'email13',
-  password: 'password',
-  zip_code: 22030
-  })
+  group_list_items = html.css('.j-groupCard-list').children
+  groups = []
 
-johnny = User.create({
-  name: 'johnny',
-  email: 'email14',
-  password: 'password',
-  zip_code: 22030
-  })
+  group_list_items.children.each do |child|
+    next if groups.length == 10
+    unless child.content.gsub(/\s+/, "") == ''
+      hash = {}
+      hash['name'] = child.first_element_child.content unless child.first_element_child.content[0] == "\n"
+      hash['url'] = child.first_element_child['href']
+      groups << hash if hash['name'] # && Group.where("name = '#{hash['name']}'").empty?
+    end
+  end
 
-alison = User.create({
-  name: 'alison',
-  email: 'email15',
-  password: 'password',
-  zip_code: 22030
-  })
+  return groups
+end
 
-parsely = User.create({
-  name: 'parsely',
-  email: 'email16',
-  password: 'password',
-  zip_code: 78214
-  })
+def get_group_info(group_hash) ## calls a chain of 4 methods ##
+  begin
+    html = Nokogiri::HTML(open(group_hash['url']))
+  rescue OpenURI::HTTPError => error
+    puts error
+    retry
+  end
 
-kate = User.create({
-  name: 'kate',
-  email: 'email17',
-  password: 'password',
-  zip_code: 78214
-  })
+  banner_style = html.at_css('.groupHomeHeader-banner')['style']
+  group_hash['img_url'] = banner_style[(banner_style.index('(') + 1)...-1]
 
-### GROUPS ###
+  group_hash['location'] = html.at_css('.groupHomeHeader-groupInfo').at_css('.text--bold').content
 
-Group.destroy_all
+  description_div = html.at_css('.group-description')
+  group_hash['description'] = description_div.content
 
-bookclub = Group.create({
-  name: 'Book Club',
-  description: 'We read a book every month and then talk about it!',
-  zip_code: david.zip_code,
-  organizer_id: david.id
-  })
+  group_hash = get_events_of_group(group_hash) #HERE %
 
-betterbookclub = Group.create({
-  name: 'Better Book Club',
-  description: 'We read two books each month and then talk about it with beer and snacks',
-  zip_code: andres.zip_code,
-  organizer_id: andres.id
-  })
+  return group_hash
+end
 
-rails = Group.create({
-  name: 'Ruby on Rails Developers',
-  description: 'We get together to collaborate on Rails projects',
-  zip_code: peter.zip_code,
-  organizer_id: peter.id
-  })
+def get_events_of_group(group_hash) #HERE %
+  begin
+    html = Nokogiri::HTML(open(group_hash['url'] + 'events'))
+  rescue OpenURI::HTTPError => error
+    puts error
+    retry
+  end
 
-react = Group.create({
-  name: 'React Developers',
-  description: 'We get together every month to share and collaborate our React projects',
-  zip_code: ryan.zip_code,
-  organizer_id: ryan.id
-  })
+  script = find_script(html) #HERE @
 
-dog_walk = Group.create({
-  name: 'Dog Walking',
-  description: 'We\'re taking weekend dog-walks, all are invited. BYO dog.',
-  zip_code: kate.zip_code,
-  organizer_id: kate.id
-  })
+  event_urls = get_event_url_extensions(script) #HERE $
 
-climbers = Group.create({
-  name: 'Bay Area Climbing',
-  description: 'All rock climbing entusiasts are welcome. Both indoor and outdoor events to come',
-  zip_code: ryan.zip_code,
-  organizer_id: ryan.id
-  })
+  group_hash['events'] = []
 
-wings = Group.create({
-  name: 'Wings Fanatics',
-  description: 'NOT the band. Please don\'t even. Our group is on a mission to find the best wings in the city. Join us.',
-  zip_code: aj.zip_code,
-  organizer_id: aj.id
-  })
+  event_urls.each do |url|
+    group_hash['events'] << {'url' => (group_hash['url'] + 'events/' + url)}
+  end
 
-yoyo = Group.create({
-  name: 'Yoyo-ers',
-  description: 'Gotta practice our yoyo skills. Nationals in Chico this year! Stay tuned for regular meetings/practices',
-  zip_code: andres.zip_code,
-  organizer_id: andres.id
-  })
+  return group_hash
+end
 
-runners = Group.create({
-  name: 'Runners and Joggers',
-  description: 'Group runs three times a week! All speeds and abilities welcome.',
-  zip_code: david.zip_code,
-  organizer_id: david.id
-  })
+def find_script(root_node) #HERE @
+  node = root_node.last_element_child
+  script = nil
 
-pokemon = Group.create({
-  name: 'Pokemon Posse',
-  description: 'Gotta catch em all',
-  zip_code: jerry.zip_code,
-  organizer_id: jerry.id
-  })
+  node.children.each do |child|
+    script = child if child.to_s[0..7] == '<script>'
+  end
 
-music = Group.create({
-  name: 'Area Musicians',
-  description: 'We get together once a week to play some sweet tunes! Must be an excellent musician to join.',
-  zip_code: johnny.zip_code,
-  organizer_id: johnny.id
-  })
+  script ? script : find_script(node)
+end
 
-### EVENTS
+def get_event_url_extensions(script) #HERE $
+  event_url_extensions = []
 
+  arr = script.to_s.split("/events/")
+
+  arr.each_with_index do |str, idx|
+    next if idx == 0 || !str[0].between?('0', '9') || event_url_extensions.length == 3
+    idx2 = 0
+    loop do
+      if str[idx2] == '/'
+        event_url_extensions << str[0..idx2] unless idx2 >= 10
+        break
+      end
+      idx2 += 1
+    end
+  end
+  return event_url_extensions
+end
+
+def get_event_info(event_hash)
+  begin
+    html = Nokogiri::HTML(open(event_hash['url']))
+  rescue OpenURI::HTTPError => error
+    puts error
+    puts event_hash['url']
+    retry
+  end
+
+  event_hash['name'] = html.at_css('.pageHead-headline').content
+
+  html.at_css('.eventTimeDisplay-startDate').children.each do |child|
+    value = child.content.strip
+    unless value == ''
+      event_hash['date'] = value unless event_hash['date']
+      event_hash['time'] = value
+    end
+  end
+
+  if html.at_css('.venueDisplay-venue-noVenue') ||
+    html.at_css('.venueDisplay-venue-locationHidden')
+    event_hash['address'] = "#{Faker::Address.street_address} · #{Group.last.location}"
+  else
+    html.at_css('.venueDisplay').child.children.each do |child|
+      value = child.content.strip
+      unless value == ''
+        event_hash['venue'] = value unless event_hash['venue']
+        unless event_hash['address'] || value == event_hash['venue']
+          event_hash['address'] = value
+        end
+      end
+    end
+  end
+
+
+  # description = html.at_css('.event-description')
+
+  if html.at_css('.event-description')
+    event_hash['description'] = html.at_css('.event-description').content
+  else
+    event_hash['description'] = "[No description provided]"
+  end
+
+  return event_hash
+end
+
+#^^ METHDODS FOR COLLECTING GROUP AND EVENT DATA ^^#
+
+
+
+# Group.destroy_all
+# Membership.destroy_all
 Event.destroy_all
+Rsvp.destroy_all
 
-bookclub_meeting = Event.create({
-  name: 'October Meeting',
-  description: 'Come ready to talk about 1984!',
-  location: bookclub.zip_code,
-  date: Date.parse('2017-10-10'),
-  time: Time.parse('12:00'),
-  group_id: bookclub.id,
-  host_id: bookclub.organizer_id
-  })
+### GET GROUPS ###
 
-betterbc_meeting = Event.create({
-  name: 'End-of-October Meeting',
-  description: 'Reading Lord of the Flies and eating an entire spit-roasted pig. Come help us out!',
-  location: betterbookclub.zip_code,
-  date: Date.parse('2017-10-25'),
-  time: Time.parse('12:00'),
-  group_id: betterbookclub.id,
-  host_id: betterbookclub.organizer_id
-  })
+Category.all.each do |category|
 
-betterbc_meeting = Event.create({
-  name: 'Beginning-of-October Meeting',
-  description: 'Reading 1984 and drinking cheap gin!',
-  location: betterbookclub.zip_code,
-  date: Date.parse('2017-10-10'),
-  time: Time.parse('12:00'),
-  group_id: betterbookclub.id,
-  host_id: betterbookclub.organizer_id
-  })
+  puts category.name # for troubleshooting
 
-code_sesh = Event.create({
-  name: 'Coding Marathon',
-  description: 'Staying up til 8AM coding forever to finish our projects',
-  location: react.zip_code,
-  date: Date.parse('2017-10-16'),
-  time: Time.parse('12:00'),
-  group_id: react.id,
-  host_id: react.organizer_id
-  })
+  category_groups = get_groups_of_category(category)
 
-walk = Event.create({
-  name: 'Weekend Walk 10/8',
-  description: 'Taking the dogs for a walk along the river. Only good dogs, please.',
-  location: dog_walk.zip_code,
-  date: Date.parse('2017-10-08'),
-  time: Time.parse('08:00'),
-  group_id: dog_walk.id,
-  host_id: dog_walk.organizer_id
-  })
+  category_groups.each do |group|
 
-walk2 = Event.create({
-  name: 'Weekend Walk 10/15',
-  description: 'Taking the dogs for a walk in the park. Only good dogs, please.',
-  location: dog_walk.zip_code,
-  date: Date.parse('2017-10-15'),
-  time: Time.parse('08:00'),
-  group_id: dog_walk.id,
-  host_id: dog_walk.organizer_id
-  })
+    group = get_group_info(group)
+    subscribers = category.subscribers.to_a
+    organizer = subscribers.rotate(rand(subscribers.length)).shift
+    members = []
+    fraction_of_subscription_size = rand(4) + 2
 
-jam = Event.create({
-  name: 'Steely Dan Sesh',
-  description: 'Get together to play all the Steely Dan songs you know in honor of Becker\'s recent passing.',
-  location: music.zip_code,
-  date: Date.parse('2017-10-05'),
-  time: Time.parse('12:00'),
-  group_id: music.id,
-  host_id: music.organizer_id
-  })
+    while members.length < (subscribers.length / fraction_of_subscription_size)
+      members << subscribers.rotate(rand(subscribers.length)).shift
+    end
 
-bookclub_meeting2 = Event.create({
-  name: 'November Meeting',
-  description: 'Come ready to talk about Farenheit 451!',
-  location: bookclub.zip_code,
-  date: Date.parse('2017-11-10'),
-  time: Time.parse('12:00'),
-  group_id: bookclub.id,
-  host_id: bookclub.organizer_id
-  })
+    ### CREATE GROOUPS ###
 
-pokedex = Event.create({
-  name: 'Pokedex Party',
-  description: 'Come help us figure out who everyone\'s spirit-pokemon is! We must get the entire cohort into the pokedex',
-  location: pokemon.zip_code,
-  date: Date.parse('2017-10-12'),
-  time: Time.parse('12:00'),
-  group_id: pokemon.id,
-  host_id: pokemon.organizer_id
-  })
+    new_group = Group.create!({
+      name: group['name'],
+      description: group['description'],
+      location: group['location'],
+      img_url: group['img_url'],
+      organizer_id: organizer.id,
+      category_id: category.id
+      })
 
-wings1 = Event.create({
-  name: 'Hot Sauce and Panko',
-  description: 'Trying out the wings at Hot Sauce and Panko',
-  location: wings.zip_code,
-  date: Date.parse('2017-10-10'),
-  time: Time.parse('12:00'),
-  group_id: wings.id,
-  host_id: wings.organizer_id
-  })
+    puts "=> #{new_group.name}" # for troubleshooting
 
-wings2 = Event.create({
-  name: 'Halal Wings Plus',
-  description: 'Trying out the wings at Halal Wings Plus',
-  location: wings.zip_code,
-  date: Date.parse('2017-10-17'),
-  time: Time.parse('12:00'),
-  group_id: wings.id,
-  host_id: wings.organizer_id
-  })
+    ### CREATE MEMBERSHIPS ###
 
-weekly_run = Event.create({
-  name: 'Weekly Run 10/10',
-  description: 'Running down Folsom today!',
-  location: runners.zip_code,
-  date: Date.parse('2017-10-10'),
-  time: Time.parse('12:00'),
-  group_id: runners.id,
-  host_id: runners.organizer_id
-  })
+    members.each do |member|
+      Membership.create!({
+        user: member,
+        group: new_group
+        })
+    end
 
-weekly_run2 = Event.create({
-  name: 'Weekly Run 10/17',
-  description: 'Running down Howard today!',
-  location: runners.zip_code,
-  date: Date.parse('2017-10-17'),
-  time: Time.parse('12:00'),
-  group_id: runners.id,
-  host_id: runners.organizer_id
-  })
+    ### GET EVENTS ###
 
-weekly_run3 = Event.create({
-  name: 'Weekly Run 10/24',
-  description: 'Running down Mission today!',
-  location: runners.zip_code,
-  date: Date.parse('2017-10-24'),
-  time: Time.parse('12:00'),
-  group_id: runners.id,
-  host_id: runners.organizer_id
-  })
+    group['events'].each do |event|
 
-yosemite = Event.create({
-  name: 'Climbing in Yosemite',
-  description: 'Let\'s go climbing in Yosemite. If we all pitch in for gas and camping and food we will have a blast!',
-  location: climbers.zip_code,
-  date: Date.parse('2017-11-01'),
-  time: Time.parse('12:00'),
-  group_id: climbers.id,
-  host_id: climbers.organizer_id
-  })
+      event = get_event_info(event)
+      host = members.rotate(rand(members.length)).shift
+      attendees = []
+      fraction_of_membership_size = rand(3) + 2
+
+      while attendees.length < (members.length / fraction_of_membership_size)
+        attendees << members.rotate(rand(members.length)).shift
+      end
+
+      ### CREATE EVENTS ###
+
+      new_event = Event.create!({
+        name: event['name'],
+        description: event['description'],
+        venue: event['venue'],
+        address: event['address'],
+        date: Date.parse(event['date']),
+        time: event['time'],
+        group_id: new_group.id,
+        host_id: host.id
+        })
+
+      puts "==> #{new_event.name}" # for troubleshooting
+
+      ### CREATE RSVPs ###
+
+      attendees.each do |attendee|
+        Rsvp.create!({
+          user: attendee,
+          event: new_event
+        })
+      end
+
+    end
+  end
+end
