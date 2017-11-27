@@ -28,10 +28,11 @@ class EventIndex extends React.Component {
   }
 
   resizeIndexItems() {
-    if (!this.props.itemSize) {
-      return 'large-event-item';
+    console.log('EventIndex.resizeIndexItems: this.props.itemSize=', this.props.itemSize);
+    if (this.props.itemSize === undefined) {
+      return 'large-event-index';
     } else {
-      return '';
+      return 'small-event-index';
     }
   }
 
@@ -39,19 +40,18 @@ class EventIndex extends React.Component {
     if (event.date !== this.prevDate) {
       this.prevDate = event.date;
       return (
-        <h1>{event.date}</h1>
+        <h6>{event.date}</h6>
       );
     }
   }
 
   render() {
     return (
-        <div className='event-index'>
 
           <div className={this.resizeIndexItems()}>
             {
               this.props.events.map(event => (
-                <div>
+                <div className='wrapper' key={event.id}>
                   {this.renderItemDates(event)}
                   <EventIndexItem
                     key={event.id}
@@ -61,7 +61,6 @@ class EventIndex extends React.Component {
               ))
             }
           </div>
-        </div>
     );
   }
 }

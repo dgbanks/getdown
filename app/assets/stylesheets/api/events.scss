@@ -2,9 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// EVENT INDEX // (found on group page and user homepage)
+// EVENT INDEX //
 
-.event-index {
+.wrapper {
+  width: 100%;
+}
+
+.small-event-index {
   border: 1px solid blue;
   width: 100%;
   display: flex;
@@ -12,10 +16,78 @@
   align-items: center;
 }
 
-.large-event-item {
+.small-event-index h6 {
+  display: none;
+}
+
+.large-event-index {
   width: 75%;
   display: flex;
   flex-direction: column;
+}
+
+.large-event-index div:first-child h6 {
+  margin-top: 25px;
+}
+
+.large-event-index h6 {
+  display: block;
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: bold;
+  padding-left: 5px;
+  margin: 10px 0px;
+}
+
+.large-event-item {
+  width: 65%;
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid gray;
+  display: flex;
+  justify-content: space-between;
+  font-family: sans-serif;
+  transition: all .2s ease-in-out;
+}
+
+.large-event-item:hover {
+  transform: scale(1.05)
+}
+
+.event-time {
+  display: flex;
+  justify-content: center;
+  border: 1px solid red;
+  height: auto;
+  width: 20%;
+  // margin-right: 5%;
+}
+
+.event-item-info {
+  border: 1px solid blue;
+  height: 100%;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+}
+
+.large-event-item h3 {
+  font-weight: lighter;
+  font-size: 20px;
+  color: gray;
+}
+
+.event-item-info h1 {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  margin: 5px 0px;
+}
+
+.event-item-info h2 {
+  font-size: 15px;
+  font-weight: bold;
+  color: gray;
 }
 
 .small-event-item {
@@ -45,33 +117,7 @@
   cursor: pointer;
 }
 
-.event-index-item {
-  border: 1px solid green;
-  width: 60%;
-  float:left;
-  // width: auto;
-  // padding: 2%;
-  display: flex;
-  justify-content: space-between;
-}
 
-
-.event-index-item-details {
-  border: 1px solid yellow;
-  float: left;
-  display: flex;
-  flex-direction: column;
-  align-items: baseline;
-}
-
-.event-index-item-rsvp {
-  border: 1px solid yellow;
-  float: right;
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 ///////// EVENT PAGE /////////
 

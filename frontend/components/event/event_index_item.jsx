@@ -43,47 +43,58 @@ const EventIndexItem = ({event, itemSize}) => {
     );
 
   } else {
+    console.log('EventIndexItem.render: LARGE ITEMS');
+    return (
+      <div>
+        <Link
+          className='large-event-item'
+          to={`/events/${event.id}`}
+          style={{textDecoration: 'none'}}>
 
+
+            <div className='event-time'>
+              <h3>{event.time}</h3>
+            </div>
+
+            <div className='event-item-info'>
+              <h2>{event.group.name}</h2>
+              <h1>{event.name}</h1>
+              <h3>{event.attendance} people attending</h3>
+            </div>
+
+
+
+
+        </Link>
+      </div>
+    );
   }
-  return (
-    <div className='event-index-item'>
-      <Link
-        to={`/events/${event.id}`}
-        style={{textDecoration: 'none'}}
-        >
-
-        <div className='event-item'>
-          <h2 style={{color: 'gray'}}>
-            {`${event.date}, ${event.time}`}
-          </h2>
-
-          <h1 style={{
-            color:'black',
-            fontSize: '15px',
-            fontWeight: 'bold'
-          }}>
-            {event.name}
-          </h1>
-
-          <h2 style={{color: 'gray'}}>
-            Hosted by {" "}
-            <h3 style={{display: 'inline', color: 'black'}}>
-              {event.host.name}
-            </h3>
-          </h2>
-
-          <h2 style={{color: 'gray'}}>
-            {event.attendance} are down
-          </h2>
-
-          <button>I'm Down!</button>
-
-        </div>
-
-      </Link>
-    </div>
-  );
 };
 
 
+// <div className='event-item'>
+//   <h3
+//     className='event-time'
+//     style={{color: 'gray'}}>
+//     {event.time}
+//   </h3>
+//
+//   <div className='event-item-info'>
+//     <h2 style={{color: 'gray'}}>
+//       {event.group}
+//     </h2>
+//
+//     <h1 style={{
+//       color:'black',
+//       fontSize: '15px',
+//       fontWeight: 'bold'}}>
+//       {event.name}
+//     </h1>
+//
+//     <h3 style={{color: 'gray'}}>
+//       {event.attendance} are down
+//     </h3>
+//   </div>
+//
+// </div>
 export default EventIndexItem;
