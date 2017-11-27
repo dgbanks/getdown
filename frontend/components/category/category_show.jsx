@@ -18,22 +18,17 @@ class CategoryShow extends React.Component {
     return (
       {
         position: 'absolute',
-        height: 'inherit',
         zIndex: '1',
-        backgroundColor: this.color,
+        backgroundColor: `${this.colors.shift()}`,
         mixBlendMode: 'multiply',
-        opacity: '.3',
-        width: `${width}px`,
-        // marginTop: `${this.margin}px`,
-        marginLeft: `-${width}px`,
-        // marginLeft: SplashUtil.randomPosition(width),
+        opacity: '.2',
         animationName: 'moveStripe',
         animationDuration: `${SplashUtil.randomTime()}s`,
         animationDelay: `${SplashUtil.randomDelay()}s`,
         animationFillMode: 'none',
         animationIterationCount: 'infinite',
         animationDirection: 'alternate',
-        animationTimingFunction: 'linear'
+        animationTimingFunction: 'ease-in'
       }
     );
   }

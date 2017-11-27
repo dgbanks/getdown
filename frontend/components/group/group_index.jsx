@@ -8,11 +8,13 @@ class GroupIndex extends React.Component {
   }
 
   componentDidMount() {
+    // console.log('componentDidMount');
     // console.log('GroupIndex.componentDidMount WEOUTHERE');
     this.props.fetchCategoryGroups(this.props.categoryId);
   }
 
   componentWillReceiveProps(newProps) {
+    // console.log('componentWillReceiveProps: newProps=', newProps);
     // console.log('GroupIndex.componentWillReceiveProps: newProps=', newProps);
     // console.log('GroupIndex.componentWillReceiveProps: this.props.categoryId=', this.props.categoryId);
     if (newProps.categoryId !== this.props.categoryId) {

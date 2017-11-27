@@ -42,10 +42,26 @@ export const insertKeyframes = (width) => {
   let styleSheet = document.styleSheets[0];
   let keyframes = `@keyframes moveStripe {
     from
-    { margin-left: -${width}px; }
+    {
+      margin-top: 200px;
+      width: 0px;
+      height: 0px;
+      border-radius: 0px;
+    }
     to
-    { margin-left: 105%; }
+    {
+      margin-top: 0px;
+      width: inherit;
+      height: inherit;
+      border-radius: -500px;
+    }
     }`;
+  // let keyframes = `@keyframes moveStripe {
+  //   from
+  //   { margin-left: -${width}px; }
+  //   to
+  //   { margin-left: 105%; }
+  //   }`;
 
   styleSheet.insertRule(keyframes);
 };
