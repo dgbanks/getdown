@@ -84,7 +84,8 @@ class Discover extends React.Component {
 
         <GroupSearchContainer
           placeholder={category.name}
-          categoryId={category.id}/>
+          categoryId={category.id}
+          pathname={this.props.location.pathname}/>
 
         {this.renderIndex(category.id)}
 

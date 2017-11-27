@@ -13,7 +13,8 @@ const mapStateToProps = (state, ownProps) => ({
   categories: Object.keys(state.entities.categories)
     .map(id => state.entities.categories[id]),
   placeholder: ownProps.placeholder,
-  categoryId: ownProps.categoryId
+  categoryId: ownProps.categoryId,
+  pathname: ownProps.pathname
 });
 
 const mapDispatchToProps = dispatch => ({

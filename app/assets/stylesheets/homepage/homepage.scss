@@ -12,8 +12,6 @@
 .splash-container {
   height: 500px;
   width: 100%;
-  // background-color: white;
-  // z-index: -2;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,16 +19,13 @@
 }
 
 .splash-video {
-  // height: 700px;
   width: 100%;
-  // z-index: -1;
 }
 
 .splash-text {
   display: flex;
   flex-direction: column;
   align-items: center;
-  // z-index: 1;
   position: absolute;
   margin-top: -50px;
 }
@@ -65,9 +60,6 @@
   color: darken(white, 10);
 }
 
-// .other-class {
-//   padding: 25px 0px;
-// }
 
 /// SEARCH BY GROUP
 
@@ -106,6 +98,7 @@
   -webkit-appearance: none;
   cursor: pointer;
   height: 100%;
+  width: 15%;
   font-size: 20px;
   color: white;
   background-color: black;
@@ -115,9 +108,15 @@
 }
 
 .search-button {
-  border: 1px solid gray;
+  border: 1px solid white;
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
+.search-options:hover {
+  background-color: gray;
 }
 
 

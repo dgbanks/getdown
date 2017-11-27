@@ -11,6 +11,7 @@ class GroupSearch extends React.Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.getPlaceholder = this.getPlaceholder.bind(this);
     // this.currentCategory = this.props.currentCategory;
+    // console.log(this.props.location, 'PROPS');
   }
 
   componentDidMount() {
@@ -26,6 +27,15 @@ class GroupSearch extends React.Component {
       placeholder = this.props.placeholder;
     }
     return placeholder;
+  }
+
+  renderButtonSelected(type) {
+    if (this.props.pathname.split('/').includes(type)) {
+      return (
+        'gray'
+      );
+    }
+    return 'black';
   }
 
   update(e) {
@@ -71,7 +81,9 @@ class GroupSearch extends React.Component {
         <h1> within X miles of San Francisco </h1>
 
         <div className='search-options'>
-          <div className='search-button'>
+          <div
+            className='search-button'
+            style={{backgroundColor: `${this.renderButtonSelected('groups')}`}}>
             <Link
               to={`/discover/categories/${this.props.categoryId}/groups`}
               style={{color: 'white', textDecoration: 'none'}}>
@@ -79,7 +91,9 @@ class GroupSearch extends React.Component {
             </Link>
           </div>
 
-          <div className='search-button'>
+          <div
+            className='search-button'
+            style={{backgroundColor: `${this.renderButtonSelected('events')}`}}>
             <Link
               to={`/discover/categories/${this.props.categoryId}/events`}
               style={{color: 'white', textDecoration: 'none'}}>
