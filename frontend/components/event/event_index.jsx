@@ -1,35 +1,44 @@
 import React from 'react';
 import EventIndexItem from './event_index_item';
 import Datepicker from './datepicker';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
 
 class EventIndex extends React.Component {
   constructor(props) {
     super(props);
-    this.prevDate;
+    this.prevItemDate;
+    this.calendarDate = (new Date).toLocaleDateString();
   }
 
   componentDidMount() {
+    console.log('EventIndex.componentDidMount: this.props.events BEFORE', this.props.events);
     if (this.props.match.params.groupId) {
       this.props.fetchGroupEvents(this.props.match.params.groupId);
     } else if (this.props.match.params.categoryId) {
-      this.props.fetchCategoryEvents(this.props.match.params.categoryId);
+      console.log('THERE IS A CATEGORY ID');
+      this.props.fetchCategoryEvents(this.props.categoryId);
     } else if (this.props.currentUser) {
       this.props.fetchUserEvents(this.props.currentUser.id);
     } else {
       this.props.fetchEvents();
     }
+    console.log('EventIndex.componentDidMount: this.props.events AFTER', this.props.events);
+
+    this.setState({events: this.props.events});
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.props.currentUser && !prevProps.currentUser) {
-      this.props.fetchUserEvents(this.props.currentUser.id);
-    } else if (!this.props.currentUser && prevProps.currentUser) {
-      this.props.fetchEvents();
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log('EventIndex.componentDidUpdate CALLING');
+  //   // if (this.props.currentUser && !prevProps.currentUser) {
+  //   //   this.props.fetchUserEvents(this.props.currentUser.id);
+  //   // } else if (!this.props.currentUser && prevProps.currentUser) {
+  //   //   this.props.fetchEvents();
+  //   // }
+  // }
 
   resizeIndexItems() {
-    console.log('EventIndex.resizeIndexItems: this.props.itemSize=', this.props.itemSize);
     if (this.props.itemSize === undefined) {
       return 'large-event-index';
     } else {
@@ -37,14 +46,23 @@ class EventIndex extends React.Component {
     }
   }
 
+  handleChange(date) {
+    console.log(date._d.toLocaleDateString());
+    // this.calendarDate = date._d.toLocaleDateString();
+
+  }
+
   renderCalendar() {
     if (!this.props.itemSize) {
       return (
         <div className='calendar-container'>
           <h6>Calendar:</h6>
-          <div className='calendar'>
-            <Datepicker />
-          </div>
+          <DatePicker
+            selected={this.newDate}
+            onChange={this.handleChange}
+            inline
+            dateFormat="LLL"
+            />
         </div>
 
       );
@@ -52,17 +70,19 @@ class EventIndex extends React.Component {
   }
 
   renderItemDates(event) {
-    if (event.date !== this.prevDate) {
-      this.prevDate = event.date;
+    if (event.date !== this.prevItemDate) {
+      this.prevItemDate = event.date;
       return (
         <h6>{event.date}</h6>
       );
     }
+
   }
 
   render() {
+    // console.log('EventIndex.render: this.state.events=', this.state.events);
+    // console.log('EventIndex.render: this.props.events=', this.props.events);
     if (this.props.itemSize) {
-      console.log('SMALL ITEM');
       return (
         <div className={this.resizeIndexItems()}>
           {

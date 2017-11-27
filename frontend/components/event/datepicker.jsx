@@ -10,22 +10,24 @@ class Datepicker extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      startDate: moment()
+      newDate: moment()
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(date) {
     console.log(date);
+    console.log(date.toString());
+    // console.log(this.props);
     this.setState({
-      startDate: date
+      newDate: date
     });
-    this.props.parseDate(date._d);
+    // this.props.parseDate(date._d);
   }
 
   render() {
     return <DatePicker
-      selected={this.state.startDate}
+      selected={this.state.newDate}
       onChange={this.handleChange}
       inline
       dateFormat="LLL"

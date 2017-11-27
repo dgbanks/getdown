@@ -132,15 +132,15 @@
 .calendar-container {
   height: 100%;
   width: 30%;
-  border: 1px solid purple;
+  // border: 1px solid purple;
 }
 
-.calendar {
-  height: 200px;
-  width: 100%;
-  background-color: red;
-
-}
+// .calendar {
+//   height: 300px;
+//   width: 100%;
+//   background-color: red;
+//
+// }
 
 ///////// EVENT PAGE /////////
 
@@ -149,8 +149,8 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin-bottom: 100px;
-  background-color: lightgray;
+  // margin-bottom: 100px;
+  background-color: rgb(245, 245, 245);
 }
 
 .event-header {
