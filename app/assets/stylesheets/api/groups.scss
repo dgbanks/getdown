@@ -137,6 +137,14 @@
   border-radius: 5px;
 }
 
+.body {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .main-body {
   width: 75%;
   // height: auto;

@@ -85,10 +85,11 @@ class GroupShow extends React.Component {
   }
 
   renderNextEvent() {
-    if (this.props.group.events) {
-      const event = this.props.group.events[0];
+    if (this.props.group.hasUpcomingEvents) {
+      const event = this.props.group.firstEvent;
       return (
         <div className='next-event'>
+          <h1>Next Getdown</h1>
           <p>{event.name}</p>
         </div>
       );
@@ -107,33 +108,37 @@ class GroupShow extends React.Component {
       );
     } else {
       return (
-        <div className='main-body'>
+        <div className='body'>
 
+              {this.renderNextEvent()}
 
-          <div className='page-details'>
-            <h1>What we're about</h1>
-            <div className='description'>
-              <p>{this.props.group.description}</p>
-            </div>
-          </div>
+              <div className='main-body'>
 
-          <div className='group-event-index'>
-            <div className='event-index-label'>
-              <h1>Upcoming getdowns</h1>
-              <Link
-                to={`/groups/${this.props.group.id}/events`}
-                style={{
-                  textDecoration: 'none',
-                  color:'blue',
-                  fontFamily: 'sans-serif',
-                  marginTop: '-10px'
-                }}>
-                See all
-              </Link>
-            </div>
-            <EventIndexContainer itemSize={"small"}/>
-          </div>
+                <div className='page-details'>
+                  <h1>What we're about</h1>
+                  <div className='description'>
+                    <p>{this.props.group.description}</p>
+                  </div>
+                </div>
 
+                <div className='group-event-index'>
+                  <div className='event-index-label'>
+                    <h1>Upcoming getdowns</h1>
+                    <Link
+                      to={`/groups/${this.props.group.id}/events`}
+                      style={{
+                        textDecoration: 'none',
+                        color:'blue',
+                        fontFamily: 'sans-serif',
+                        marginTop: '-10px'
+                      }}>
+                      See all
+                    </Link>
+                  </div>
+                  <EventIndexContainer itemSize={"small"}/>
+                </div>
+
+              </div>
         </div>
       );
     }
@@ -256,9 +261,6 @@ class GroupShow extends React.Component {
               </div>
 
             </div>
-          </div>
-
-          <div className='next-event'>
           </div>
 
           {this.renderMainBody()}
