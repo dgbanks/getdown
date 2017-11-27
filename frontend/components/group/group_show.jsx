@@ -164,12 +164,6 @@ class GroupShow extends React.Component {
       );
     }
 
-    // if (group) {
-    //   return (
-    //     <h1>{group.name}</h1>
-    //   );
-    // }
-
     return (
       <div className='group-page'>
 
