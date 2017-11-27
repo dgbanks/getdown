@@ -42,6 +42,7 @@ class EventShow extends React.Component {
     if (!event) {
       return null;
     }
+
     return (
       <div className='event-page'>
 

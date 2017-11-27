@@ -114,7 +114,9 @@ class GroupShow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchGroup(this.props.match.params.groupId);
+    if (!this.props.group) {
+      this.props.fetchGroup(this.props.match.params.groupId);
+    }
   }
 
   handleJoinGroup() {
@@ -153,21 +155,23 @@ class GroupShow extends React.Component {
     // }
   }
 
-  render () {
-    console.log(this.props.group);
+  render() {
+    console.log('GroupShow.render: this.props.group=', this.props.group);
     const group = this.props.group;
-    if (group === undefined) {
+    if (!group) {
       return (
         <div>loading...</div>
       );
     }
 
-    const david = this.getMainBody();
-    console.log(group);
+    // if (group) {
+    //   return (
+    //     <h1>{group.name}</h1>
+    //   );
+    // }
+
     return (
       <div className='group-page'>
-
-          {this.isMember()}
 
           <div className='group-header'>
             <div className='header-content'>
@@ -184,7 +188,7 @@ class GroupShow extends React.Component {
                 <p>Members</p>
                 <h2>{group.memberCount}</h2>
                 <p>Organizer</p>
-                <h2>{group.organizer.name}</h2>
+                <h2>{group.organizer}</h2>
 
                 <div className='page-actions'>
                   {this.getButtons()}
@@ -237,7 +241,7 @@ class GroupShow extends React.Component {
           <div className='next-event'>
           </div>
 
-          {david}
+          {this.getMainBody()}
 
           <Modal
             isOpen={this.state.modalIsOpen}

@@ -8,7 +8,6 @@ const GroupIndexItem = ({group}) => {
       <Link
         to={`/groups/${group.id}`}
         style={{
-          color: 'black',
           textDecoration: 'none'}}
         >
         <div
