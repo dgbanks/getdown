@@ -57,7 +57,6 @@ const EventIndexItem = ({event, itemSize}) => {
             </div>
 
             <div className='event-item-info'>
-              <h2>{event.group.name}</h2>
               <h1>{event.name}</h1>
               <h3>{event.attendance} people attending</h3>
             </div>
@@ -71,30 +70,5 @@ const EventIndexItem = ({event, itemSize}) => {
   }
 };
 
-
-// <div className='event-item'>
-//   <h3
-//     className='event-time'
-//     style={{color: 'gray'}}>
-//     {event.time}
-//   </h3>
-//
-//   <div className='event-item-info'>
-//     <h2 style={{color: 'gray'}}>
-//       {event.group}
-//     </h2>
-//
-//     <h1 style={{
-//       color:'black',
-//       fontSize: '15px',
-//       fontWeight: 'bold'}}>
-//       {event.name}
-//     </h1>
-//
-//     <h3 style={{color: 'gray'}}>
-//       {event.attendance} are down
-//     </h3>
-//   </div>
-//
-// </div>
+// <h2>{event.group.name}</h2>
 export default EventIndexItem;

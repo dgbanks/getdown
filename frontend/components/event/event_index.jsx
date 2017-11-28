@@ -9,8 +9,7 @@ class EventIndex extends React.Component {
   constructor(props) {
     super(props);
     this.prevItemDate;
-    // this.state = props.events || [];
-    // this.calendarDate = (new Date).toLocaleDateString();
+    this.calendarDate;
   }
 
   componentDidMount() {
@@ -19,7 +18,6 @@ class EventIndex extends React.Component {
       this.props.fetchGroupEvents(this.props.match.params.groupId);
     } else if (this.props.match.params.categoryId) {
       this.props.fetchCategoryEvents(this.props.categoryId);
-        // .then(events => this.setState({events}));
     } else if (this.props.currentUser) {
       this.props.fetchUserEvents(this.props.currentUser.id);
     } else {
@@ -35,8 +33,24 @@ class EventIndex extends React.Component {
     }
   }
 
+  // formatDate(date) {
+  //   let array = date.toLocaleDateString().split('/');
+  //   let year = array.pop();
+  //   array.unshift(year);
+  //   return array.join('-');
+  // }
+  //
   handleChange(date) {
-    console.log(date._d.toLocaleDateString());
+    // let array = date._d.toLocaleDateString().split('/');
+    // let year = array.pop();
+    // array.unshift(year);
+    // let newDate = array.join('-');
+    // // this.calendarDate = newDate;
+    // this.setState({
+    //   events: this.props.events.filter(event => (event.date >= newDate))
+    // });
+
+    console.log(date._d);
   }
 
   renderCalendar() {
@@ -45,7 +59,7 @@ class EventIndex extends React.Component {
         <div className='calendar-container'>
           <h6>Calendar:</h6>
           <DatePicker
-            selected={this.newDate}
+            selected={moment().add(1, 'days')}
             onChange={this.handleChange}
             inline
             dateFormat="LLL"
@@ -59,16 +73,18 @@ class EventIndex extends React.Component {
   renderItemDates(event) {
     if (event.date !== this.prevItemDate) {
       this.prevItemDate = event.date;
-      return (
-        <h6>{event.date}</h6>
-      );
+      return <h6>{event.date}</h6>;
     }
-
   }
 
   render() {
+
     // console.log('EventIndex.render: this.state.events=', this.state.events);
-    console.log('EventIndex.render: this.props.events=', this.props.events);
+    // console.log('EventIndex.render: this.props.events=', this.props.events);
+
+
+
+
     if (this.props.itemSize) {
       return (
         <div className={this.resizeIndexItems()}>
@@ -86,9 +102,17 @@ class EventIndex extends React.Component {
         </div>
       );
     } else {
+
+      // if (!this.state.events) {
+      //   return <div>loading...</div>;
+      // }
+      //
+      // console.log('EventIndex.render: this.state.events=',this.state.events);
+
+      console.log('EventIndex.render: this.props.events=', this.props.events);
+      this.props.events.forEach(event => console.log('hello', event));
       return (
         <div className='full-page-event-index'>
-
           <div className={this.resizeIndexItems()}>
             {
               this.props.events.map(event => (
@@ -97,19 +121,15 @@ class EventIndex extends React.Component {
                   <EventIndexItem
                     key={event.id}
                     event={event} />
-                  </div>
-                ))
-              }
-            </div>
-
-            {this.renderCalendar()}
-
+                </div>
+              ))
+            }
           </div>
-
-        );
+          {this.renderCalendar()}
+        </div>
+      );
 
     }
-
   }
 }
 
