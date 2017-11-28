@@ -10,13 +10,11 @@ import EventIndex from './event_index';
 
 const mapStateToProps = (state, ownProps) => ({
   currentUser: state.session.currentUser,
-  events: Object.keys(state.entities.events)
-    .map(id => state.entities.events[id])
-    .sort(function (a, b) {
-      if (a.date < b.date) { return -1; }
-      if (a.date > b.date) { return 1; }
-      return 0;
-    }),
+  events: Object.values(state.entities.events).sort(function (a, b) {
+    if (a.date < b.date) { return -1; }
+    if (a.date > b.date) { return 1; }
+    return 0;
+  }),
   categoryId: ownProps.categoryId,
   groupId: ownProps.groupId,
   itemSize: ownProps.itemSize

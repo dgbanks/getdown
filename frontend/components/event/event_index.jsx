@@ -9,11 +9,13 @@ class EventIndex extends React.Component {
   constructor(props) {
     super(props);
     this.prevItemDate;
-    this.calendarDate;
+    this.state = {events: props.events};
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
-    // console.log('EventIndex.componentDidMount: this.props.events BEFORE', this.props.events);
+    console.log('EventIndex.componentDidMount: this.props.events=', this.props.events);
     if (this.props.match.params.groupId) {
       this.props.fetchGroupEvents(this.props.match.params.groupId);
     } else if (this.props.match.params.categoryId) {
@@ -33,37 +35,37 @@ class EventIndex extends React.Component {
     }
   }
 
-  // formatDate(date) {
-  //   let array = date.toLocaleDateString().split('/');
-  //   let year = array.pop();
-  //   array.unshift(year);
-  //   return array.join('-');
-  // }
-  //
   handleChange(date) {
-    // let array = date._d.toLocaleDateString().split('/');
+    console.log(date._d.toLocaleDateString());
+    // if (date instanceof moment) {
+    //   date = date._d;
+    // }
+    //
+    // this.selectedDate = date;
+    // let array = date.toLocaleDateString().split('/');
     // let year = array.pop();
     // array.unshift(year);
-    // let newDate = array.join('-');
-    // // this.calendarDate = newDate;
-    // this.setState({
-    //   events: this.props.events.filter(event => (event.date >= newDate))
-    // });
-
-    console.log(date._d);
+    // this.calendarDate = array.join('-');
+    //
+    // let events = this.props.events;
+    // this.setState({events: events.filter(event => (event.date >= this.calendarDate))});
   }
 
   renderCalendar() {
+    // if (!this.selectedDate) {
+    //   this.handleChange(new Date);
+    // }
+
+
     if (!this.props.itemSize) {
       return (
         <div className='calendar-container'>
           <h6>Calendar:</h6>
           <DatePicker
-            selected={moment().add(1, 'days')}
+            selected={this.selectedDate}
             onChange={this.handleChange}
             inline
-            dateFormat="LLL"
-            />
+            dateFormat="LLL" />
         </div>
 
       );
@@ -78,12 +80,6 @@ class EventIndex extends React.Component {
   }
 
   render() {
-
-    // console.log('EventIndex.render: this.state.events=', this.state.events);
-    // console.log('EventIndex.render: this.props.events=', this.props.events);
-
-
-
 
     if (this.props.itemSize) {
       return (
@@ -103,14 +99,9 @@ class EventIndex extends React.Component {
       );
     } else {
 
-      // if (!this.state.events) {
-      //   return <div>loading...</div>;
-      // }
-      //
-      // console.log('EventIndex.render: this.state.events=',this.state.events);
+      // console.log('EventIndex.render: this.state=',this.state);
+      // console.log('EventIndex.render: this.props=',this.props);
 
-      console.log('EventIndex.render: this.props.events=', this.props.events);
-      this.props.events.forEach(event => console.log('hello', event));
       return (
         <div className='full-page-event-index'>
           <div className={this.resizeIndexItems()}>

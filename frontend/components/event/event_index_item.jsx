@@ -43,7 +43,7 @@ const EventIndexItem = ({event, itemSize}) => {
     );
 
   } else {
-    console.log('EventIndexItem.render: LARGE ITEMS');
+    // console.log('EventIndexItem.render: LARGE ITEMS');
     return (
       <div>
         <Link
@@ -51,18 +51,15 @@ const EventIndexItem = ({event, itemSize}) => {
           to={`/events/${event.id}`}
           style={{textDecoration: 'none'}}>
 
-
             <div className='event-item-time'>
               <h3>{event.time}</h3>
             </div>
 
             <div className='event-item-info'>
+              <h2>{event.group.name}</h2>
               <h1>{event.name}</h1>
               <h3>{event.attendance} people attending</h3>
             </div>
-
-
-
 
         </Link>
       </div>
@@ -70,5 +67,4 @@ const EventIndexItem = ({event, itemSize}) => {
   }
 };
 
-// <h2>{event.group.name}</h2>
 export default EventIndexItem;
