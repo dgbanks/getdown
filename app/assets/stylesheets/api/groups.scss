@@ -16,6 +16,11 @@
   margin: 20px 0px
 }
 
+.group-item:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
 .group-page {
   display: flex;
   flex-direction: column;

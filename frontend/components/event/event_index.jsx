@@ -9,34 +9,23 @@ class EventIndex extends React.Component {
   constructor(props) {
     super(props);
     this.prevItemDate;
-    this.calendarDate = (new Date).toLocaleDateString();
+    // this.state = props.events || [];
+    // this.calendarDate = (new Date).toLocaleDateString();
   }
 
   componentDidMount() {
-    console.log('EventIndex.componentDidMount: this.props.events BEFORE', this.props.events);
+    // console.log('EventIndex.componentDidMount: this.props.events BEFORE', this.props.events);
     if (this.props.match.params.groupId) {
       this.props.fetchGroupEvents(this.props.match.params.groupId);
     } else if (this.props.match.params.categoryId) {
-      console.log('THERE IS A CATEGORY ID');
       this.props.fetchCategoryEvents(this.props.categoryId);
+        // .then(events => this.setState({events}));
     } else if (this.props.currentUser) {
       this.props.fetchUserEvents(this.props.currentUser.id);
     } else {
       this.props.fetchEvents();
     }
-    console.log('EventIndex.componentDidMount: this.props.events AFTER', this.props.events);
-
-    this.setState({events: this.props.events});
   }
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   console.log('EventIndex.componentDidUpdate CALLING');
-  //   // if (this.props.currentUser && !prevProps.currentUser) {
-  //   //   this.props.fetchUserEvents(this.props.currentUser.id);
-  //   // } else if (!this.props.currentUser && prevProps.currentUser) {
-  //   //   this.props.fetchEvents();
-  //   // }
-  // }
 
   resizeIndexItems() {
     if (this.props.itemSize === undefined) {
@@ -48,8 +37,6 @@ class EventIndex extends React.Component {
 
   handleChange(date) {
     console.log(date._d.toLocaleDateString());
-    // this.calendarDate = date._d.toLocaleDateString();
-
   }
 
   renderCalendar() {
@@ -81,7 +68,7 @@ class EventIndex extends React.Component {
 
   render() {
     // console.log('EventIndex.render: this.state.events=', this.state.events);
-    // console.log('EventIndex.render: this.props.events=', this.props.events);
+    console.log('EventIndex.render: this.props.events=', this.props.events);
     if (this.props.itemSize) {
       return (
         <div className={this.resizeIndexItems()}>

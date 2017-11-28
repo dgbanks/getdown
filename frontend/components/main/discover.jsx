@@ -13,6 +13,7 @@ class Discover extends React.Component {
   }
 
   componentDidMount() {
+    console.log('Discover.componentDidMount: this.props.match.params=', this.props.match.params);
     if (this.props.match.params.categoryId) {
       this.props.fetchCategory(this.props.match.params.categoryId)
     }
@@ -58,7 +59,7 @@ class Discover extends React.Component {
         <EventIndexContainer categoryId={categoryId}/>
       );
     } else {
-      console.log(this.props.location.pathname);
+      // console.log(this.props.location.pathname);
       // console.log('GroupIndexContainer', categoryId);
       return (
         <GroupIndexContainer categoryId={categoryId}/>
