@@ -22,7 +22,7 @@ const customStyles = {
     // borderRadius: '10px',
     outline: 'none',
     transform: 'translate(-50%, -50%)',
-    width: '600px'
+    width: 'auto'
   }
 };
 

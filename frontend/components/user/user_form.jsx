@@ -51,61 +51,69 @@ class UserForm extends React.Component {
     console.log(this.props.categories);
     return (
       <form className="session-form" onSubmit={this.handleSubmit}>
+
         <h2 className='modal-type'>sign up</h2>
 
-        <label className='session-label'>
-            <p>Name</p>
-          <input
-            className='session-input'
-            type='text'
-            value={this.state.name}
-            onChange={this.update('name')}/>
-        </label>  <br/>
+        <div className='user-inputs'>
 
-      <label className='session-label'>
-          <p>Email</p>
-          <input className='session-input'
-            type='text'
-            value={this.state.email}
-            onChange={this.update('email')}/>
-        </label>  <br/>
+              <div className='text-inputs'>
 
-      <label className='session-label'>
-          <p>Password</p>
-          <input className='session-input'
-            type='password'
-            value={this.state.password}
-            onChange={this.update('password')}/>
-        </label>  <br/>
-
-      <label className='session-label'>
-          <p>Zip Code</p>
-          <input className='session-input'
-            type='text'
-            value={this.state.zip_code}
-            onChange={this.update('zip_code')}/>
-        </label>  <br/>
-
-      <div className='interests-container'>
-          <p>Interests</p>
-          <div className='checkbox-interests'>
-            {
-              this.props.categories.map(category => (
-                <label className='session-checkbox'>
-                  {category.name}
+                <label className='session-label'>
+                  <p>Name</p>
                   <input
-                    key={category.id}
                     className='session-input'
-                    type="checkbox"
-                    value={category.name}
-                    onChange={() => this.handleCheckbox()}/>
+                    type='text'
+                    value={this.state.name}
+                    onChange={this.update('name')}/>
                 </label>
-              ))
-            }
-          </div>
+
+                <label className='session-label'>
+                    <p>Email</p>
+                    <input className='session-input'
+                      type='text'
+                      value={this.state.email}
+                      onChange={this.update('email')}/>
+                  </label>
+
+                <label className='session-label'>
+                    <p>Password</p>
+                    <input className='session-input'
+                      type='password'
+                      value={this.state.password}
+                      onChange={this.update('password')}/>
+                  </label>
+
+                <label className='session-label'>
+                    <p>Zip Code</p>
+                    <input className='session-input'
+                      type='text'
+                      value={this.state.zip_code}
+                      onChange={this.update('zip_code')}/>
+                  </label>
+
+              </div>
+
+              <div className='interests-container'>
+                <p>Interests</p>
+                <div className='interests'>
+                  {
+                    this.props.categories.map(category => (
+                      <label className='session-checkbox'>
+                        <input
+                          key={category.id}
+                          className='session-input'
+                          type="checkbox"
+                          value={category.name}
+                          onChange={() => this.handleCheckbox()}/>
+                          {category.name}
+                      </label>
+                    ))
+                  }
+                </div>
+              </div>
         </div>
 
-      <input className= 'session-button' type='submit' value="SIGN UP"></input>
+        <input className= 'session-button' type='submit' value="SIGN UP"/>
 
       </form>
     );
