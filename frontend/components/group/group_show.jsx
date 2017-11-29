@@ -5,31 +5,6 @@ import EventIndexContainer from '../event/event_index_container';
 import EventFormContainer from '../event/event_form_container';
 import EventShowContainer from '../event/event_show_container';
 
-const customStyles = {
-  overlay : {
-    // position : 'fixed',
-    backgroundColor : 'rgba(0,0,0, 0.75)',
-  },
-  content : {
-    // position                   : 'absolute',
-    top                        : '50%',
-    left                       : '50%',
-    right                      : 'auto',
-    bottom                     : 'auto',
-    border                     : '1px solid #ccc',
-    background: 'white',
-    overflow                   : 'auto',
-    WebkitOverflowScrolling    : 'touch',
-    borderRadius: '10px',
-    outline                    : 'none',
-    padding                    : '20px',
-    marginRight                : '-50%',
-    transform                  : 'translate(-50%, -50%)',
-    width: '600px',
-    height: '450px'
-  }
-};
-
 class GroupShow extends React.Component {
   constructor(props) {
     super(props);
@@ -41,7 +16,7 @@ class GroupShow extends React.Component {
 
     this.isMember = this.isMember.bind(this);
     this.handleCreateEvent = this.handleCreateEvent.bind(this);
-    this.handleJoinGroup = this.handleJoinGroup.bind(this);
+    this.handleMembershipChange = this.handleMembershipChange.bind(this);
     this.getButtons = this.getButtons.bind(this);
     this.renderMainBody = this.renderMainBody.bind(this);
   }
@@ -148,40 +123,43 @@ class GroupShow extends React.Component {
     }
   }
 
-  handleJoinGroup() {
+  handleMembershipChange(action) {
     if (this.props.currentUser) {
-      this.props.joinGroup(this.props.group.id);
+      if (action === 'join') {
+        console.log('JOINING GROUP', this.props.group.members);
+        this.props.joinGroup(this.props.group.id).then(
+          console.log(this.props.group.members));
+      } else {
+        console.log('LEAVING GROUP');
+        this.props.leaveGroup(this.props.group.id).then(
+          console.log(this.props.group.members));
+      }
     } else {
       this.props.toggleSessionModal();
     }
   }
 
   handleCreateEvent() {
-    this.setState({modalIsOpen: true});
+    console.log("WE'RE GONNA CREATE AN EVENT");
   }
 
   getButtons() {
-    // if (this.props.currentUser) {
-          if (this.props.group.isCurrentUserMember) {
-            ////// still need leaveGroup utils and actions
-            return (
-              <div>
-                <button onClick={this.getEventForm}>Leave Group</button>
-                <button onClick={this.handleCreateEvent}>Create Event</button>
-              </div>
-            );
-          } else {
-            return (
-              <button onClick={this.handleJoinGroup}>Join Group</button>
-            );
-          }
-    // } else {
-    //   return (
-    //     <div className='group-actions'>
-    //       <button onClick={this.handleJoinGroup}>Join Group</button>
-    //     </div>
-    //   );
-    // }
+    if (this.props.group.isCurrentUserMember) {
+      return (
+        <div>
+          <button onClick={() => this.handleMembershipChange('leave')}>
+            Leave Group
+          </button>
+          <button onClick={this.handleCreateEvent}>Create Event</button>
+        </div>
+      );
+    } else {
+      return (
+        <button onClick={() => this.handleMembershipChange('join')}>
+          Join Group
+        </button>
+      );
+    }
   }
 
   render() {
@@ -263,15 +241,7 @@ class GroupShow extends React.Component {
 
           {this.renderMainBody()}
 
-          <Modal
-            isOpen={this.state.modalIsOpen}
-            onRequestClose={() => this.closeModal()}
-            contentLabel="Modal"
-            style={customStyles}>
 
-            <EventFormContainer groupId={this.props.group.id}/>
-
-          </Modal>
 
       </div>
     );

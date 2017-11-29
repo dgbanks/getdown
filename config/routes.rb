@@ -15,18 +15,21 @@ Rails.application.routes.draw do
     end
 
     resources :categories, only: [:index, :show] do
-      resources :subscriptions, only: [:create, :destroy]
+      resources :subscriptions, only: [:create]
+      delete '/subscriptions', to: 'subscriptions#destroy'
       resources :groups, only: [:index]
       resources :events, only: [:index]
     end
 
     resources :groups, only: [:create, :index, :show, :update, :destroy] do
-      resources :memberships, only: [:create, :destroy]
+      resources :memberships, only: [:create]
+      delete '/memberships', to: 'memberships#destroy'
       resources :events, only: [:create, :index]
     end
 
     resources :events, only: [:index, :update, :destroy, :show] do
-      resources :rsvps, only: [:create, :destroy]
+      resources :rsvps, only: [:create]
+      delete '/rsvps', to: 'rsvps#destroy'
     end
 
   end

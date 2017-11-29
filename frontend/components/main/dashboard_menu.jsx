@@ -3,30 +3,6 @@ import Modal from 'react-modal';
 import GroupFormContainer from '../group/group_form_container';
 import GroupIndexContainer from '../group/group_index_container';
 
-const customStyles = {
-  overlay : {
-    // position : 'fixed',
-    backgroundColor : 'rgba(0,0,0, 0.75)',
-  },
-  content : {
-    // position: 'absolute',
-    top:'50%',
-    left:'50%',
-    right: 'auto',
-    bottom: 'auto',
-    border: '1px solid #ccc',
-    background: 'white',
-    overflow: 'auto',
-    WebkitOverflowScrolling: 'touch',
-    borderRadius: '10px',
-    outline: 'none',
-    padding: '20px',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    width: '400px'
-  }
-};
-
 class DashboardMenu extends React.Component {
 
   constructor(props) {
@@ -86,14 +62,7 @@ class DashboardMenu extends React.Component {
           </div>
         </nav>
 
-        <Modal
-          isOpen={this.state.modalIsOpen}
-          onRequestClose={() => this.closeModal()}
-          contentLabel="Modal"
-          style={customStyles}
-        >
-          {this.determine()}
-        </Modal>
+
 
       </div>
     );

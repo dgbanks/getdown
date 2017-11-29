@@ -9,9 +9,9 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  login: user => dispatch(login(user)),
+  // login: user => dispatch(login(user)),
   signup: user => dispatch(signup(user)),
-  clearErrors: () => dispatch(clearErrors()),
+  // clearErrors: () => dispatch(clearErrors()),
   toggleSessionModal: () => dispatch(toggleSessionModal())
 });
 

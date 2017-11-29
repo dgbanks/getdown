@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchGroup, joinGroup } from '../../actions/group_actions';
+import { joinGroup, leaveGroup } from '../../actions/user_actions';
+import { fetchGroup } from '../../actions/group_actions';
 import { fetchGroupEvents } from '../../actions/event_actions';
 import { toggleSessionModal } from '../../actions/ui_actions';
 import GroupShow from './group_show';
@@ -14,6 +15,7 @@ const mapDispatchToProps = dispatch => ({
   fetchGroup: id => dispatch(fetchGroup(id)),
   fetchGroupEvents: groupId => dispatch(fetchGroupEvents(groupId)),
   joinGroup: groupId => dispatch(joinGroup(groupId)),
+  leaveGroup: groupId => dispatch(leaveGroup(groupId)),
   toggleSessionModal: () => dispatch(toggleSessionModal())
 });
 

@@ -6,7 +6,7 @@ json.category do
   json.extract! group.category, :id, :name
 end
 
-# json.address group.location
+json.members group.members
 
 json.hasUpcomingEvents !group.events.empty?
 
