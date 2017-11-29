@@ -98,9 +98,8 @@ class UserForm extends React.Component {
                 <div className='interests'>
                   {
                     this.props.categories.map(category => (
-                      <label className='session-checkbox'>
+                      <label className='session-checkbox' key={category.id}>
                         <input
-                          key={category.id}
                           className='session-input'
                           type="checkbox"
                           value={category.name}

@@ -19,7 +19,6 @@ const customStyles = {
     background: 'white',
     overflow: 'auto',
     WebkitOverflowScrolling: 'touch',
-    // borderRadius: '10px',
     outline: 'none',
     transform: 'translate(-50%, -50%)',
     width: 'auto'
@@ -37,16 +36,23 @@ class SessionLinks extends React.Component {
       password: "",
       zip_code: "",
       interests: "",
-      formType: "",
-
+      formType: 'signup',
       modalIsOpen: this.props.modalIsOpen
     };
+
+    this.demoLogin = this.demoLogin.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.changeForm = this.changeForm.bind(this);
-    this.navLink = this.navLink.bind(this);
+    this.renderModalNavOptions = this.renderModalNavOptions.bind(this);
     this.determine = this.determine.bind(this);
-    this.demoLogin = this.demoLogin.bind(this);
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.setState({ modalIsOpen: newProps.modalIsOpen });
+    // if (this.state.modalIsOpen && this.state.formType === "") {
+    //   this.setState({ formType: 'signup' });
+    // }
   }
 
   demoLogin() {
@@ -59,21 +65,8 @@ class SessionLinks extends React.Component {
     }, () => this.props.signup(this.state));
   }
 
-
-  componentWillReceiveProps(newProps) {
-    this.setState({modalIsOpen: newProps.modalIsOpen});
-    if (this.state.modalIsOpen && this.state.formType === "") {
-      this.setState({
-        formType: 'login'
-      });
-    }
-  }
-
-////////// CONSOLIDATE BELOW
   openModal(formType) {
-    this.setState({
-      formType: formType
-    });
+    this.setState({ formType: formType });
     this.props.toggleSessionModal();
   }
 
@@ -84,11 +77,10 @@ class SessionLinks extends React.Component {
       password: "",
       zip_code: "",
       interests: "",
-      formType: ""
+      formType: 'signup'
     });
     this.props.toggleSessionModal();
   }
-////////// CONSOLIDATE ABOVE
 
   changeForm() {
     if (this.state.formType === 'signup') {
@@ -98,35 +90,32 @@ class SessionLinks extends React.Component {
     }
   }
 
-  navLink() {
+  renderModalNavOptions() {
+    let navLink;
     if (this.state.formType === 'signup') {
-      return (
-        <button
-          className='navlink'
-          onClick={this.changeForm}>
-          Already have an account?
-        </button>
-      );
+      navLink = 'Already have an account? Log in!'
     } else {
-      return (
-        <button
-          className='navlink'
-          onClick={this.changeForm}>
-          Don't have an account?
-        </button>
-      );
+      navLink = "Don't have an account? Sign up!"
     }
+
+    return (
+      <div className='modal-nav-options'>
+        <button className='session-button' onClick={this.demoLogin}>
+          Login as Guest
+        </button>
+
+        <button className='navlink' onClick={this.changeForm}>
+          {navLink}
+        </button>
+      </div>
+    );
   }
 
   determine() {
     if (this.state.formType === 'signup') {
-      return (
-        <UserFormContainer />
-      );
+      return <UserFormContainer />;
     } else {
-      return (
-        <SessionFormContainer />
-      );
+      return <SessionFormContainer />;
     }
   }
 
@@ -134,9 +123,7 @@ class SessionLinks extends React.Component {
     return (
       <div className='modal-errors'>
         {
-          this.props.errors.map((err, idx) => (
-            <p key={idx}>{err}</p>
-          ))
+          this.props.errors.map((err, idx) => (<p key={idx}>{err}</p>))
         }
       </div>
     );
@@ -145,10 +132,7 @@ class SessionLinks extends React.Component {
   render() {
     return(
       <div>
-
-
         <nav className='signup-login'>
-
           <button onClick={() => this.openModal('signup')}>
             Sign Up
           </button>
@@ -172,11 +156,10 @@ class SessionLinks extends React.Component {
             <h1 className='modal-logo'>getdown</h1>
             {this.determine()}
             {this.renderErrors()}
-            {this.navLink()}
+            {this.renderModalNavOptions()}
           </div>
 
         </Modal>
-
       </div>
     );
   }
