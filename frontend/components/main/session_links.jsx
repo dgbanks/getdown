@@ -1,6 +1,5 @@
 import React from 'react';
 import Modal from 'react-modal';
-
 import UserFormContainer from '../user/user_form_container';
 import SessionFormContainer from '../session/session_form_container';
 
@@ -65,6 +64,7 @@ class SessionLinks extends React.Component {
 
 
   componentWillReceiveProps(newProps) {
+    console.log('SessionLinks.componentWillReceiveProps');
     this.setState({modalIsOpen: newProps.modalIsOpen});
     if (this.state.modalIsOpen && this.state.formType === "") {
       this.setState({
@@ -78,7 +78,7 @@ class SessionLinks extends React.Component {
     this.setState({
       formType: formType
     });
-    this.props.toggleModal();
+    this.props.toggleSessionModal();
   }
 
   closeModal() {
@@ -90,7 +90,7 @@ class SessionLinks extends React.Component {
       interests: "",
       formType: ""
     });
-    this.props.toggleModal();
+    this.props.toggleSessionModal();
   }
 ////////// CONSOLIDATE ABOVE
 
@@ -163,6 +163,7 @@ class SessionLinks extends React.Component {
           style={customStyles}>
 
           <div className="session-form-container">
+            <h1 className='modal-logo'>getdown</h1>
             {this.determine()}
             {this.navLink()}
           </div>

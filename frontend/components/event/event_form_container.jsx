@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { createEvent, updateEvent } from '../../actions/event_actions';
-import { toggleModal } from '../../actions/ui_actions';
+import { toggleSessionModal } from '../../actions/ui_actions';
 import EventForm from './event_form';
 
 const mapStateToProps = (state, ownProps) => ({

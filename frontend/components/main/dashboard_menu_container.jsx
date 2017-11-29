@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import { createGroup, userGroups } from '../../actions/group_actions';
 import { updateUser } from '../../actions/user_actions';
 import { logout } from '../../actions/session_actions';
-import { toggleModal } from '../../actions/ui_actions';
+import { toggleSessionModal } from '../../actions/ui_actions';
 import DashboardMenu from './dashboard_menu';
 
 const mapStateToProps = state => ({
@@ -15,7 +15,7 @@ const mapDispatchToProps = dispatch => ({
   userGroups: userId => dispatch(userGroups(userId)),
   updateUser: user => dispatch(updateUser(user)),
   logout: () => dispatch(logout()),
-  toggleModal: () => dispatch(toggleModal())
+  toggleSessionModal: () => dispatch(toggleSessionModal())
 });
 
 export default connect(

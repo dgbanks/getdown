@@ -32,7 +32,7 @@ class Homepage extends React.Component {
             </div>
 
             <button className='splash-button'
-              onClick={() => this.props.toggleModal()}>
+              onClick={() => this.props.toggleSessionModal()}>
               Sign Up
             </button>
 

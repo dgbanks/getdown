@@ -19,7 +19,7 @@ class EventShow extends React.Component {
     if (this.props.currentUser) {
       this.props.joinEvent(this.props.event.id);
     } else {
-      this.props.toggleModal();
+      this.props.toggleSessionModal();
     }
   }
   //need to pass in an actionType or something here to differentiate between possibilities

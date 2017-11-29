@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { toggleModal } from '../../actions/ui_actions';
+import { toggleSessionModal } from '../../actions/ui_actions';
 import Homepage from './homepage';
 
 const mapStateToProps = state => ({
@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleModal: () => dispatch(toggleModal())
+  toggleSessionModal: () => dispatch(toggleSessionModal())
 });
 
 export default withRouter(connect(

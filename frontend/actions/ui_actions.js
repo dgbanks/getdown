@@ -1,7 +1,7 @@
 export const TOGGLE_MODAL = "TOGGLE_MODAL";
 // export const TOGGLE_USER_MODAL = "TOGGLE_USER_MODAL";
 
-export const toggleModal = () => ({
+export const toggleSessionModal = () => ({
   type: TOGGLE_MODAL
 });
 

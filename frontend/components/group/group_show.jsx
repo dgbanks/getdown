@@ -152,7 +152,7 @@ class GroupShow extends React.Component {
     if (this.props.currentUser) {
       this.props.joinGroup(this.props.group.id);
     } else {
-      this.props.toggleModal();
+      this.props.toggleSessionModal();
     }
   }
 

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { createGroup, updateGroup } from '../../actions/group_actions';
-import { toggleModal } from '../../actions/ui_actions';
+import { toggleSessionModal } from '../../actions/ui_actions';
 import GroupForm from './group_form';
 
 const mapStateToProps = (state, ownProps) => ({
