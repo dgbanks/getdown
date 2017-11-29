@@ -7,9 +7,6 @@
   background-color: rgb(245, 245, 245);
 }
 
-
-/// SPLASH ANIMATION
-
 .splash-container {
   height: 500px;
   width: 100%;
@@ -55,7 +52,7 @@
   z-index: 10;
 }
 
-.splash-container button:hover {
+.splash-text button:hover {
   cursor: pointer;
   background-color: darken(#FF0B55, 10);
   color: darken(white, 10);
