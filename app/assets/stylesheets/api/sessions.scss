@@ -6,51 +6,111 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid yellow;
 }
 
 .session-form {
   display:flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid blue;
+  width: 75%;
 }
 
 .modal-logo {
-  color: pink;
+  font-family: cursive;
   font-size: 45px;
   font-weight: bold;
+  color: #FF0B55;
+  border: 1px solid red;
 }
 
 .modal-type {
-  margin: 15px 0px;
+  margin: 25px 0px;
   font-size: 25px;
-  font-weight: bold;
+  font-weight: lighter;
+  font-family: sans-serif;
+  border: 1px solid red;
 }
 
+.modal-errors {
+  border: 10px solid red;
+  color: red;
+  margin: 10px 0px;
+}
+
+
 .session-label {
-  font-size: 45px;
-  font-weight: bold;
-  font-weight: bold;
-  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid red;
+  width: 100%;
+  margin: 10px 0px;
+}
+
+.session-label p {
+  font-size: 20px;
+  font-weight: lighter;
+  font-family: sans-serif;
+  margin-left: 5%;
 }
 
 .session-input {
-  margin-left: 10px;
-  height: 20px;
-  border-radius: 5px;
-  font-size: 15px;
+  border: 1px solid red;
+  width: 95%;
+  height: 25px;
+  font-size: 20px;
+  padding-left: 5%;
 }
+
+.interests-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.interests-container p {
+  font-size: 20px;
+  margin:10px 0px;
+}
+
+
+.checkbox-interests {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  grid-column-gap: 5%;
+}
+
+.session-checkbox {
+  display: flex;
+
+}
+
+
+
 
 .session-button {
   cursor: pointer;
-  border-radius: 10px;
-  padding: 10px;
-  background-color: pink;
+  background-color: #FF0B55;
   font-size: 15px;
   color: white;
-  border: 0px;
-  margin-bottom: 15px;
+  bottom: 15px 0px;
+  width: 50%;
+  height: 25px;
 }
 
 .session-button:hover {
-  background-color: darken(pink, 10);
+  background-color: darken(#FF0B55, 15);
+}
+
+.navlink {
+  color: #FF0B55;
+  background-color: inherit;
+  border: 0px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.navlink:hover {
+  color: darken(#FF0B55, 15);
 }

@@ -4,13 +4,13 @@ import UserFormContainer from '../user/user_form_container';
 import SessionFormContainer from '../session/session_form_container';
 
 const customStyles = {
-  overlay : {
-    // position : 'fixed',
+  overlay: {
+    position: 'fixed',
     zIndex: '1000',
-    backgroundColor : 'rgba(0,0,0, 0.75)',
+    backgroundColor: 'rgba(0,0,0, 0.75)',
   },
-  content : {
-    // position                   : 'absolute',
+  content: {
+    position: 'absolute',
     top: '50%',
     left: '50%',
     right: 'auto',
@@ -19,12 +19,10 @@ const customStyles = {
     background: 'white',
     overflow: 'auto',
     WebkitOverflowScrolling: 'touch',
-    borderRadius: '10px',
+    // borderRadius: '10px',
     outline: 'none',
-    padding: '20px',
-    marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    width: '400px'
+    width: '600px'
   }
 };
 
@@ -41,7 +39,6 @@ class SessionLinks extends React.Component {
       interests: "",
       formType: "",
 
-      // modalIsOpen: false
       modalIsOpen: this.props.modalIsOpen
     };
     this.openModal = this.openModal.bind(this);
@@ -64,7 +61,6 @@ class SessionLinks extends React.Component {
 
 
   componentWillReceiveProps(newProps) {
-    console.log('SessionLinks.componentWillReceiveProps');
     this.setState({modalIsOpen: newProps.modalIsOpen});
     if (this.state.modalIsOpen && this.state.formType === "") {
       this.setState({
@@ -105,11 +101,19 @@ class SessionLinks extends React.Component {
   navLink() {
     if (this.state.formType === 'signup') {
       return (
-        <button onClick={this.changeForm}>Already have an account?</button>
+        <button
+          className='navlink'
+          onClick={this.changeForm}>
+          Already have an account?
+        </button>
       );
     } else {
       return (
-        <button onClick={this.changeForm}>Don't have an account?</button>
+        <button
+          className='navlink'
+          onClick={this.changeForm}>
+          Don't have an account?
+        </button>
       );
     }
   }
@@ -126,15 +130,17 @@ class SessionLinks extends React.Component {
     }
   }
 
-  // renderErrors() {
-  //   return (
-  //     <ul>
-  //       {this.props.errors.map((err, idx) => (
-  //         <li key={idx}>{err}</li>
-  //       ))}
-  //     </ul>
-  //   );
-  // }
+  renderErrors() {
+    return (
+      <div className='modal-errors'>
+        {
+          this.props.errors.map((err, idx) => (
+            <p key={idx}>{err}</p>
+          ))
+        }
+      </div>
+    );
+  }
 
   render() {
     return(
@@ -165,6 +171,7 @@ class SessionLinks extends React.Component {
           <div className="session-form-container">
             <h1 className='modal-logo'>getdown</h1>
             {this.determine()}
+            {this.renderErrors()}
             {this.navLink()}
           </div>
 

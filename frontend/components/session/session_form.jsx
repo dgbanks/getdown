@@ -9,15 +9,10 @@ class SessionForm extends React.Component {
       email: "",
       password: ""
     };
-    // this.openModal = this.openModal.bind(this);
-    // this.closeModal = this.closeModal.bind(this);
-    // this.changeForm = this.changeForm.bind(this);
-    // this.navLink = this.navLink.bind(this);
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
-    // this.determine = this.determine.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
-    // this.demoLogin = this.demoLogin.bind(this);
   }
 
   handleSubmit(e) {
@@ -50,24 +45,24 @@ class SessionForm extends React.Component {
     return(
       <form className="session-form" onSubmit={this.handleSubmit}>
 
-        <h1 className='modal-logo'>getdown</h1>
-        <h2 className='modal-type'>sign up</h2>
+        <h2 className='modal-type'>sign in</h2>
 
-        <label className='session-label'> Email
+        <label className='session-label'>
+          <p>Email</p>
           <input
-            className= 'session-input'
+            className='session-input'
             type='text'
             value={this.state.email}
             onChange={this.update('email')}/>
-        </label>  <br/>
+        </label>
 
-        <label className='session-label'> Password
+        <label className='session-label'> <p>Password</p>
           <input
-            className= 'session-input'
+            className='session-input'
             type='password'
             value={this.state.password}
             onChange={this.update('password')}/>
-        </label>  <br/>
+        </label>
 
       <input className= 'session-button' type='submit' value="Sign In"></input>
 

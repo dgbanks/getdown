@@ -19,6 +19,8 @@ class UserForm extends React.Component {
     this.renderErrors = this.renderErrors.bind(this);
   }
 
+
+
   handleSubmit(e) {
     e.preventDefault();
     this.props.signup(this.state);
@@ -46,49 +48,62 @@ class UserForm extends React.Component {
   }
 
   render() {
+    console.log(this.props.categories);
     return (
       <form className="session-form" onSubmit={this.handleSubmit}>
-        <h1 className='modal-logo'>getdown</h1>
         <h2 className='modal-type'>sign up</h2>
 
-        <label className='session-label'> Name
+        <label className='session-label'>
+            <p>Name</p>
           <input
-            className= 'session-input'
+            className='session-input'
             type='text'
             value={this.state.name}
             onChange={this.update('name')}/>
         </label>  <br/>
 
-      <label className='session-label'> Email
-          <input className= 'session-input'
+      <label className='session-label'>
+          <p>Email</p>
+          <input className='session-input'
             type='text'
             value={this.state.email}
             onChange={this.update('email')}/>
         </label>  <br/>
 
-      <label className='session-label'> Password
-          <input className= 'session-input'
+      <label className='session-label'>
+          <p>Password</p>
+          <input className='session-input'
             type='password'
             value={this.state.password}
             onChange={this.update('password')}/>
         </label>  <br/>
 
-      <label className='session-label'> Zip Code
-          <input className= 'session-input'
+      <label className='session-label'>
+          <p>Zip Code</p>
+          <input className='session-input'
             type='text'
             value={this.state.zip_code}
             onChange={this.update('zip_code')}/>
         </label>  <br/>
 
-      <label className='session-label'> Interests <br/>
-          <input className= 'session-input'
-            type='checkbox'
-            value="Ice Cream"
-            onChange={() => this.handleCheckbox()}/>Ice Cream <br/>
-          <input className= 'session-input'
-            type='checkbox'
-            value="Books"/>Books <br/>
-        </label>  <br/>
+      <div className='interests-container'>
+          <p>Interests</p>
+          <div className='checkbox-interests'>
+            {
+              this.props.categories.map(category => (
+                <label className='session-checkbox'>
+                  {category.name}
+                  <input
+                    key={category.id}
+                    className='session-input'
+                    type="checkbox"
+                    value={category.name}
+                    onChange={() => this.handleCheckbox()}/>
+                </label>
+              ))
+            }
+          </div>
+        </div>
 
       <input className= 'session-button' type='submit' value="SIGN UP"></input>
 
