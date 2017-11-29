@@ -20,7 +20,7 @@ const customStyles = {
     background: 'white',
     overflow                   : 'auto',
     WebkitOverflowScrolling    : 'touch',
-    borderRadius               : '10px',
+    borderRadius: '10px',
     outline                    : 'none',
     padding                    : '20px',
     marginRight                : '-50%',

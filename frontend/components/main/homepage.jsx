@@ -9,7 +9,6 @@ class Homepage extends React.Component {
   render() {
     return (
       <div className='homepage'>
-
         <div className='splash-container'>
           <video
             className='splash-video'
@@ -31,18 +30,16 @@ class Homepage extends React.Component {
                 }}>getdown</h2>
                 <h2 style={{display:'inline'}}>with</h2>
             </div>
-            <button
-              onClick={() => this.props.toggleModal()}
-              className='splash-button'>
+
+            <button className='splash-button'
+              onClick={() => this.props.toggleModal()}>
               Sign Up
             </button>
 
           </div>
-
         </div>
 
         <CategoryIndexContainer />
-
 
       </div>
     );

@@ -6,7 +6,6 @@ export const UIReducer = (prevState = {modalIsOpen: false}, action) => {
   let newState = merge({}, prevState);
   switch (action.type) {
     case TOGGLE_MODAL:
-      console.log('INSIDE THE UI REDUCER');
       newState.modalIsOpen = !(newState.modalIsOpen);
       return newState;
     default:
