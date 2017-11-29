@@ -29,13 +29,13 @@
   align-items: center;
   position: absolute;
   margin-top: -50px;
-}
-
-.splash-text h1 {
-  font-family: sans-serif;
   font-size: 50px;
+  font-family: sans-serif;
   color: white;
   text-shadow: 2px 2px black;
+}
+
+.splash-text > h1, .splash-text > div {
   margin-bottom: 25px;
 }
 

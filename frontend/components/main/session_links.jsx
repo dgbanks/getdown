@@ -7,24 +7,25 @@ import SessionFormContainer from '../session/session_form_container';
 const customStyles = {
   overlay : {
     // position : 'fixed',
+    zIndex: '1000',
     backgroundColor : 'rgba(0,0,0, 0.75)',
   },
   content : {
     // position                   : 'absolute',
-    top                        : '50%',
-    left                       : '50%',
-    right                      : 'auto',
-    bottom                     : 'auto',
-    border                     : '1px solid #ccc',
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    border: '1px solid #ccc',
     background: 'white',
-    overflow                   : 'auto',
-    WebkitOverflowScrolling    : 'touch',
-    borderRadius               : '10px',
-    outline                    : 'none',
-    padding                    : '20px',
-    marginRight                : '-50%',
-    transform                  : 'translate(-50%, -50%)',
-    width                      : '400px'
+    overflow: 'auto',
+    WebkitOverflowScrolling: 'touch',
+    borderRadius: '10px',
+    outline: 'none',
+    padding: '20px',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    width: '400px'
   }
 };
 
@@ -159,13 +160,13 @@ class SessionLinks extends React.Component {
           isOpen={this.state.modalIsOpen}
           onRequestClose={() => this.closeModal()}
           contentLabel="Modal"
-          style={customStyles}
-        >
+          style={customStyles}>
+
           <div className="session-form-container">
             {this.determine()}
             {this.navLink()}
-
           </div>
+
         </Modal>
 
       </div>

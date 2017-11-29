@@ -7,7 +7,7 @@ import GroupShowContainer from './group/group_show_container';
 import EventShowContainer from './event/event_show_container';
 // import EventIndexContainer from './event_index/event_index_container';
 import CategoryShowContainer from './category/category_show_container';
-import Homepage from './main/homepage';
+import HomepageContainer from './main/homepage_container';
 import DiscoverContainer from './main/discover_container';
 import FooterContainer from './main/footer_container';
 
@@ -20,7 +20,7 @@ const App = () => (
 
     <main>
       <Switch>
-        <Route exact path='/' component={Homepage}/>
+        <Route exact path='/' component={HomepageContainer}/>
         <Route path='/discover/groups' component={DiscoverContainer}/>
         <Route path='/discover/events' component={DiscoverContainer}/>
         <Route path='/discover/categories/:categoryId/groups' component={DiscoverContainer}/>
