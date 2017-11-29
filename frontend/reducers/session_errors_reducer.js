@@ -1,7 +1,5 @@
-import merge from 'lodash/merge';
-import {
-  RECEIVE_SESSION_ERRORS,
-  CLEAR_ERRORS } from '../actions/session_actions';
+import { RECEIVE_SESSION_ERRORS } from '../actions/session_actions';
+import { CLEAR_ERRORS } from '../actions/error_actions';
 
 export const SessionErrorsReducer = (prevState = [], action) => {
   Object.freeze(prevState);
