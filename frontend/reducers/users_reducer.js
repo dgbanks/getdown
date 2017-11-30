@@ -5,7 +5,7 @@ const UsersReducer = (prevState = {}, action) => {
   Object.freeze(prevState);
   switch (action.type) {
     case RECEIVE_USER:
-      return merge({}, prevState, {users: {[action.user.id]: action.user} });
+      return merge({}, prevState, {[action.user.id]: action.user});
     case REMOVE_USER:
       let newState = merge({}, prevState);
       delete newState[action.user.id];
@@ -14,3 +14,4 @@ const UsersReducer = (prevState = {}, action) => {
       return prevState;
   }
 };
+ export default UsersReducer;

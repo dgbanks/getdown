@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     end
 
     resources :groups, only: [:create, :index, :show, :update, :destroy] do
+      resources :users, only: [:index]
       resources :memberships, only: [:create]
       delete '/memberships', to: 'memberships#destroy'
       resources :events, only: [:create, :index]

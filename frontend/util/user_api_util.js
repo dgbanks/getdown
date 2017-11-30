@@ -7,6 +7,8 @@ export const updateUser = user => (
   })
 );
 
+
+
 /// USER => CATEGORY
 
 export const joinCategory = categoryId => (
@@ -38,6 +40,12 @@ export const leaveGroup = groupId => (
     url: `api/groups/${groupId}/memberships`
   })
 );
+
+// export const fetchGroupUsers = groupId =>(
+//   $.ajax({
+//     method
+//   })
+// );
 
 /// USER => EVENT
 

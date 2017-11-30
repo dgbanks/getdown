@@ -17,7 +17,7 @@ class GroupShow extends React.Component {
     this.isMember = this.isMember.bind(this);
     this.handleCreateEvent = this.handleCreateEvent.bind(this);
     this.handleMembershipChange = this.handleMembershipChange.bind(this);
-    this.getButtons = this.getButtons.bind(this);
+    this.renderButtons = this.renderButtons.bind(this);
     this.renderMainBody = this.renderMainBody.bind(this);
   }
 
@@ -36,6 +36,18 @@ class GroupShow extends React.Component {
   }
 
 //////////
+componentDidMount() {
+  this.props.fetchGroup(this.props.match.params.groupId);
+}
+
+// componentWillReceiveProps(newProps) {
+//   console.log('GroupShow.componentWillReceiveProps: newProps=', newProps);
+//   this.setState({group: newProps.group});
+// }
+//
+// // componentDidUpdate() {
+// //   console.log('GroupShow.componentDidUpdate');
+// // }
 
   isMember() {
     if (this.props.group.isCurrentUserMember) {
@@ -117,23 +129,15 @@ class GroupShow extends React.Component {
     }
   }
 
-  componentDidMount() {
-    // if (!this.props.group) {
-      this.props.fetchGroup(this.props.match.params.groupId);
-    // }
-  }
 
   handleMembershipChange(action) {
     if (this.props.currentUser) {
       if (action === 'join') {
-        console.log('JOINING GROUP', this.props.group.members);
-        this.props.joinGroup(this.props.group.id).then(
-          console.log(this.props.group.members));
+        this.props.joinGroup(this.props.group.id);
       } else {
-        console.log('LEAVING GROUP');
-        this.props.leaveGroup(this.props.group.id).then(
-          console.log(this.props.group.members));
+        this.props.leaveGroup(this.props.group.id);
       }
+      window.location.reload();
     } else {
       this.props.toggleSessionModal();
     }
@@ -143,7 +147,7 @@ class GroupShow extends React.Component {
     console.log("WE'RE GONNA CREATE AN EVENT");
   }
 
-  getButtons() {
+  renderButtons() {
     if (this.props.group.isCurrentUserMember) {
       return (
         <div>
@@ -163,7 +167,8 @@ class GroupShow extends React.Component {
   }
 
   render() {
-    console.log('GroupShow.render: this.props.group=', this.props.group);
+    // console.log('GroupShow.render: this.props.group=', this.props.group);
+    // console.log('GroupShow.render: this.state.group=', this.state.group);
     const group = this.props.group;
     if (!group) {
       return (
@@ -192,7 +197,7 @@ class GroupShow extends React.Component {
                 <h2>{group.organizer}</h2>
 
                 <div className='page-actions'>
-                  {this.getButtons()}
+                  {this.renderButtons()}
                 </div>
               </div>
 
@@ -241,6 +246,13 @@ class GroupShow extends React.Component {
 
           {this.renderMainBody()}
 
+          <div className='membership'>
+            {
+              this.props.group.members.map(member => (
+                <p key={member.id}>{member.name}</p>
+              ))
+            }
+          </div>
 
 
       </div>

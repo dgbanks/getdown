@@ -14,36 +14,43 @@ const removeUser = user => ({
 });
 
 export const subscribe = categoryId => dispatch => (
-  UserApiUtil.joinCategory(categoryId)
-    .then(user => dispatch(receiveUser(user)))
+  UserApiUtil.joinCategory(categoryId).then(
+    user => dispatch(receiveUser(user))
+  )
 );
 
 export const unsubscribe = categoryId => dispatch => (
-  UserApiUtil.leaveCategory(categoryId)
-    .then(user => dispatch(receiveUser(user)))
+  UserApiUtil.leaveCategory(categoryId).then(
+    user => dispatch(receiveUser(user))
+  )
 );
 
 export const joinGroup = groupId => dispatch => (
-  UserApiUtil.joinGroup(groupId)
-    .then(user => dispatch(receiveUser(user)))
+  UserApiUtil.joinGroup(groupId).then(
+    user => dispatch(receiveUser(user))
+  )
 );
 
 export const leaveGroup = groupId => dispatch => (
-  UserApiUtil.leaveGroup(groupId)
-    .then(user => dispatch(removeUser(user)))
+  UserApiUtil.leaveGroup(groupId).then(
+    user => dispatch(removeUser(user))
+  )
 );
 
 export const joinEvent = eventId => dispatch => (
-  UserApiUtil.joinEvent(eventId)
-    .then(user => dispatch(receiveUser(user)))
+  UserApiUtil.joinEvent(eventId).then(
+    user => dispatch(receiveUser(user))
+  )
 );
 
 export const leaveEvent = eventId => dispatch => (
-  UserApiUtil.leaveEvent(eventId)
-    .then(user => dispatch(receiveUser(user)))
+  UserApiUtil.leaveEvent(eventId).then(
+    user => dispatch(receiveUser(user))
+  )
 );
 
 export const updateUser = userId => dispatch => (
-  UserApiUtil.updateUser(userId)
-    .then(user => dispatch(receiveUser(user)))
+  UserApiUtil.updateUser(userId).then(
+    user => dispatch(receiveUser(user))
+  )
 );

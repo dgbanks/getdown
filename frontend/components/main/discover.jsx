@@ -4,7 +4,7 @@ import GroupSearchContainer from '../group/group_search_container';
 import GroupIndexContainer from '../group/group_index_container';
 import EventIndexContainer from '../event/event_index_container';
 import * as SplashUtil from '../../util/splash_util';
-import { fetchCategory } from '../../actions/category_actions';
+// import { fetchCategory } from '../../actions/category_actions';
 
 class Discover extends React.Component {
 

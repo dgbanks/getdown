@@ -1,4 +1,4 @@
-json.extract! group, :id, :name, :description, :img_url, :location
+json.extract! group, :id, :name, :description, :img_url, :location, :members
 
 json.memberCount group.members.count
 
@@ -6,7 +6,10 @@ json.category do
   json.extract! group.category, :id, :name
 end
 
-json.members group.members
+
+  # json.array!(group.members) do |member|
+  #   json.extract! member
+  # end
 
 json.hasUpcomingEvents !group.events.empty?
 
