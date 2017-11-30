@@ -13,12 +13,12 @@ const removeUser = user => ({
   user
 });
 
-export const subscribeToCategory = categoryId => dispatch => (
+export const subscribe = categoryId => dispatch => (
   UserApiUtil.joinCategory(categoryId)
     .then(user => dispatch(receiveUser(user)))
 );
 
-export const unsubscribeFromCategory = categoryId => dispatch => (
+export const unsubscribe = categoryId => dispatch => (
   UserApiUtil.leaveCategory(categoryId)
     .then(user => dispatch(receiveUser(user)))
 );

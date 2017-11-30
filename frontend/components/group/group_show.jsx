@@ -118,9 +118,9 @@ class GroupShow extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.props.group) {
+    // if (!this.props.group) {
       this.props.fetchGroup(this.props.match.params.groupId);
-    }
+    // }
   }
 
   handleMembershipChange(action) {

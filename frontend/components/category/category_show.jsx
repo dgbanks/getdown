@@ -5,10 +5,10 @@ import * as SplashUtil from '../../util/splash_util';
 class CategoryShow extends React.Component {
   constructor(props) {
     super(props);
-    // this.margin = 0;
+    this.handleSubscriptionChange = this.handleSubscriptionChange.bind(this);
+
     this.colors = ['rgb(255, 255, 0)', 'rgb(255, 0, 255)', 'rgb(0, 255, 255)'];
     this.color = SplashUtil.randomColor();
-    // console.log(this.props.category, "constructor of categoryShow");
   }
 
   getRandomStyles() {
@@ -49,23 +49,26 @@ class CategoryShow extends React.Component {
     return array;
   }
 
-  handleSubscribe(magicWord) {
-    if (magicWord === 'subscribe') {
-      if (this.props.currentUser) {
-        this.props.subscribeToCategory(this.props.category.id);
+  handleSubscriptionChange(magicWord) {
+    if (this.props.currentUser) {
+      if (magicWord === 'subscribe') {
+        console.log('SUBSCRIBING');
+        this.props.subscribe(this.props.category.id);
       } else {
-        // open the modal!!!
+        console.log('UNSUBSCRIBING');
+        this.props.unsubscribe(this.props.categoryId);
       }
     } else {
-      this.props.unsubscribeFromCategory(this.props.categoryId);
+      this.props.toggleSessionModal();
     }
   }
+
 
   renderButtons(category) {
     if (this.props.category.isCurrentUserSubscriber) {
       return (
         <div className='category-actions page-actions'>
-          <button onClick={() => this.handleSubscribe('unsubscribe')}>
+          <button onClick={() => this.handleSubscriptionChange('unsubscribe')}>
             Not Interested
           </button>
           <h2>You and {`${category.subscriptionCount - 1} others are interested`}</h2>
@@ -74,10 +77,10 @@ class CategoryShow extends React.Component {
     } else {
       return (
         <div className='category-actions page-actions'>
-          <button onClick={() => this.handleSubscribe('subscribe')}>
+          <button onClick={() => this.handleSubscriptionChange('subscribe')}>
             I'm Interested
           </button>
-          <h2>{`${category.subscriptionCount} others are interested`}</h2>
+          <h2>{`${category.subscriptionCount} people are interested`}</h2>
         </div>
       );
     }
