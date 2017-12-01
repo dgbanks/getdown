@@ -1,6 +1,8 @@
 import React from 'react';
 import Modal from 'react-modal';
-import Datepicker from './datepicker';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
 
 class EventForm extends React.Component {
 
@@ -51,39 +53,58 @@ class EventForm extends React.Component {
 
         <h2 className='modal-type'>make a new event</h2>
 
-        <label className='session-label'> Event Name
-          <input
-            className= 'session-input'
-            type='text'
-            value={this.state.name}
-            onChange={this.update('name')}/>
-        </label>  <br/>
+        <h3> className='group-event'>{}</h3>
 
-        <label className='session-label'> Description
-          <div className='text-field'>
-            <input
-              className= 'session-input'
-              type='text'
-              value={this.state.description}
-              onChange={this.update('description')}/>
+          <div className='user-inputs'>
+              <div className='text-inputs'>
+                <label className='session-label'> Event Name
+                  <input
+                    className= 'session-input'
+                    type='text'
+                    value={this.state.name}
+                    onChange={this.update('name')}/>
+                  </label>
+
+                  <label className='session-label'> Description
+                    <div className='text-field'>
+                      <textarea
+                        className='session-input'
+                        type='text'
+                        value={this.state.description}
+                        onChange={this.update('description')}/>
+                      </div>
+                    </label>
+              </div>
+
+              <div className='text-inputs'>
+                <label className='session-label'> Location
+                  <input
+                    className= 'session-input'
+                    type='text'
+                    value={this.state.location}
+                    onChange={this.update('location')}/>
+                  </label>
+
+                  <label className='session-label'> Date & Time
+                    <DatePicker
+                      selected={this.selectedDate}
+                      onChange={this.handleChange}
+                      showTimeSelect
+                      inline
+                      dateFormat="LLL" />
+                  </label>
+
+              </div>
+
+
           </div>
-        </label>  <br/>
 
-        <label className='session-label'> Location
-            <input
-              className= 'session-input'
-              type='text'
-              value={this.state.location}
-              onChange={this.update('location')}/>
-        </label> <br/>
 
-      <label className='session-label'> Date & Time
-          <br/>
-          <Datepicker
-            parseDate={this.parseDate} />
-        </label> <br/>
-
-      <input className='session-button' type='submit' value="Create Event"></input>
+      <input
+        className='session-button'
+        type='submit'
+        value="Create Event">
+      </input>
 
       </form>
     );

@@ -37,7 +37,7 @@ class GroupForm extends React.Component {
 
   render() {
     return (
-      <form className="session-form" onSubmit={this.handleSubmit}>
+      <form className="group-form" onSubmit={this.handleSubmit}>
 
         <h2 className='modal-type'>start a new group</h2>
 
