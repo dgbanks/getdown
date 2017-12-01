@@ -221,6 +221,19 @@
   font-weight: bold;
 }
 
+.text-field {
+  height: 200px;
+  width: 500px;
+}
+
+.text-field textarea {
+  height: 100%;
+  width: 95%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
 ///// MAIN CONTENT ////////////
 
 .group-body {

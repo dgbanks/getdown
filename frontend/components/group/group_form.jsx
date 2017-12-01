@@ -10,7 +10,8 @@ class GroupForm extends React.Component {
       name: "",
       description: "",
       zip_code: "",
-      category: ""
+      category_id: "",
+      organizer_id: this.props.currentUser.id
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,14 +19,19 @@ class GroupForm extends React.Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault;
+    event.preventDefault();
     this.props.createGroup(this.state);
   }
 
   update(field) {
     return e => {
       e.preventDefault();
-      this.setState({[field]: e.target.value});
+      console.log(typeof(e.target.value));
+      if (field === 'zip_code' || field === 'category_id') {
+        this.setState({[field]: parseInt(e.target.value)});
+      } else {
+        this.setState({[field]: e.target.value});
+      }
     };
   }
 
@@ -36,26 +42,55 @@ class GroupForm extends React.Component {
         <h2 className='modal-type'>start a new group</h2>
 
         <label className='session-label'> Group Name
-          <input className= 'session-input' type='text' value={this.state.name} onChange={this.update('name')}/>
-        </label>  <br/>
+          <input
+            className='session-input'
+            type='text'
+            value={this.state.name}
+            onChange={this.update('name')}/>
+        </label>
 
-      <label className='session-label'> Description
-            <input className= 'session-input' type='text' value={this.state.description} onChange={this.update('description')}/>
-          </label>  <br/>
+
+        <label className='session-label'> Description
+            <div className='text-field'>
+            <textarea
+              className='session-input'
+              type='text'
+              value={this.state.description}
+              onChange={this.update('description')}/>
+            </div>
+        </label>
 
         <label className='session-label'> Zip Code
-            <input className= 'session-input' type='text' value={this.state.zip_code} onChange={this.update('zip_code')}/>
-          </label>  <br/>
+            <input
+              className='session-input'
+              type='text'
+              value={this.state.zip_code}
+              onChange={this.update('zip_code')}/>
+        </label>
 
         <label className='session-label'> Category <br/>
-          <select className= 'session-input' value={this.state.category} onChange={() => this.update('category')}>
-            <option disabled>Select category</option>
-            <option value={'ice cream'}>Ice Cream</option>
-            <option value={'books'}>Books</option>
+          <select
+            className= 'session-input'
+            value={this.state.category}
+            onChange={this.update('category_id')}>
+            <option disabled selected>Select category</option>
+              {
+                this.props.categories.map(category => (
+                  <option
+                    key={category.id}
+                    value={category.id}>
+                    {category.name}
+                  </option>
+                ))
+              }
           </select>
-        </label>  <br/>
+        </label>
 
-        <input className='session-button' type='submit' value="Create Group"></input>
+        <input
+          className='session-button'
+          type='submit'
+          value="Create Group">
+        </input>
 
       </form>
     );

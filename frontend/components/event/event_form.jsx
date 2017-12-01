@@ -21,7 +21,9 @@ class EventForm extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({defaultGroupId: this.props.pathname.split('/').slice(-1)[0]})
+    this.setState({
+      defaultGroupId: this.props.pathname.split('/').slice(-1)[0]
+    });
   }
 
   handleSubmit(event) {
@@ -50,15 +52,29 @@ class EventForm extends React.Component {
         <h2 className='modal-type'>make a new event</h2>
 
         <label className='session-label'> Event Name
-          <input className= 'session-input' type='text' value={this.state.name} onChange={this.update('name')}/>
+          <input
+            className= 'session-input'
+            type='text'
+            value={this.state.name}
+            onChange={this.update('name')}/>
         </label>  <br/>
 
         <label className='session-label'> Description
-          <input className= 'session-input' type='text' value={this.state.description} onChange={this.update('description')}/>
+          <div className='text-field'>
+            <input
+              className= 'session-input'
+              type='text'
+              value={this.state.description}
+              onChange={this.update('description')}/>
+          </div>
         </label>  <br/>
 
         <label className='session-label'> Location
-            <input className= 'session-input' type='text' value={this.state.location} onChange={this.update('location')}/>
+            <input
+              className= 'session-input'
+              type='text'
+              value={this.state.location}
+              onChange={this.update('location')}/>
         </label> <br/>
 
       <label className='session-label'> Date & Time
