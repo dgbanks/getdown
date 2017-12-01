@@ -117,7 +117,6 @@ componentDidMount() {
       }
       window.location.reload();
     } else {
-      console.log('please render the type for tsm:', this.props.toggleSessionModal.type);
       this.props.toggleSessionModal();
     }
   }

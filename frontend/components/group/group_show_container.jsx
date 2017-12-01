@@ -3,16 +3,11 @@ import { withRouter } from 'react-router-dom';
 import { joinGroup, leaveGroup } from '../../actions/user_actions';
 import { fetchGroup } from '../../actions/group_actions';
 import { fetchGroupEvents } from '../../actions/event_actions';
-import {
-  toggleSessionModal, 
-  toggleGetdownModal
-} from '../../actions/ui_actions';
+import { toggleSessionModal, toggleGetdownModal } from '../../actions/ui_actions';
 import GroupShow from './group_show';
 
 const mapStateToProps = (state, ownProps) => ({
   group: state.entities.groups[ownProps.match.params.groupId],
-  // currentMember: state.entities.groups[ownProps.match.params.groupId]
-  //   .isCurrentUserMember,
   currentUser: state.session.currentUser
 });
 

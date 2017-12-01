@@ -15,14 +15,6 @@ class EventShow extends React.Component {
     }
   }
 
-  // handleJoinEvent() {
-  //   if (this.props.currentUser) {
-  //     this.props.joinEvent(this.props.event.id);
-  //   } else {
-  //     this.props.toggleSessionModal();
-  //   }
-  // }
-
   handleAttendanceChange(action) {
     if (this.props.currentUser) {
       if (action === 'skip') {

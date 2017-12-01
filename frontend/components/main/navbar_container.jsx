@@ -9,7 +9,6 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  // fetchCategories: () => dispatch(fetchCategories())
 });
 
 export default connect(

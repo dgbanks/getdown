@@ -14,7 +14,6 @@ class NavBar extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log('NavBar.componentWillReceiveProps: newProps=', newProps);
     if (window.location.href.split('/').includes('groups')) {
       this.setState({
         pathname: window.location.href
