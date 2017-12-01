@@ -2,7 +2,8 @@ json.extract! event, :id, :name, :description, :address, :venue, :date, :time, :
 
 json.attendance event.attendees.count
 
-json.isCurrentUserAttending current_user.appearances.include?(event) if current_user
+# json.isCurrentUserAttending current_user.appearances.include?(event) if current_user
+# json.isCurrentUserOrganizer event.organizer == current_user if current_user
 
 json.group do
   json.extract! event.group, :id, :name

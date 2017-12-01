@@ -7,8 +7,10 @@ class User < ApplicationRecord
   validates :password, length: {minimum: 6}, allow_nil: true
 
   after_initialize :ensure_token
+  # , :get_location
   # :geocode
 
+  # helper_method :location
   attr_reader :password
 
   ### Group Associations
@@ -78,6 +80,10 @@ class User < ApplicationRecord
 
   def ensure_token
     self.session_token ||= SecureRandom.urlsafe_base64
+  end
+
+  def location
+    Geocoder.address(self.zip_code)
   end
 
   # def geocode

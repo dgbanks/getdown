@@ -19,6 +19,7 @@ class GroupShow extends React.Component {
     this.handleMembershipChange = this.handleMembershipChange.bind(this);
     this.renderButtons = this.renderButtons.bind(this);
     this.renderMainBody = this.renderMainBody.bind(this);
+    this.renderMembers = this.renderMembers.bind(this);
   }
 
 //////////
@@ -91,6 +92,12 @@ componentDidMount() {
       return (
             <EventIndexContainer groupId={this.props.group.id} />
       );
+    } else if (this.props.location.pathname.split('/').includes('members')) {
+      return (
+        <div className='body'>
+          {this.renderMembers(this.props.group)}
+        </div>
+      );
     } else {
       return (
         <div className='body'>
@@ -124,6 +131,9 @@ componentDidMount() {
                 </div>
 
               </div>
+
+              {this.renderMembers(this.props.group)}
+
         </div>
       );
     }
@@ -164,6 +174,32 @@ componentDidMount() {
         </button>
       );
     }
+  }
+
+  renderUserRole(member, group) {
+    if (group.organizer === member.name) {
+      return 'Organizer';
+    } else {
+      return 'Member';
+    }
+  }
+
+  renderMembers(group) {
+    return (
+      <div className='membership'>
+        <h1>Members</h1>
+        <div className='members-grid'>
+        {
+          group.members.map(member => (
+            <div key={member.id} className='associated-user'>
+              <h2>{member.name}</h2>
+              <h3>{this.renderUserRole(member, group)}</h3>
+            </div>
+            ))
+          }
+        </div>
+      </div>
+    );
   }
 
   render() {
@@ -230,7 +266,7 @@ componentDidMount() {
 
                 <div className='hover-text'>
                   <Link
-                    to={`/groups/${group.id}`}
+                    to={`/groups/${group.id}/members`}
                     style={{
                       color: 'inherit',
                       textDecoration: 'inherit'
@@ -245,15 +281,6 @@ componentDidMount() {
           </div>
 
           {this.renderMainBody()}
-
-          <div className='membership-attendance'>
-            {
-              this.props.group.members.map(member => (
-                <p key={member.id}>{member.name}</p>
-              ))
-            }
-          </div>
-
 
       </div>
     );

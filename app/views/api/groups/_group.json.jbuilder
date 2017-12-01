@@ -17,6 +17,8 @@ json.firstEvent group.events.first
 
 json.isCurrentUserMember current_user.groups.include?(group) if current_user
 
+json.isCurrentUserOrganizer group.organizer == current_user if current_user
+
 # json.location group.zip_code
 
 json.organizer group.organizer.name
