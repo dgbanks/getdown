@@ -110,7 +110,7 @@ class SessionLinks extends React.Component {
 
   determine() {
     if (this.state.formType === 'signup') {
-      return <UserFormContainer />;
+      return <UserFormContainer categories={this.props.categories} />;
     } else {
       return <SessionFormContainer />;
     }

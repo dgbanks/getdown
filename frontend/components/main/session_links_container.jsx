@@ -5,7 +5,8 @@ import SessionLinks from './session_links';
 
 const mapStateToProps = (state, ownProps) => ({
   modalIsOpen: state.ui.sessionModalIsOpen,
-  errors: state.errors.session
+  errors: state.errors.session,
+  categories: ownProps.categories
 });
 
 const mapDispatchToProps = dispatch => ({

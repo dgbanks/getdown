@@ -5,13 +5,13 @@ import EventForm from './event_form';
 
 const mapStateToProps = (state, ownProps) => ({
   errors: state.errors.entities,
-  defaultGroup: ownProps.group
+  pathname: ownProps.pathname
 });
 
 
 const mapDispatchToProps = dispatch => ({
   createEvent: (groupId, event) => dispatch(createEvent(groupId, event)),
-  updateEvent: event => dispatch(updateEvent(event)),
+  updateEvent: event => dispatch(updateEvent(event))
 });
 
 export default connect(

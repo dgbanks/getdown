@@ -20,6 +20,11 @@ class EventForm extends React.Component {
     this.parseDate = this.parseDate.bind(this);
   }
 
+  componentDidMount() {
+    // console.log('EventForm.componentDidMount: this.props.pathname=', this.props.pathname);
+    this.setState({defaultGroupId: this.props.pathname.split('/').slice(-1)[0]})
+  }
+
   handleSubmit(event) {
     event.preventDefault;
     console.log(this.state);
@@ -40,6 +45,7 @@ class EventForm extends React.Component {
   }
 
   render() {
+    console.log('EventFormContainer.render: this.state.defaultGroupId', this.state.defaultGroupId);
     return (
       <form className="session-form" onSubmit={this.handleSubmit}>
 

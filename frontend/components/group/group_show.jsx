@@ -8,11 +8,6 @@ import EventShowContainer from '../event/event_show_container';
 class GroupShow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {modalIsOpen: false};
-    this.formType = "";
-
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
 
     this.isMember = this.isMember.bind(this);
     this.handleMembershipChange = this.handleMembershipChange.bind(this);
@@ -21,33 +16,9 @@ class GroupShow extends React.Component {
     this.renderMembers = this.renderMembers.bind(this);
   }
 
-//////////
-
-  openModal(formType) {
-    this.formType = formType;
-    this.setState({modalIsOpen: true});
-  }
-
-  closeModal() {
-    this.formType = "";
-    this.setState({
-      modalIsOpen: false
-    });
-  }
-
-//////////
 componentDidMount() {
   this.props.fetchGroup(this.props.match.params.groupId);
 }
-
-// componentWillReceiveProps(newProps) {
-//   console.log('GroupShow.componentWillReceiveProps: newProps=', newProps);
-//   this.setState({group: newProps.group});
-// }
-//
-// // componentDidUpdate() {
-// //   console.log('GroupShow.componentDidUpdate');
-// // }
 
   isMember() {
     if (this.props.group.isCurrentUserMember) {
@@ -85,11 +56,9 @@ componentDidMount() {
 
   renderMainBody() {
     if (this.props.location.pathname.split('/').includes('events')) {
-      console.log('GroupShow.renderMainBody: EVENTS in pathname');
-      // let eventId = this.props.location.pathname.split('/').slice(-1)[0];
       this.displayEvents();
       return (
-            <EventIndexContainer groupId={this.props.group.id} />
+        <EventIndexContainer groupId={this.props.group.id} />
       );
     } else if (this.props.location.pathname.split('/').includes('members')) {
       return (
@@ -148,6 +117,7 @@ componentDidMount() {
       }
       window.location.reload();
     } else {
+      console.log('please render the type for tsm:', this.props.toggleSessionModal.type);
       this.props.toggleSessionModal();
     }
   }

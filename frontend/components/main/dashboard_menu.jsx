@@ -34,7 +34,7 @@ class DashboardMenu extends React.Component {
 
     this.state = {
       modalIsOpen: this.props.getdownModalIsOpen,
-      formType: 'createEvent'
+      formType: ''
     };
 
 
@@ -88,12 +88,12 @@ class DashboardMenu extends React.Component {
   determine() {
     if (this.state.formType === 'createGroup') {
       return (
-        <GroupFormContainer />
+        <GroupFormContainer categories={this.props.categories}/>
       );
     } else {
-      // console.log('DashboardMenu.determine: this.props=', this.props);
+      console.log('DashboardMenu.determine: this.props=', this.props);
       return (
-        <EventFormContainer group={} />
+        <EventFormContainer pathname={this.props.pathname}/>
       );
     }
   }
@@ -109,6 +109,7 @@ class DashboardMenu extends React.Component {
   }
 
   render() {
+    console.log('DashboardMenu.render: this.props.defaultGroupId=', this.props.defaultGroupId);
     return (
       <div>
 

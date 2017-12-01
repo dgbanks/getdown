@@ -5,7 +5,7 @@ import fetchCategories from '../../actions/category_actions';
 import UserForm from './user_form';
 
 const mapStateToProps = (state, ownProps) => ({
-  categories: Object.values(state.entities.categories),
+  categories: ownProps.categories,
   errors: state.errors.session
 });
 

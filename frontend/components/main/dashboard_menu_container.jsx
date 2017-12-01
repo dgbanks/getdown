@@ -6,10 +6,12 @@ import { logout } from '../../actions/session_actions';
 import { toggleGetdownModal } from '../../actions/ui_actions';
 import DashboardMenu from './dashboard_menu';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   currentUser: state.session.currentUser,
   modalIsOpen: state.ui.getdownModalIsOpen,
-  errors: state.errors.entities
+  errors: state.errors.entities,
+  categories: ownProps.categories,
+  pathname: ownProps.pathname
 });
 
 const mapDispatchToProps = dispatch => ({
