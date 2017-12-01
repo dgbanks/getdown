@@ -15,13 +15,13 @@ class EventShow extends React.Component {
     }
   }
 
-  handleJoinEvent() {
-    if (this.props.currentUser) {
-      this.props.joinEvent(this.props.event.id);
-    } else {
-      this.props.toggleSessionModal();
-    }
-  }
+  // handleJoinEvent() {
+  //   if (this.props.currentUser) {
+  //     this.props.joinEvent(this.props.event.id);
+  //   } else {
+  //     this.props.toggleSessionModal();
+  //   }
+  // }
 
   handleAttendanceChange(action) {
     if (this.props.currentUser) {
@@ -37,7 +37,29 @@ class EventShow extends React.Component {
   }
 
 
-  //need to pass in an actionType or something here to differentiate between possibilities
+  renderAttendees(event) {
+    return (
+      <div className='attendance'>
+        <h1>Attendees</h1>
+        {
+          event.attendees.map(guest => (
+            <div key={guest.id} className='associated-user attendees'>
+              <h2>{guest.name}</h2>
+              <h3>{this.renderUserRole(guest, event)}</h3>
+            </div>
+            ))
+        }
+      </div>
+    );
+  }
+
+  renderUserRole(attendee, event) {
+    if (event.host.name === attendee.name) {
+      return 'Organizer';
+    } else {
+      return 'Member';
+    }
+  }
 
   renderButtons(event) {
     if (event.isCurrentUserAttending) {
@@ -46,7 +68,7 @@ class EventShow extends React.Component {
           <button onClick={() => this.handleAttendanceChange('skip')}>
             Not Down
           </button>
-          <h2>{`You and ${event.attendance - 1} others are down`}</h2>
+          <h3>{`You and ${event.attendance - 1} others are down`}</h3>
         </div>
       );
     } else {
@@ -55,7 +77,7 @@ class EventShow extends React.Component {
           <button onClick={() => this.handleAttendanceChange('rsvp')}>
             I'm Down!
           </button>
-          <h2>{`${event.attendance} people are down`}</h2>
+          <h3>{`${event.attendance} people are down`}</h3>
         </div>
       );
     }
@@ -88,18 +110,13 @@ class EventShow extends React.Component {
             </div>
 
             <div className='rsvp-info'>
-              <h3>{event.attendance} people are down</h3>
-
-              <div className='page-actions'>
-                {this.renderButtons(event)}
-              </div>
-
+              {this.renderButtons(event)}
             </div>
 
           </div>
         </div>
 
-        <div className='main-body'>
+        <div className='main-body event-body'>
 
           <div className='page-details'>
             <h1>Details</h1>
@@ -108,24 +125,23 @@ class EventShow extends React.Component {
             </div>
           </div>
 
-          <div className='event-info'>
-            <div className='event-time'>
-              <h2>{event.date}, {event.time}</h2>
+          <div className='event-sidebar'>
+
+            <div className='event-info'>
+                <div className='event-time'>
+                  <h2>{event.date}, {event.time}</h2>
+                </div>
+
+                <div className='event-location'>
+                  <h2>{event.venue}</h2>
+                  <h2>{event.address}</h2>
+                </div>
             </div>
 
-            <div className='event-location'>
-              <h2>{event.venue}</h2>
-              <h2>{event.address}</h2>
-            </div>
+            {this.renderAttendees(event)}
+
           </div>
-        </div>
 
-        <div className='membership-attendance'>
-          {
-            event.attendees.map(guest => (
-              <p key={guest.id}>{guest.name}</p>
-            ))
-          }
         </div>
 
       </div>
