@@ -39,7 +39,17 @@ class EventForm extends React.Component {
   update(field) {
     return e => {
       e.preventDefault();
-      this.setState({[field]: e.target.value});
+      if (field === 'datetime') {
+        console.log(e);
+        console.log(e._d);
+        console.log(new Date(e._d.toDateString()));
+        console.log(e._d.toTimeString());
+
+        this.setState({[date]: e.to_d.toTimeString() });
+      } else {
+
+        this.setState({[field]: e.target.value});
+      }
     };
   }
 
@@ -96,7 +106,7 @@ class EventForm extends React.Component {
                   <label className='session-label'> Date & Time
                     <DatePicker
                       selected={this.selectedDate}
-                      onChange={this.handleChange}
+                      onChange={this.update('datetime')}
                       showTimeSelect
                       inline
                       dateFormat="LLL" />
