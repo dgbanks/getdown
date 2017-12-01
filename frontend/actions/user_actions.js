@@ -13,15 +13,15 @@ const removeUser = user => ({
   user
 });
 
-export const subscribe = categoryId => dispatch => (
+export const subscribeToCategory = categoryId => dispatch => (
   UserApiUtil.joinCategory(categoryId).then(
     user => dispatch(receiveUser(user))
   )
 );
 
-export const unsubscribe = categoryId => dispatch => (
+export const unsubscribeFromCategory = categoryId => dispatch => (
   UserApiUtil.leaveCategory(categoryId).then(
-    user => dispatch(receiveUser(user))
+    user => dispatch(removeUser(user))
   )
 );
 
@@ -37,15 +37,15 @@ export const leaveGroup = groupId => dispatch => (
   )
 );
 
-export const joinEvent = eventId => dispatch => (
+export const rsvpToEvent = eventId => dispatch => (
   UserApiUtil.joinEvent(eventId).then(
     user => dispatch(receiveUser(user))
   )
 );
 
-export const leaveEvent = eventId => dispatch => (
+export const skipEvent = eventId => dispatch => (
   UserApiUtil.leaveEvent(eventId).then(
-    user => dispatch(receiveUser(user))
+    user => dispatch(removeUser(user))
   )
 );
 

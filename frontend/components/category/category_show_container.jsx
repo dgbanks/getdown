@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchCategory } from '../../actions/category_actions';
-import { subscribe, unsubscribe } from '../../actions/user_actions';
+import { subscribeToCategory, unsubscribeFromCategory } from '../../actions/user_actions';
 import { toggleSessionModal } from '../../actions/ui_actions';
 import CategoryShow from './category_show';
 
@@ -12,8 +12,8 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchCategory: id => dispatch(fetchCategory(id)),
-  subscribe: categoryId => dispatch(subscribe(categoryId)),
-  unsubscribe: categoryId => dispatch(unsubscribe(categoryId)),
+  subscribeToCategory: categoryId => dispatch(subscribeToCategory(categoryId)),
+  unsubscribeFromCategory: categoryId => dispatch(unsubscribeFromCategory(categoryId)),
   toggleSessionModal: () => dispatch(toggleSessionModal())
 });
 

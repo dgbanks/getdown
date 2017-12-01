@@ -51,13 +51,14 @@ class CategoryShow extends React.Component {
 
   handleSubscriptionChange(magicWord) {
     if (this.props.currentUser) {
-      if (magicWord === 'subscribe') {
+      if (magicWord === 'subscribeToCategory') {
         console.log('SUBSCRIBING');
-        this.props.subscribe(this.props.category.id);
+        this.props.subscribeToCategory(this.props.category.id);
       } else {
         console.log('UNSUBSCRIBING');
-        this.props.unsubscribe(this.props.categoryId);
+        this.props.unsubscribeFromCategory(this.props.category.id);
       }
+      window.location.reload();
     } else {
       this.props.toggleSessionModal();
     }
@@ -68,7 +69,7 @@ class CategoryShow extends React.Component {
     if (this.props.category.isCurrentUserSubscriber) {
       return (
         <div className='category-actions page-actions'>
-          <button onClick={() => this.handleSubscriptionChange('unsubscribe')}>
+          <button onClick={() => this.handleSubscriptionChange('unsubscribeFromCategory')}>
             Not Interested
           </button>
           <h2>You and {`${category.subscriptionCount - 1} others are interested`}</h2>
@@ -77,7 +78,7 @@ class CategoryShow extends React.Component {
     } else {
       return (
         <div className='category-actions page-actions'>
-          <button onClick={() => this.handleSubscriptionChange('subscribe')}>
+          <button onClick={() => this.handleSubscriptionChange('subscribeToCategory')}>
             I'm Interested
           </button>
           <h2>{`${category.subscriptionCount} people are interested`}</h2>

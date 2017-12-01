@@ -2,9 +2,10 @@ class Api::MembershipsController < ApplicationController
 
   def create
     @membership = Membership.new({group_id: params[:group_id]})
-    @membership.user_id = current_user.id
+    @membership.user = current_user #unless Membership.find_by(user_id: current_user.id)
     if @membership.save
       @user = User.find(@membership.user_id)
+      # @group = Group.find(@membership.group_id)
       render "api/users/show"
     else
       render json: ["Could not join group"], status: 422

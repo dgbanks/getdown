@@ -246,7 +246,7 @@ componentDidMount() {
 
           {this.renderMainBody()}
 
-          <div className='membership'>
+          <div className='membership-attendance'>
             {
               this.props.group.members.map(member => (
                 <p key={member.id}>{member.name}</p>

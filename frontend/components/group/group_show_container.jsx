@@ -8,6 +8,8 @@ import GroupShow from './group_show';
 
 const mapStateToProps = (state, ownProps) => ({
   group: state.entities.groups[ownProps.match.params.groupId],
+  // currentMember: state.entities.groups[ownProps.match.params.groupId]
+  //   .isCurrentUserMember,
   currentUser: state.session.currentUser
 });
 

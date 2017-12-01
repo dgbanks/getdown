@@ -5,7 +5,7 @@ class EventShow extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleJoinEvent = this.handleJoinEvent.bind(this);
+    this.handleAttendanceChange = this.handleAttendanceChange.bind(this);
     this.renderButtons = this.renderButtons.bind(this);
   }
 
@@ -22,16 +22,41 @@ class EventShow extends React.Component {
       this.props.toggleSessionModal();
     }
   }
+
+  handleAttendanceChange(action) {
+    if (this.props.currentUser) {
+      if (action === 'skip') {
+        this.props.skipEvent(this.props.event.id);
+      } else {
+        this.props.rsvpToEvent(this.props.event.id);
+      }
+      window.location.reload();
+    } else {
+      this.props.toggleSessionModal();
+    }
+  }
+
+
   //need to pass in an actionType or something here to differentiate between possibilities
 
-  renderButtons() {
-    if (this.props.event.group.isCurrentUserMember) {
+  renderButtons(event) {
+    if (event.isCurrentUserAttending) {
       return (
-        <button onClick={this.handleJoinEvent}>I'm Down!</button>
+        <div className='event-actions page-actions'>
+          <button onClick={() => this.handleAttendanceChange('skip')}>
+            Not Down
+          </button>
+          <h2>{`You and ${event.attendance - 1} others are down`}</h2>
+        </div>
       );
     } else {
       return (
-        <button onClick={this.handleJoinEvent}>Join and RSVP</button>
+        <div className='event-actions page-actions'>
+          <button onClick={() => this.handleAttendanceChange('rsvp')}>
+            I'm Down!
+          </button>
+          <h2>{`${event.attendance} people are down`}</h2>
+        </div>
       );
     }
   }
@@ -66,7 +91,7 @@ class EventShow extends React.Component {
               <h3>{event.attendance} people are down</h3>
 
               <div className='page-actions'>
-                {this.renderButtons()}
+                {this.renderButtons(event)}
               </div>
 
             </div>
@@ -95,6 +120,13 @@ class EventShow extends React.Component {
           </div>
         </div>
 
+        <div className='membership-attendance'>
+          {
+            event.attendees.map(guest => (
+              <p key={guest.id}>{guest.name}</p>
+            ))
+          }
+        </div>
 
       </div>
     );

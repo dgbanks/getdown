@@ -2,10 +2,9 @@ class Api::SubscriptionsController < ApplicationController
 
   def create
     @subscription = Subscription.new({category_id: params[:category_id]})
-    @subscription.user_id = current_user.id
+    @subscription.user = current_user # unless @subscription.find_by(user_id: current_user.id)
     if @subscription.save
       @user = User.find(@subscription.user_id)
-      # @category = Category.find(params[:category_id])
       render "api/users/show"
     else
       render json: ["Could not subscribe to category"], status: 422
