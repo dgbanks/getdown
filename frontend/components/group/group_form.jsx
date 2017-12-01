@@ -9,9 +9,8 @@ class GroupForm extends React.Component {
     this.state = {
       name: "",
       description: "",
-      zip_code: "",
-      category_id: "",
-      organizer_id: this.props.currentUser.id
+      location: "",
+      category_id: ""
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,7 +26,7 @@ class GroupForm extends React.Component {
     return e => {
       e.preventDefault();
       console.log(typeof(e.target.value));
-      if (field === 'zip_code' || field === 'category_id') {
+      if (field === 'category_id') {
         this.setState({[field]: parseInt(e.target.value)});
       } else {
         this.setState({[field]: e.target.value});
@@ -64,8 +63,8 @@ class GroupForm extends React.Component {
             <input
               className='session-input'
               type='text'
-              value={this.state.zip_code}
-              onChange={this.update('zip_code')}/>
+              value={this.state.location}
+              onChange={this.update('location')}/>
         </label>
 
         <label className='session-label'> Category <br/>

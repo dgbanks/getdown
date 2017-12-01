@@ -5,7 +5,8 @@ import EventForm from './event_form';
 
 const mapStateToProps = (state, ownProps) => ({
   errors: state.errors.entities,
-  pathname: ownProps.pathname
+  pathname: ownProps.pathname,
+  currentUser: state.session.currentUser
 });
 
 

@@ -12,7 +12,8 @@ class EventForm extends React.Component {
     this.state = {
       name: "",
       description: "",
-      location: "",
+      venue: "",
+      address: "",
       date: 'Sun, 01 Oct 2017',
       time: "12PM"
     };
@@ -23,9 +24,10 @@ class EventForm extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({
-      defaultGroupId: this.props.pathname.split('/').slice(-1)[0]
-    });
+    // this.setState({
+    //   group_id: parseInt(this.props.pathname.split('/').slice(-1)[0]),
+    //   host_id: this.props.currentUser.id
+    // });
   }
 
   handleSubmit(event) {
@@ -53,8 +55,6 @@ class EventForm extends React.Component {
 
         <h2 className='modal-type'>make a new event</h2>
 
-        <h3> className='group-event'>{}</h3>
-
           <div className='user-inputs'>
               <div className='text-inputs'>
                 <label className='session-label'> Event Name
@@ -77,12 +77,20 @@ class EventForm extends React.Component {
               </div>
 
               <div className='text-inputs'>
-                <label className='session-label'> Location
+                <label className='session-label'> Venue
                   <input
                     className= 'session-input'
                     type='text'
-                    value={this.state.location}
-                    onChange={this.update('location')}/>
+                    value={this.state.venue}
+                    onChange={this.update('venue')}/>
+                  </label>
+
+                <label className='session-label'> Address
+                  <input
+                    className= 'session-input'
+                    type='text'
+                    value={this.state.address}
+                    onChange={this.update('address')}/>
                   </label>
 
                   <label className='session-label'> Date & Time

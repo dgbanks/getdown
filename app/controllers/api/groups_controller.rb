@@ -3,6 +3,9 @@ class Api::GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.organizer_id = current_user.id
+    if group_params[:category_id]
+      Membership.create({group_id: @group.id, user_id: current_user.id})
+    end
     if @group.save
       render "api/groups/show"
     else
@@ -46,7 +49,7 @@ class Api::GroupsController < ApplicationController
   end
 
   def group_params
-    params.require(:group).permit(:name, :description, :zip_code, :query)
+    params.require(:group).permit(:name, :description, :location, :query, :category_id)
   end
 
 end

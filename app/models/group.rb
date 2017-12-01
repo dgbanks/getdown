@@ -41,9 +41,11 @@ class Group < ApplicationRecord
   end
 
   def fix_png
-    url = self.img_url
-    if url[0] == '/'
-      self.img_url = 'https://secure.meetupstatic.com'.concat(url)
+    if self.img_url
+      url = self.img_url
+      if url[0] == '/'
+        self.img_url = 'https://secure.meetupstatic.com'.concat(url)
+      end
     end
   end
 
