@@ -5,6 +5,7 @@ export const RECEIVE_EVENTS = "RECEIVE_EVENTS";
 export const RECEIVE_EVENT = "RECEIVE_EVENT";
 export const REMOVE_EVENT = "REMOVE_EVENT";
 export const RECEIVE_GROUP = "RECEIVE_GROUP";
+export const RECEIVE_EVENT_ERRORS = "RECEIVE_EVENT_ERRORS";
 
 const receiveEvents = events => ({
   type: RECEIVE_EVENTS,
@@ -19,6 +20,11 @@ const receiveEvent = event => ({
 const removeEvent = event => ({
   type: REMOVE_EVENT,
   event
+});
+
+const receiveEventErrors = errors => ({
+  type: RECEIVE_EVENT_ERRORS,
+  errors
 });
 
 // USER
@@ -61,7 +67,8 @@ export const fetchEvent = id => dispatch => (
 
 export const createEvent = (groupId, event) => dispatch => (
   EventApiUtil.createEvent(groupId, event)
-    .then(newEvent => dispatch(receiveEvent(newEvent)))
+    .then(newEvent => dispatch(receiveEvent(newEvent))),
+    errors => (dispatch(receiveEventErrors(errors.responseJSON)))
 );
 
 export const updateEvent = event => dispatch => (

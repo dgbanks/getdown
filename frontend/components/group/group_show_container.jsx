@@ -3,7 +3,10 @@ import { withRouter } from 'react-router-dom';
 import { joinGroup, leaveGroup } from '../../actions/user_actions';
 import { fetchGroup } from '../../actions/group_actions';
 import { fetchGroupEvents } from '../../actions/event_actions';
-import { toggleSessionModal } from '../../actions/ui_actions';
+import {
+  toggleSessionModal, 
+  toggleGetdownModal
+} from '../../actions/ui_actions';
 import GroupShow from './group_show';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -18,7 +21,8 @@ const mapDispatchToProps = dispatch => ({
   fetchGroupEvents: groupId => dispatch(fetchGroupEvents(groupId)),
   joinGroup: groupId => dispatch(joinGroup(groupId)),
   leaveGroup: groupId => dispatch(leaveGroup(groupId)),
-  toggleSessionModal: () => dispatch(toggleSessionModal())
+  toggleSessionModal: () => dispatch(toggleSessionModal()),
+  toggleGetdownModal: () => dispatch(toggleGetdownModal())
 });
 
 export default withRouter(connect(

@@ -5,6 +5,7 @@ export const RECEIVE_GROUPS = "RECEIVE_GROUPS";
 export const RECEIVE_GROUP = "RECEIVE_GROUP";
 export const REMOVE_GROUP = "REMOVE_GROUP";
 export const CLEAR_GROUPS = "CLEAR_GROUPS";
+export const RECEIVE_GROUP_ERRORS = "RECEIVE_GROUP_ERRORS";
 
 const receiveGroups = groups => ({
   type: RECEIVE_GROUPS,
@@ -19,6 +20,11 @@ const receiveGroup = group => ({
 const removeGroup = group => ({
   type: REMOVE_GROUP,
   group
+});
+
+const receiveGroupErrors = errors => ({
+  type: RECEIVE_GROUP_ERRORS,
+  errors
 });
 
 // USER
@@ -54,7 +60,8 @@ export const fetchCategoryGroups = categoryId => dispatch => (
 
 export const createGroup = group => dispatch => (
   GroupApiUtil.createGroup(group)
-    .then(newGroup => dispatch(receiveGroup(newGroup)))
+    .then(newGroup => dispatch(receiveGroup(newGroup))),
+    errors => dispatch(receiveGroupErrors(errors.responseJSON))
 );
 
 export const updateGroup = group => dispatch => (

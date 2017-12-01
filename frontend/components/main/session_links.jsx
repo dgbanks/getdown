@@ -50,9 +50,6 @@ class SessionLinks extends React.Component {
 
   componentWillReceiveProps(newProps) {
     this.setState({ modalIsOpen: newProps.modalIsOpen });
-    // if (this.state.modalIsOpen && this.state.formType === "") {
-    //   this.setState({ formType: 'signup' });
-    // }
   }
 
   demoLogin() {

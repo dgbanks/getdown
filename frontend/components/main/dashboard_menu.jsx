@@ -1,46 +1,111 @@
 import React from 'react';
 import Modal from 'react-modal';
 import GroupFormContainer from '../group/group_form_container';
-import GroupIndexContainer from '../group/group_index_container';
+import EventFormContainer from '../event/event_form_container';
+
+
+const customStyles = {
+  overlay: {
+    position: 'fixed',
+    zIndex: '1000',
+    backgroundColor: 'rgba(0,0,0, 0.75)',
+  },
+  content: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    border: '1px solid #ccc',
+    background: 'white',
+    overflow: 'auto',
+    WebkitOverflowScrolling: 'touch',
+    outline: 'none',
+    transform: 'translate(-50%, -50%)',
+    width: 'auto'
+  }
+};
+
 
 class DashboardMenu extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {modalIsOpen: false};
-    this.formType = "";
+
+    this.state = {
+      modalIsOpen: this.props.getdownModalIsOpen,
+      formType: 'createEvent'
+    };
+
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.determine = this.determine.bind(this);
+    this.changeForm = this.changeForm.bind(this);
+    this.renderErrors = this.renderErrors.bind(this);
+    this.renderModalNavOptions = this.renderModalNavOptions.bind(this);
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.setState({ modalIsOpen: newProps.modalIsOpen });
   }
 
   openModal(formType) {
-    this.formType = formType;
-    this.setState({modalIsOpen: true});
+    this.setState({ formType: formType });
+    this.props.toggleGetdownModal();
   }
 
   closeModal() {
-    this.formType = "";
-    this.setState({
-      modalIsOpen: false
-    });
+    this.setState({ formType: "" });
+    this.props.toggleGetdownModal();
+  }
+
+  changeForm() {
+    if (this.state.formType === 'createGroup') {
+      this.setState({formType: 'createEvent'});
+    } else {
+      this.setState({formType: 'createGroup'});
+    }
+  }
+
+  renderModalNavOptions() {
+    let navLink;
+    if (this.state.formType === 'createGroup') {
+      navLink = 'Or create an event';
+    } else {
+      navLink = 'Or create a group';
+    }
+
+    return (
+      <div className='modal-nav-options'>
+        <button className='navlink' onClick={this.changeForm}>
+          {navLink}
+        </button>
+      </div>
+    );
   }
 
   determine() {
-    if (this.formType === 'createGroup') {
+    if (this.state.formType === 'createGroup') {
       return (
         <GroupFormContainer />
       );
-    } else if (this.formType === 'groupIndex') {
-      return (
-        <GroupIndexContainer />
-      );
     } else {
+      // console.log('DashboardMenu.determine: this.props=', this.props);
       return (
-        'this is where the updateUser would go'
+        <EventFormContainer group={} />
       );
     }
+  }
+
+  renderErrors() {
+    return (
+      <div className='modal-errors'>
+        {
+          this.props.errors.map((err, idx) => (<p key={idx}>{err}</p>))
+        }
+      </div>
+    );
   }
 
   render() {
@@ -54,14 +119,24 @@ class DashboardMenu extends React.Component {
             <button className='dropdown-option'
               onClick={() => this.openModal('createGroup')}>Start a Group</button>
             <button className='dropdown-option'
-              onClick={() => this.openModal('groupIndex')}>Your Groups</button>
-            <button className='dropdown-option'
-              onClick={() => this.openModal('updateUser')}>Update Profile</button>
-            <button className='dropdown-option'
               onClick={this.props.logout}>Logout</button>
           </div>
         </nav>
 
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onRequestClose={() => this.closeModal()}
+          contentLabel="Modal"
+          style={customStyles}>
+
+          <div className="session-form-container">
+            <h1 className='modal-logo'>getdown</h1>
+            {this.determine()}
+            {this.renderErrors()}
+            {this.renderModalNavOptions()}
+          </div>
+
+        </Modal>
 
 
       </div>

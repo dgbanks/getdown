@@ -15,7 +15,6 @@ class GroupShow extends React.Component {
     this.closeModal = this.closeModal.bind(this);
 
     this.isMember = this.isMember.bind(this);
-    this.handleCreateEvent = this.handleCreateEvent.bind(this);
     this.handleMembershipChange = this.handleMembershipChange.bind(this);
     this.renderButtons = this.renderButtons.bind(this);
     this.renderMainBody = this.renderMainBody.bind(this);
@@ -153,10 +152,6 @@ componentDidMount() {
     }
   }
 
-  handleCreateEvent() {
-    console.log("WE'RE GONNA CREATE AN EVENT");
-  }
-
   renderButtons() {
     if (this.props.group.isCurrentUserMember) {
       return (
@@ -164,7 +159,7 @@ componentDidMount() {
           <button onClick={() => this.handleMembershipChange('leave')}>
             Leave Group
           </button>
-          <button onClick={this.handleCreateEvent}>Create Event</button>
+          <button onClick={this.props.toggleGetdownModal}>Create Event</button>
         </div>
       );
     } else {

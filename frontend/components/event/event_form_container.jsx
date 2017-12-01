@@ -4,6 +4,8 @@ import { toggleSessionModal } from '../../actions/ui_actions';
 import EventForm from './event_form';
 
 const mapStateToProps = (state, ownProps) => ({
+  errors: state.errors.entities,
+  defaultGroup: ownProps.group
 });
 
 

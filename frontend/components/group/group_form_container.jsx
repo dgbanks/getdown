@@ -4,7 +4,7 @@ import { toggleSessionModal } from '../../actions/ui_actions';
 import GroupForm from './group_form';
 
 const mapStateToProps = (state, ownProps) => ({
-
+  errors: state.errors.entities
 });
 
 
