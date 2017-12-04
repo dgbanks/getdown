@@ -45,7 +45,8 @@ class EventForm extends React.Component {
         console.log(new Date(e._d.toDateString()));
         console.log(e._d.toTimeString());
 
-        this.setState({[date]: e.to_d.toTimeString() });
+        this.setState({['date']: Date.parse(e.to_d.toDateString()) });
+        this.setState({['time']: e.to_d.toTimeString() });
       } else {
 
         this.setState({[field]: e.target.value});
