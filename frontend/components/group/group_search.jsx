@@ -18,7 +18,8 @@ class GroupSearch extends React.Component {
     // this.props.fetchGroups();
     this.props.clearGroupSearch();
     this.props.fetchCategories();
-    // console.log(this.props.categories, 'group search componentDidMount');
+    console.log('GroupSearch.componentDidMount: this.props=', this.props);
+    // setTimeout(() => this.props.history.createHref('/discover/search'), 3000);
   }
 
   getPlaceholder() {
@@ -44,6 +45,9 @@ class GroupSearch extends React.Component {
     this.idleTimeout = setTimeout(this.handleSearch, 500);
   }
 
+//// handle search should run on form submit, which needs to wrap the
+//// input element, redirect to a new url defined in discover component
+
   handleSearch(e) {
     if (this.state.query === "") {
       this.props.clearGroupSearch();
@@ -52,17 +56,29 @@ class GroupSearch extends React.Component {
     }
   }
 
+  // handleSubmit() {
+  //   redirect
+  // }
+
   render() {
+
+    const categoryId = this.props.match.params.categoryId;
+    if (this.props.match.params.categoryId && categoryId === undefined) {
+      return <div>loading...</div>;
+    }
+
     return (
       <div className='search'>
 
         <div className='search-bar'>
-          <input
-            className='search-bar'
-            type='search'
-            placeholder={this.getPlaceholder()}
-            onChange={this.update}
-          />
+          <Link
+            to={`/discover/groups/search`}>
+            <input
+              className='search-bar'
+              type='search'
+              placeholder={this.getPlaceholder()}
+              onChange={this.update}/>
+          </Link>
           <div className='categories-menu'>
 
             {
