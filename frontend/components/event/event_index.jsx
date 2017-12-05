@@ -75,7 +75,7 @@ class EventIndex extends React.Component {
   renderItemDates(event) {
     if (event.date !== this.prevItemDate) {
       this.prevItemDate = event.date;
-      return <h6>{event.date.toDateString()}</h6>;
+      return <h6>{event.date}</h6>;
     }
   }
 

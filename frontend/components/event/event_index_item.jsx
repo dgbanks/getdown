@@ -12,7 +12,7 @@ const EventIndexItem = ({event, itemSize}) => {
 
           <div className='event-item'>
             <h2 style={{color: 'gray'}}>
-              {`${event.date.toDateString()}, ${event.time}`}
+              {`${event.date}, ${event.time}`}
             </h2>
 
             <h1 style={{

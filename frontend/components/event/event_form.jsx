@@ -14,8 +14,9 @@ class EventForm extends React.Component {
       description: "",
       venue: "",
       address: "",
-      date: 'Sun, 01 Oct 2017',
-      time: "12PM"
+      date: "",
+      time: "",
+      group_id: parseInt(this.props.pathname.split('/')[5])
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,6 +25,7 @@ class EventForm extends React.Component {
   }
 
   componentDidMount() {
+    // console.log('EventForm.componentDidMount, this.props.pathname.split('/').length=', this.props.pathname.split('/').length);
     // this.setState({
     //   group_id: parseInt(this.props.pathname.split('/').slice(-1)[0]),
     //   host_id: this.props.currentUser.id
@@ -38,15 +40,16 @@ class EventForm extends React.Component {
 
   update(field) {
     return e => {
-      e.preventDefault();
+      // e.preventDefault();
       if (field === 'datetime') {
         console.log(e);
         console.log(e._d);
         console.log(new Date(e._d.toDateString()));
         console.log(e._d.toTimeString());
 
-        this.setState({['date']: Date.parse(e.to_d.toDateString()) });
-        this.setState({['time']: e.to_d.toTimeString() });
+        this.selectedDate = e;
+        this.setState({['date']: new Date(e._d.toDateString()) });
+        this.setState({['time']: e._d.toTimeString() });
       } else {
 
         this.setState({[field]: e.target.value});
