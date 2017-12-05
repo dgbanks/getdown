@@ -45,9 +45,6 @@ class GroupSearch extends React.Component {
     this.idleTimeout = setTimeout(this.handleSearch, 500);
   }
 
-//// handle search should run on form submit, which needs to wrap the
-//// input element, redirect to a new url defined in discover component
-
   handleSearch(e) {
     if (this.state.query === "") {
       this.props.clearGroupSearch();
@@ -56,12 +53,7 @@ class GroupSearch extends React.Component {
     }
   }
 
-  // handleSubmit() {
-  //   redirect
-  // }
-
   render() {
-
     const categoryId = this.props.match.params.categoryId;
     if (this.props.match.params.categoryId && categoryId === undefined) {
       return <div>loading...</div>;
@@ -94,14 +86,14 @@ class GroupSearch extends React.Component {
           </div>
         </div>
 
-        <h1> within X miles of San Francisco </h1>
+        <h1> near San Francisco </h1>
 
         <div className='search-options'>
           <div
             className='search-button'
             style={{backgroundColor: `${this.renderButtonSelected('groups')}`}}>
             <Link
-              to={`/discover/categories/${this.props.categoryId}/groups`}
+              to={`/discover/categories/${this.props.match.params.categoryId}/groups`}
               style={{color: 'white', textDecoration: 'none'}}>
               Groups
             </Link>
@@ -111,12 +103,11 @@ class GroupSearch extends React.Component {
             className='search-button'
             style={{backgroundColor: `${this.renderButtonSelected('events')}`}}>
             <Link
-              to={`/discover/categories/${this.props.categoryId}/events`}
+              to={`/discover/categories/${this.props.match.params.categoryId}/events`}
               style={{color: 'white', textDecoration: 'none'}}>
               Events
             </Link>
           </div>
-
         </div>
 
 

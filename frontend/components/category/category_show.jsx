@@ -19,7 +19,7 @@ class CategoryShow extends React.Component {
       {
         position: 'absolute',
         zIndex: '1',
-        backgroundColor: `${this.colors.shift()}`,
+        backgroundColor: this.color,
         mixBlendMode: 'multiply',
         opacity: '.2',
         animationName: 'moveStripe',
@@ -28,7 +28,7 @@ class CategoryShow extends React.Component {
         animationFillMode: 'none',
         animationIterationCount: 'infinite',
         animationDirection: 'alternate',
-        animationTimingFunction: 'ease-in'
+        animationTimingFunction: 'linear'
       }
     );
   }
