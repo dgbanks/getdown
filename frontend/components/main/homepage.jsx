@@ -7,6 +7,7 @@ class Homepage extends React.Component {
   }
 
   render() {
+    // splash video taken from the Meetup homepage
     return (
       <div className='homepage'>
         <div className='splash-container'>

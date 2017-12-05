@@ -23,11 +23,15 @@ class NavBar extends React.Component {
 
   getSessionLinks(currentUser) {
     if (currentUser) {
-      return <DashboardMenuContainer
-        categories={this.props.categories}
-        pathname={this.state.pathname} />;
+      return  (
+        <DashboardMenuContainer
+          categories={this.props.categories}
+          pathname={this.state.pathname}/>
+      );
     } else {
-      return <SessionLinksContainer categories={this.props.categories} />;
+      return (
+        <SessionLinksContainer categories={this.props.categories}/>
+      );
     }
   }
 

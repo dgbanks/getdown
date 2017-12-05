@@ -37,13 +37,12 @@ class DashboardMenu extends React.Component {
       formType: ''
     };
 
-
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.determine = this.determine.bind(this);
     this.changeForm = this.changeForm.bind(this);
-    this.renderErrors = this.renderErrors.bind(this);
     this.renderModalNavOptions = this.renderModalNavOptions.bind(this);
+    this.determine = this.determine.bind(this);
+    this.renderErrors = this.renderErrors.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
@@ -58,32 +57,33 @@ class DashboardMenu extends React.Component {
   closeModal() {
     this.setState({ formType: "" });
     this.props.toggleGetdownModal();
+    this.props.clearErrors();
   }
 
-  changeForm() {
-    if (this.state.formType === 'createGroup') {
-      this.setState({formType: 'createEvent'});
-    } else {
-      this.setState({formType: 'createGroup'});
-    }
-  }
-
-  renderModalNavOptions() {
-    let navLink;
-    if (this.state.formType === 'createGroup') {
-      navLink = 'Or create an event';
-    } else {
-      navLink = 'Or create a group';
-    }
-
-    return (
-      <div className='modal-nav-options'>
-        <button className='navlink' onClick={this.changeForm}>
-          {navLink}
-        </button>
-      </div>
-    );
-  }
+  // changeForm() {
+  //   if (this.state.formType === 'createGroup') {
+  //     this.setState({formType: 'createEvent'});
+  //   } else {
+  //     this.setState({formType: 'createGroup'});
+  //   }
+  // }
+        // can't allow ChangeForm because createEvent needs groupId params
+  // renderModalNavOptions() {
+  //   let navLink;
+  //   if (this.state.formType === 'createGroup') {
+  //     navLink = 'Or create an event';
+  //   } else {
+  //     navLink = 'Or create a group';
+  //   }
+  //
+  //   return (
+  //     <div className='modal-nav-options'>
+  //       <button className='navlink' onClick={this.changeForm}>
+  //         {navLink}
+  //       </button>
+  //     </div>
+  //   );
+  // }
 
   determine() {
     if (this.state.formType === 'createGroup') {
@@ -91,7 +91,6 @@ class DashboardMenu extends React.Component {
         <GroupFormContainer categories={this.props.categories}/>
       );
     } else {
-      console.log('DashboardMenu.determine: this.props=', this.props);
       return (
         <EventFormContainer pathname={this.props.pathname}/>
       );
@@ -109,18 +108,24 @@ class DashboardMenu extends React.Component {
   }
 
   render() {
-    console.log('DashboardMenu.render: this.props.defaultGroupId=', this.props.defaultGroupId);
     return (
       <div>
 
-
         <nav className="dropdown">
-          <button className="dropdown-button">{this.props.currentUser.name} ▾</button>
+          <button className="dropdown-button">
+            {this.props.currentUser.name} ▾
+          </button>
           <div className="dropdown-menu">
-            <button className='dropdown-option'
-              onClick={() => this.openModal('createGroup')}>Start a Group</button>
-            <button className='dropdown-option'
-              onClick={this.props.logout}>Logout</button>
+            <button
+              className='dropdown-option'
+              onClick={() => this.openModal('createGroup')}>
+              Start a Group
+            </button>
+            <button
+              className='dropdown-option'
+              onClick={this.props.logout}>
+              Logout
+            </button>
           </div>
         </nav>
 
@@ -134,11 +139,9 @@ class DashboardMenu extends React.Component {
             <h1 className='modal-logo'>getdown</h1>
             {this.determine()}
             {this.renderErrors()}
-            {this.renderModalNavOptions()}
           </div>
 
         </Modal>
-
 
       </div>
     );

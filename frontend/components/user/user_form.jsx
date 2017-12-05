@@ -16,10 +16,7 @@ class UserForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
     this.handleCheckbox = this.handleCheckbox.bind(this);
-    this.renderErrors = this.renderErrors.bind(this);
   }
-
-
 
   handleSubmit(e) {
     e.preventDefault();
@@ -35,20 +32,10 @@ class UserForm extends React.Component {
 
   handleCheckbox(event) {
     event.preventDefault();
-  }
-
-  renderErrors() {
-    return (
-      <ul>
-        {this.props.errors.map((err, idx) => (
-          <li key={idx}>{err}</li>
-        ))}
-      </ul>
-    );
+    // need an array of categories for new user to subscribe to
   }
 
   render() {
-    console.log(this.props.categories);
     return (
       <form className="session-form" onSubmit={this.handleSubmit}>
 

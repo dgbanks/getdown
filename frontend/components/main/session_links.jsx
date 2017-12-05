@@ -49,6 +49,7 @@ class SessionLinks extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
+    console.log('log');
     this.setState({ modalIsOpen: newProps.modalIsOpen });
   }
 
@@ -65,6 +66,7 @@ class SessionLinks extends React.Component {
   openModal(formType) {
     this.setState({ formType: formType });
     this.props.toggleSessionModal();
+    this.props.clearErrors();
   }
 
   closeModal() {
@@ -77,9 +79,11 @@ class SessionLinks extends React.Component {
       formType: 'signup'
     });
     this.props.toggleSessionModal();
+    this.props.clearErrors();
   }
 
   changeForm() {
+    this.props.clearErrors();
     if (this.state.formType === 'signup') {
       this.setState({formType: 'login'});
     } else {
@@ -90,9 +94,9 @@ class SessionLinks extends React.Component {
   renderModalNavOptions() {
     let navLink;
     if (this.state.formType === 'signup') {
-      navLink = 'Already have an account? Log in!'
+      navLink = 'Already have an account? Log in!';
     } else {
-      navLink = "Don't have an account? Sign up!"
+      navLink = "Don't have an account? Sign up!";
     }
 
     return (
@@ -120,7 +124,9 @@ class SessionLinks extends React.Component {
     return (
       <div className='modal-errors'>
         {
-          this.props.errors.map((err, idx) => (<p key={idx}>{err}</p>))
+          this.props.errors.map((err, idx) => (
+            <p key={idx}>{err}</p>
+            ))
         }
       </div>
     );
