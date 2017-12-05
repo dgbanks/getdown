@@ -37,7 +37,7 @@ class Group < ApplicationRecord
       "name ILIKE ? OR
       description ILIKE ? OR
       location ILIKE ?",
-       "%#{query}%", "%#{query}%", "%#{query}%").limit(3)
+       "%#{query}%", "%#{query}%", "%#{query}%").limit(20)
   end
 
   def fix_png

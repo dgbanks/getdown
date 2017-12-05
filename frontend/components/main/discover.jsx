@@ -25,6 +25,16 @@ class Discover extends React.Component {
     // }
   }
 
+  alternateHeader(text) {
+    return (
+      <div className='category-header'>
+        <div className='category-header-text'>
+          <h1>{text}</h1>
+        </div>
+      </div>
+    );
+  }
+
 
   renderHeader() {
     if (this.props.category) {
@@ -33,11 +43,7 @@ class Discover extends React.Component {
           categoryId={this.props.category.id}/>
       );
     } else if (this.props.location.pathname.includes('search')) {
-      return (
-        <div>
-          <h1>YOUR NEXT GETDOWN EVENT</h1>
-        </div>
-      );
+      return this.alternateHeader('Search for getdown groups');
     } else {
       if (this.props.match.path.includes('groups')) {
         return (

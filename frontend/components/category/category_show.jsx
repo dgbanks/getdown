@@ -102,7 +102,6 @@ class CategoryShow extends React.Component {
           <h1>{category.name}</h1>
           {this.renderButtons(category)}
         </div>
-
       </div>
     );
   }
