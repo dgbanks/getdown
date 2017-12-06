@@ -1,6 +1,8 @@
 import React from 'react';
 import Modal from 'react-modal';
-import Datepicker from './datepicker';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
 
 class EventForm extends React.Component {
 
@@ -10,9 +12,11 @@ class EventForm extends React.Component {
     this.state = {
       name: "",
       description: "",
-      location: "",
-      date: 'Sun, 01 Oct 2017',
-      time: "12PM"
+      venue: "",
+      address: "",
+      date: "",
+      time: "",
+      group_id: parseInt(this.props.pathname.split('/')[5])
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,14 +26,18 @@ class EventForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault;
-    console.log(this.state);
     this.props.createEvent(this.props.groupId, this.state);
   }
 
   update(field) {
     return e => {
-      e.preventDefault();
-      this.setState({[field]: e.target.value});
+      if (field === 'datetime') {
+        this.selectedDate = e;
+        this.setState({['date']: new Date(e._d.toDateString()) });
+        this.setState({['time']: e._d.toTimeString() });
+      } else {
+        this.setState({[field]: e.target.value});
+      }
     };
   }
 
@@ -45,25 +53,64 @@ class EventForm extends React.Component {
 
         <h2 className='modal-type'>make a new event</h2>
 
-        <label className='session-label'> Event Name
-          <input className= 'session-input' type='text' value={this.state.name} onChange={this.update('name')}/>
-        </label>  <br/>
+          <div className='user-inputs'>
+              <div className='text-inputs'>
+                <label className='session-label'> Event Name
+                  <input
+                    className= 'session-input'
+                    type='text'
+                    value={this.state.name}
+                    onChange={this.update('name')}/>
+                  </label>
 
-        <label className='session-label'> Description
-          <input className= 'session-input' type='text' value={this.state.description} onChange={this.update('description')}/>
-        </label>  <br/>
+                  <label className='session-label'> Description
+                    <div className='text-field'>
+                      <textarea
+                        className='session-input'
+                        type='text'
+                        value={this.state.description}
+                        onChange={this.update('description')}/>
+                      </div>
+                    </label>
+              </div>
 
-        <label className='session-label'> Location
-            <input className= 'session-input' type='text' value={this.state.location} onChange={this.update('location')}/>
-        </label> <br/>
+              <div className='text-inputs'>
+                <label className='session-label'> Venue
+                  <input
+                    className= 'session-input'
+                    type='text'
+                    value={this.state.venue}
+                    onChange={this.update('venue')}/>
+                  </label>
 
-      <label className='session-label'> Date & Time
-          <br/>
-          <Datepicker
-            parseDate={this.parseDate} />
-        </label> <br/>
+                <label className='session-label'> Address
+                  <input
+                    className= 'session-input'
+                    type='text'
+                    value={this.state.address}
+                    onChange={this.update('address')}/>
+                  </label>
 
-      <input className='session-button' type='submit' value="Create Event"></input>
+                  <label className='session-label'> Date & Time
+                    <DatePicker
+                      selected={this.selectedDate}
+                      onChange={this.update('datetime')}
+                      showTimeSelect
+                      inline
+                      dateFormat="LLL" />
+                  </label>
+
+              </div>
+
+
+          </div>
+
+
+      <input
+        className='session-button'
+        type='submit'
+        value="Create Event">
+      </input>
 
       </form>
     );

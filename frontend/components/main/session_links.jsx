@@ -1,30 +1,27 @@
 import React from 'react';
 import Modal from 'react-modal';
-
 import UserFormContainer from '../user/user_form_container';
 import SessionFormContainer from '../session/session_form_container';
 
 const customStyles = {
-  overlay : {
-    // position : 'fixed',
-    backgroundColor : 'rgba(0,0,0, 0.75)',
+  overlay: {
+    position: 'fixed',
+    zIndex: '1000',
+    backgroundColor: 'rgba(0,0,0, 0.75)',
   },
-  content : {
-    // position                   : 'absolute',
-    top                        : '50%',
-    left                       : '50%',
-    right                      : 'auto',
-    bottom                     : 'auto',
-    border                     : '1px solid #ccc',
+  content: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    border: '1px solid #ccc',
     background: 'white',
-    overflow                   : 'auto',
-    WebkitOverflowScrolling    : 'touch',
-    borderRadius               : '10px',
-    outline                    : 'none',
-    padding                    : '20px',
-    marginRight                : '-50%',
-    transform                  : 'translate(-50%, -50%)',
-    width                      : '400px'
+    overflow: 'auto',
+    WebkitOverflowScrolling: 'touch',
+    outline: 'none',
+    transform: 'translate(-50%, -50%)',
+    width: 'auto'
   }
 };
 
@@ -39,17 +36,20 @@ class SessionLinks extends React.Component {
       password: "",
       zip_code: "",
       interests: "",
-      formType: "",
-
-      // modalIsOpen: false
+      formType: 'signup',
       modalIsOpen: this.props.modalIsOpen
     };
+
+    this.demoLogin = this.demoLogin.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.changeForm = this.changeForm.bind(this);
-    this.navLink = this.navLink.bind(this);
+    this.renderModalNavOptions = this.renderModalNavOptions.bind(this);
     this.determine = this.determine.bind(this);
-    this.demoLogin = this.demoLogin.bind(this);
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.setState({ modalIsOpen: newProps.modalIsOpen });
   }
 
   demoLogin() {
@@ -62,22 +62,10 @@ class SessionLinks extends React.Component {
     }, () => this.props.signup(this.state));
   }
 
-
-  componentWillReceiveProps(newProps) {
-    this.setState({modalIsOpen: newProps.modalIsOpen});
-    if (this.state.modalIsOpen && this.state.formType === "") {
-      this.setState({
-        formType: 'login'
-      });
-    }
-  }
-
-////////// CONSOLIDATE BELOW
   openModal(formType) {
-    this.setState({
-      formType: formType
-    });
-    this.props.toggleModal();
+    this.setState({ formType: formType });
+    this.props.toggleSessionModal();
+    this.props.clearErrors();
   }
 
   closeModal() {
@@ -87,13 +75,14 @@ class SessionLinks extends React.Component {
       password: "",
       zip_code: "",
       interests: "",
-      formType: ""
+      formType: 'signup'
     });
-    this.props.toggleModal();
+    this.props.toggleSessionModal();
+    this.props.clearErrors();
   }
-////////// CONSOLIDATE ABOVE
 
   changeForm() {
+    this.props.clearErrors();
     if (this.state.formType === 'signup') {
       this.setState({formType: 'login'});
     } else {
@@ -101,47 +90,51 @@ class SessionLinks extends React.Component {
     }
   }
 
-  navLink() {
+  renderModalNavOptions() {
+    let navLink;
     if (this.state.formType === 'signup') {
-      return (
-        <button onClick={this.changeForm}>Already have an account?</button>
-      );
+      navLink = 'Already have an account? Log in!';
     } else {
-      return (
-        <button onClick={this.changeForm}>Don't have an account?</button>
-      );
+      navLink = "Don't have an account? Sign up!";
     }
+
+    return (
+      <div className='modal-nav-options'>
+        <button className='session-button' onClick={this.demoLogin}>
+          Login as Guest
+        </button>
+
+        <button className='navlink' onClick={this.changeForm}>
+          {navLink}
+        </button>
+      </div>
+    );
   }
 
   determine() {
     if (this.state.formType === 'signup') {
-      return (
-        <UserFormContainer />
-      );
+      return <UserFormContainer categories={this.props.categories} />;
     } else {
-      return (
-        <SessionFormContainer />
-      );
+      return <SessionFormContainer />;
     }
   }
 
-  // renderErrors() {
-  //   return (
-  //     <ul>
-  //       {this.props.errors.map((err, idx) => (
-  //         <li key={idx}>{err}</li>
-  //       ))}
-  //     </ul>
-  //   );
-  // }
+  renderErrors() {
+    return (
+      <div className='modal-errors'>
+        {
+          this.props.errors.map((err, idx) => (
+            <p key={idx}>{err}</p>
+            ))
+        }
+      </div>
+    );
+  }
 
   render() {
     return(
       <div>
-
-
         <nav className='signup-login'>
-
           <button onClick={() => this.openModal('signup')}>
             Sign Up
           </button>
@@ -159,15 +152,16 @@ class SessionLinks extends React.Component {
           isOpen={this.state.modalIsOpen}
           onRequestClose={() => this.closeModal()}
           contentLabel="Modal"
-          style={customStyles}
-        >
+          style={customStyles}>
+
           <div className="session-form-container">
+            <h1 className='modal-logo'>getdown</h1>
             {this.determine()}
-            {this.navLink()}
-
+            {this.renderErrors()}
+            {this.renderModalNavOptions()}
           </div>
-        </Modal>
 
+        </Modal>
       </div>
     );
   }

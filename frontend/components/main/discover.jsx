@@ -4,38 +4,44 @@ import GroupSearchContainer from '../group/group_search_container';
 import GroupIndexContainer from '../group/group_index_container';
 import EventIndexContainer from '../event/event_index_container';
 import * as SplashUtil from '../../util/splash_util';
-import { fetchCategory } from '../../actions/category_actions';
 
 class Discover extends React.Component {
 
   constructor(props) {
     super(props);
+    this.alternateHeader = this.alternateHeader.bind(this);
+    this.renderHeader = this.renderHeader.bind(this);
+    this.renderIndex = this.renderIndex.bind(this);
+    this.getPlaceholder = this.getPlaceholder.bind(this);
   }
 
   componentDidMount() {
     if (this.props.match.params.categoryId) {
-      this.props.fetchCategory(this.props.match.params.categoryId)
+      this.props.fetchCategory(this.props.match.params.categoryId);
     }
   }
 
-  componentWillReceiveProps(newProps) {
-    console.log('Discover.componentWillReceiveProps: newProps=', newProps);
+  alternateHeader(text) {
+    return (
+      <div className='category-header'>
+        <div className='category-header-text'>
+          <h1>{text}</h1>
+        </div>
+      </div>
+    );
   }
 
 
-  renderHeader(categoryId) {
-    if (this.props.match.params.categoryId) {
+  renderHeader() {
+    if (this.props.category) {
       return (
-        <CategoryShowContainer categoryId={categoryId}/>
+        <CategoryShowContainer
+          categoryId={this.props.category.id}/>
       );
-    } else if (this.props.currentUser) {
-      return (
-        <div>
-          <h1>YOUR NEXT GETDOWN EVENT</h1>
-        </div>
-      );
+    } else if (this.props.location.pathname.includes('search')) {
+      return this.alternateHeader('Search for getdown groups');
     } else {
-      if (this.props.location.pathname.includes('groups/')) {
+      if (this.props.match.path.includes('groups')) {
         return (
           <div>
             <h1>SEARCH GROUPS</h1>
@@ -51,43 +57,51 @@ class Discover extends React.Component {
     }
   }
 
-  renderIndex(categoryId) {
-    if (this.props.location.pathname.split('/').includes('events')) {
-      // console.log('TIME FOR SOME EVENTINDEXXXXXX');
+  renderIndex() {
+    let categoryId = undefined;
+    if (this.props.category) {
+      categoryId = this.props.category.id;
+    }
+
+    if (this.props.location.pathname.includes('events')) {
       return (
         <EventIndexContainer categoryId={categoryId}/>
       );
     } else {
-      console.log(this.props.location.pathname);
-      // console.log('GroupIndexContainer', categoryId);
       return (
         <GroupIndexContainer categoryId={categoryId}/>
       );
     }
   }
 
+  getPlaceholder() {
+    if (this.props.category) {
+      return this.props.category.name;
+    } else {
+      return undefined;
+    }
+  }
+
+
   render() {
-    // console.log(this.props.match.params.categoryId);
-    // console.log('render', this.categoryId);
     const categoryId = this.props.match.params.categoryId;
     const category = this.props.category;
-    if (category === undefined) {
+    if (this.props.match.params.categoryId && category === undefined) {
       return (
         <div>loading...</div>
       );
     }
-    // console.log(this.props.categories, 'discover');
+
     return (
       <div className='category-page'>
 
-        {this.renderHeader(category.id)}
+        {this.renderHeader()}
 
         <GroupSearchContainer
-          placeholder={category.name}
-          categoryId={category.id}
+          placeholder={this.getPlaceholder()}
           pathname={this.props.location.pathname}/>
 
-        {this.renderIndex(category.id)}
+        {this.renderIndex()}
 
       </div>
     );

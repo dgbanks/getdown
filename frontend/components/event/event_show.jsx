@@ -5,7 +5,9 @@ class EventShow extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleJoinEvent = this.handleJoinEvent.bind(this);
+    this.handleAttendanceChange = this.handleAttendanceChange.bind(this);
+    this.renderAttendees = this.renderAttendees.bind(this);
+    this.renderUserRole = this.renderUserRole.bind(this);
     this.renderButtons = this.renderButtons.bind(this);
   }
 
@@ -15,29 +17,67 @@ class EventShow extends React.Component {
     }
   }
 
-  handleJoinEvent() {
+  handleAttendanceChange(action) {
     if (this.props.currentUser) {
-      this.props.joinEvent(this.props.event.id);
+      if (action === 'skip') {
+        this.props.skipEvent(this.props.event.id);
+      } else {
+        this.props.rsvpToEvent(this.props.event.id);
+      }
+      window.location.reload();
     } else {
-      this.props.toggleModal();
+      this.props.toggleSessionModal();
     }
   }
-  //need to pass in an actionType or something here to differentiate between possibilities
 
-  renderButtons() {
-    if (this.props.event.group.isCurrentUserMember) {
+
+  renderAttendees(event) {
+    return (
+      <div className='attendance'>
+        <h1>Attendees</h1>
+        {
+          event.attendees.map(guest => (
+            <div key={guest.id} className='associated-user attendees'>
+              <h2>{guest.name}</h2>
+              <h3>{this.renderUserRole(guest, event)}</h3>
+            </div>
+            ))
+        }
+      </div>
+    );
+  }
+
+  renderUserRole(attendee, event) {
+    if (event.host.name === attendee.name) {
+      return 'Organizer';
+    } else {
+      return 'Member';
+    }
+  }
+
+  renderButtons(event) {
+    if (event.isCurrentUserAttending) {
       return (
-        <button onClick={this.handleJoinEvent}>I'm Down!</button>
+        <div className='event-actions page-actions'>
+          <button onClick={() => this.handleAttendanceChange('skip')}>
+            Not Down
+          </button>
+          <h3>{`You and ${event.attendance - 1} others are down`}</h3>
+        </div>
       );
     } else {
       return (
-        <button onClick={this.handleJoinEvent}>Join and RSVP</button>
+        <div className='event-actions page-actions'>
+          <button onClick={() => this.handleAttendanceChange('rsvp')}>
+            I'm Down!
+          </button>
+          <h3>{`${event.attendance} people are down`}</h3>
+        </div>
       );
     }
   }
 
   render() {
-    console.log(this.props.event);
     const event = this.props.event;
     if (!event) {
       return null;
@@ -45,10 +85,8 @@ class EventShow extends React.Component {
 
     return (
       <div className='event-page'>
-
         <div className='event-header'>
           <div className='header-content'>
-
             <div className='event-header-info'>
               <h2>{event.date}, {event.time}</h2>
               <h1>{event.name}</h1>
@@ -61,20 +99,13 @@ class EventShow extends React.Component {
                 </Link>
               </h3>
             </div>
-
             <div className='rsvp-info'>
-              <h3>{event.attendance} people are down</h3>
-
-              <div className='page-actions'>
-                {this.renderButtons()}
-              </div>
-
+              {this.renderButtons(event)}
             </div>
-
           </div>
         </div>
 
-        <div className='main-body'>
+        <div className='main-body event-body'>
 
           <div className='page-details'>
             <h1>Details</h1>
@@ -83,19 +114,21 @@ class EventShow extends React.Component {
             </div>
           </div>
 
-          <div className='event-info'>
-            <div className='event-time'>
-              <h2>{event.date}, {event.time}</h2>
-            </div>
+          <div className='event-sidebar'>
 
-            <div className='event-location'>
-              <h2>{event.venue}</h2>
-              <h2>{event.address}</h2>
+            <div className='event-info'>
+                <div className='event-time'>
+                  <h2>{event.date}, {event.time}</h2>
+                </div>
+
+                <div className='event-location'>
+                  <h2>{event.venue}</h2>
+                  <h2>{event.address}</h2>
+                </div>
             </div>
+            {this.renderAttendees(event)}
           </div>
         </div>
-
-
       </div>
     );
   }

@@ -7,9 +7,9 @@ class Homepage extends React.Component {
   }
 
   render() {
+    // splash video taken from the Meetup homepage
     return (
       <div className='homepage'>
-
         <div className='splash-container'>
           <video
             className='splash-video'
@@ -19,30 +19,28 @@ class Homepage extends React.Component {
           </video>
 
           <div className='splash-text'>
-            <h1>Looking for something to do?</h1>
-            <h1>find a group you can
-              <h2 style={{
-                display: 'inline',
-                color: '#FF0B55',
-                fontFamily: 'cursive',
-                fontWeight: 'bold',
-                margin: '0px 15px'}}>
-                getdown
-              </h2>
-              with
-            </h1>
-            <button
-              onClick={() => this.openModal('signup')}
-              className='splash-button'>
+            <h1>looking for something to do?</h1>
+            <div>
+              <h2 style={{display: 'inline'}}>find a group you can</h2>
+                <h2 style={{
+                  display: 'inline',
+                  color: '#FF0B55',
+                  fontFamily: 'cursive',
+                  fontWeight: 'bold',
+                  margin: '0px 15px'
+                }}>getdown</h2>
+                <h2 style={{display:'inline'}}>with</h2>
+            </div>
+
+            <button className='splash-button'
+              onClick={() => this.props.toggleSessionModal()}>
               Sign Up
             </button>
 
           </div>
-
         </div>
 
         <CategoryIndexContainer />
-
 
       </div>
     );

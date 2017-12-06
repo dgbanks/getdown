@@ -5,7 +5,8 @@ const EventsReducer = (prevState = {}, action) => {
   Object.freeze(prevState);
   switch (action.type) {
     case RECEIVE_EVENTS:
-      return merge({}, action.events);
+      // let events = action.events;
+      return merge({}, prevState, action.events);
     case RECEIVE_EVENT:
       return merge({}, prevState, {[action.event.id]: action.event});
     case REMOVE_EVENT:

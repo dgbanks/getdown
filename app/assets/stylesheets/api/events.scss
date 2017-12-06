@@ -6,10 +6,12 @@
 
 .wrapper {
   width: 100%;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
 }
 
 .small-event-index {
-  border: 1px solid blue;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -21,17 +23,17 @@
 }
 
 .large-event-index {
-  width: 75%;
+  width: 65%;
   display: flex;
   flex-direction: column;
   margin-bottom: 50px;
 }
 
-.large-event-index div:first-child h6 {
-  margin-top: 25px;
-}
+// .large-event-index div:first-child h6 {
+//   margin-top: 25px;
+// }
 
-.large-event-index h6 {
+.full-page-event-index h6 {
   display: block;
   font-size: 20px;
   font-family: sans-serif;
@@ -41,7 +43,7 @@
 }
 
 .large-event-item {
-  width: 65%;
+  width: 100%;
   border-radius: 5px;
   background-color: white;
   border: 1px solid gray;
@@ -58,14 +60,12 @@
 .event-item-time {
   display: flex;
   justify-content: center;
-  border: 1px solid red;
   height: auto;
   width: 20%;
   // margin-right: 5%;
 }
 
 .event-item-info {
-  border: 1px solid blue;
   height: 100%;
   width: 75%;
   display: flex;
@@ -118,7 +118,23 @@
   cursor: pointer;
 }
 
+.full-page-event-index {
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+  margin-top: 50px;
+}
 
+.calendar-container {
+  height: 100%;
+  width: 30%;
+}
+
+.event-associations {
+  width: 100%;
+  height: 50px;
+}
 
 ///////// EVENT PAGE /////////
 
@@ -127,8 +143,12 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin-bottom: 100px;
-  background-color: lightgray;
+  // margin-bottom: 100px;
+  background-color: rgb(245, 245, 245);
+}
+
+.event-body {
+  margin-bottom: 50px;
 }
 
 .event-header {
@@ -186,6 +206,7 @@
   margin-top: 5px;
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -199,19 +220,36 @@
   color: white;
 }
 
-.event-info {
+.event-sidebar {
   width: 35%;
   height: 100%;
+  font-family: sans-serif;
+
+}
+
+.event-info {
+  width: 100%;
   display: flex;
   flex-direction: column;
   background-color: white;
   border-radius: 5px;
   font-size: 20px;
-  font-family: sans-serif;
   font-weight: lighter;
   color: gray;
+  margin-bottom: 50px;
 }
 
 .event-info h2 {
   margin: 10px 0px 10px 10px;
+}
+
+.attendance {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.attendees {
+  margin-bottom: 10px;
 }

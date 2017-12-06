@@ -1,6 +1,6 @@
 json.extract! category, :id, :name, :groups
 
-json.isCurrentUserSubscriber current_user.interests.include?(category) if current_user
+json.isCurrentUserSubscriber current_user.interests.include?(category) if current_user && category
 
 json.subscriptionCount category.subscribers.count
 

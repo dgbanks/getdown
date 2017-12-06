@@ -1,11 +1,16 @@
 class User < ApplicationRecord
 
-  validates :name, :email, :password_digest, :session_token, :zip_code, :latitude, :longitude, presence: true
+  validates :name, :email, :password_digest, :session_token, :zip_code, presence: true
+  # :latitude, :longitude,
+
   validates :email, uniqueness: true
   validates :password, length: {minimum: 6}, allow_nil: true
 
-  after_initialize :ensure_token, :geocode
+  after_initialize :ensure_token
+  # , :get_location
+  # :geocode
 
+  # helper_method :location
   attr_reader :password
 
   ### Group Associations
@@ -77,9 +82,13 @@ class User < ApplicationRecord
     self.session_token ||= SecureRandom.urlsafe_base64
   end
 
-  def geocode
-    coords = Geocoder.coordinates(self.zip_code)
-    self.latitude = coords.first
-    self.longitude = coords.last
+  def location
+    Geocoder.address(self.zip_code)
   end
+
+  # def geocode
+  #   coords = Geocoder.coordinates(self.zip_code)
+  #   self.latitude = coords.first
+  #   self.longitude = coords.last
+  # end
 end

@@ -37,13 +37,15 @@ class Group < ApplicationRecord
       "name ILIKE ? OR
       description ILIKE ? OR
       location ILIKE ?",
-       "%#{query}%", "%#{query}%", "%#{query}%").limit(3)
+       "%#{query}%", "%#{query}%", "%#{query}%").limit(20)
   end
 
   def fix_png
-    url = self.img_url
-    if url[0] == '/'
-      self.img_url = 'https://secure.meetupstatic.com'.concat(url)
+    if self.img_url
+      url = self.img_url
+      if url[0] == '/'
+        self.img_url = 'https://secure.meetupstatic.com'.concat(url)
+      end
     end
   end
 

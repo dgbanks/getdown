@@ -6,51 +6,113 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: sans-serif;
 }
 
 .session-form {
   display:flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .modal-logo {
-  color: pink;
+  font-family: cursive;
   font-size: 45px;
   font-weight: bold;
+  color: #FF0B55;
 }
 
 .modal-type {
-  margin: 15px 0px;
+  margin: 25px 0px;
   font-size: 25px;
-  font-weight: bold;
+  font-weight: lighter;
+  font-family: sans-serif;
+}
+
+.modal-errors {
+  color: red;
+  margin: 10px 0px;
+}
+
+.user-inputs {
+  display: flex;
+  margin: 10px 0px;
+  width: 800px;
+  font-family: sans-serif;
+}
+
+.user-inputs > div {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 5px;
 }
 
 .session-label {
-  font-size: 45px;
-  font-weight: bold;
-  font-weight: bold;
-  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  margin: 10px 0px;
+}
+
+.session-form p {
+  font-size: 25px;
+  font-weight: lighter;
+  font-family: sans-serif;
 }
 
 .session-input {
-  margin-left: 10px;
-  height: 20px;
-  border-radius: 5px;
-  font-size: 15px;
+  width: inherit;
+  font-size: 20px;
+}
+
+.interests-container p {
+  display: flex;
+  justify-content: center;
+}
+
+.interests {
+  display: grid;
+  grid-template-columns: 48% 48%;
+  grid-column-gap: 4%;
+  grid-row-gap: 15px;
+}
+
+.session-checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.modal-nav-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .session-button {
   cursor: pointer;
-  border-radius: 10px;
-  padding: 10px;
-  background-color: pink;
+  background-color: #FF0B55;
   font-size: 15px;
   color: white;
-  border: 0px;
-  margin-bottom: 15px;
+  bottom: 15px 0px;
+  width: 50%;
+  height: 25px;
+  margin: 15px 0px;
 }
 
 .session-button:hover {
-  background-color: darken(pink, 10);
+  background-color: darken(#FF0B55, 15);
+}
+
+.navlink {
+  color: #FF0B55;
+  background-color: inherit;
+  border: 0px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.navlink:hover {
+  color: darken(#FF0B55, 15);
 }

@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import {
   searchGroups,
   fetchGroups,
@@ -13,7 +14,6 @@ const mapStateToProps = (state, ownProps) => ({
   categories: Object.keys(state.entities.categories)
     .map(id => state.entities.categories[id]),
   placeholder: ownProps.placeholder,
-  categoryId: ownProps.categoryId,
   pathname: ownProps.pathname
 });
 
@@ -24,7 +24,7 @@ const mapDispatchToProps = dispatch => ({
   clearGroupSearch: () => dispatch(clearGroupSearch())
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(GroupSearch);
+)(GroupSearch));
