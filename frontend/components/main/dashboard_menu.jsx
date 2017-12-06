@@ -39,8 +39,8 @@ class DashboardMenu extends React.Component {
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.changeForm = this.changeForm.bind(this);
-    this.renderModalNavOptions = this.renderModalNavOptions.bind(this);
+    // this.changeForm = this.changeForm.bind(this);
+    // this.renderModalNavOptions = this.renderModalNavOptions.bind(this);
     this.determine = this.determine.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
   }
