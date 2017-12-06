@@ -183,12 +183,13 @@ def get_event_url_extensions(script) #HERE $
 end
 
 def get_event_info(event_hash)
+  too_many = 0
   begin
     html = Nokogiri::HTML(open(event_hash['url']))
   rescue OpenURI::HTTPError => error
     puts error
     puts event_hash['url']
-    retry
+    too_many == 10 ? return event_hash : retry
   end
 
   event_hash['name'] = html.at_css('.pageHead-headline').content
@@ -284,6 +285,7 @@ Category.all.each do |category|
     group['events'].each do |event|
 
       event = get_event_info(event)
+      next unless event['name']
       host = members.rotate(rand(members.length)).shift
       attendees = []
       fraction_of_membership_size = rand(3) + 2
