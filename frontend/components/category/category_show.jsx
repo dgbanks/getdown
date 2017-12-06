@@ -5,7 +5,9 @@ import * as SplashUtil from '../../util/splash_util';
 class CategoryShow extends React.Component {
   constructor(props) {
     super(props);
+
     this.handleSubscriptionChange = this.handleSubscriptionChange.bind(this);
+    this.renderButtons = this.renderButtons.bind(this);
 
     this.colors = ['rgb(255, 255, 0)', 'rgb(255, 0, 255)', 'rgb(0, 255, 255)'];
     this.color = SplashUtil.randomColor();
@@ -51,11 +53,9 @@ class CategoryShow extends React.Component {
 
   handleSubscriptionChange(magicWord) {
     if (this.props.currentUser) {
-      if (magicWord === 'subscribeToCategory') {
-        console.log('SUBSCRIBING');
+      if (magicWord === 'subscribe') {
         this.props.subscribeToCategory(this.props.category.id);
       } else {
-        console.log('UNSUBSCRIBING');
         this.props.unsubscribeFromCategory(this.props.category.id);
       }
       window.location.reload();
@@ -69,7 +69,7 @@ class CategoryShow extends React.Component {
     if (this.props.category.isCurrentUserSubscriber) {
       return (
         <div className='category-actions page-actions'>
-          <button onClick={() => this.handleSubscriptionChange('unsubscribeFromCategory')}>
+          <button onClick={() => this.handleSubscriptionChange('unsubscribe')}>
             Not Interested
           </button>
           <h2>You and {`${category.subscriptionCount - 1} others are interested`}</h2>
@@ -78,7 +78,7 @@ class CategoryShow extends React.Component {
     } else {
       return (
         <div className='category-actions page-actions'>
-          <button onClick={() => this.handleSubscriptionChange('subscribeToCategory')}>
+          <button onClick={() => this.handleSubscriptionChange('subscribe')}>
             I'm Interested
           </button>
           <h2>{`${category.subscriptionCount} people are interested`}</h2>

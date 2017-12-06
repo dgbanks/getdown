@@ -43,7 +43,6 @@ const EventIndexItem = ({event, itemSize}) => {
     );
 
   } else {
-    // console.log('EventIndexItem.render: LARGE ITEMS');
     return (
       <div>
         <Link

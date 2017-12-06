@@ -11,11 +11,13 @@ class EventIndex extends React.Component {
     this.prevItemDate;
     this.state = {events: props.events};
 
-    this.handleChange = this.handleChange.bind(this);
+    this.resizeIndexItems = this.resizeIndexItems.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
+    this.renderCalendar = this.renderCalendar.bind(this);
+    this.renderItemDates = this.renderItemDates.bind(this);
   }
 
   componentDidMount() {
-    console.log('EventIndex.componentDidMount: this.props.events=', this.props.events);
     if (this.props.match.params.groupId) {
       this.props.fetchGroupEvents(this.props.match.params.groupId);
     } else if (this.props.match.params.categoryId) {
@@ -35,28 +37,11 @@ class EventIndex extends React.Component {
     }
   }
 
-  handleChange(date) {
-    console.log(date._d.toLocaleDateString());
-    // if (date instanceof moment) {
-    //   date = date._d;
-    // }
-    //
-    // this.selectedDate = date;
-    // let array = date.toLocaleDateString().split('/');
-    // let year = array.pop();
-    // array.unshift(year);
-    // this.calendarDate = array.join('-');
-    //
-    // let events = this.props.events;
-    // this.setState({events: events.filter(event => (event.date >= this.calendarDate))});
-  }
+  // handleChange(date) {
+  //   console.log(date._d.toLocaleDateString());
+  // }
 
   renderCalendar() {
-    // if (!this.selectedDate) {
-    //   this.handleChange(new Date);
-    // }
-
-
     if (!this.props.itemSize) {
       return (
         <div className='calendar-container'>
@@ -67,7 +52,6 @@ class EventIndex extends React.Component {
             inline
             dateFormat="LLL" />
         </div>
-
       );
     }
   }
@@ -98,10 +82,6 @@ class EventIndex extends React.Component {
         </div>
       );
     } else {
-
-      // console.log('EventIndex.render: this.state=',this.state);
-      // console.log('EventIndex.render: this.props=',this.props);
-
       return (
         <div className='full-page-event-index'>
           <div className={this.resizeIndexItems()}>
@@ -119,7 +99,6 @@ class EventIndex extends React.Component {
           {this.renderCalendar()}
         </div>
       );
-
     }
   }
 }

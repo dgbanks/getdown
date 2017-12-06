@@ -49,7 +49,6 @@ class SessionLinks extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log('log');
     this.setState({ modalIsOpen: newProps.modalIsOpen });
   }
 

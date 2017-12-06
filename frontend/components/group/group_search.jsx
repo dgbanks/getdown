@@ -10,16 +10,11 @@ class GroupSearch extends React.Component {
     this.update = this.update.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.getPlaceholder = this.getPlaceholder.bind(this);
-    // this.currentCategory = this.props.currentCategory;
-    // console.log(this.props.location, 'PROPS');
   }
 
   componentDidMount() {
-    // this.props.fetchGroups();
     this.props.clearGroupSearch();
     this.props.fetchCategories();
-    console.log('GroupSearch.componentDidMount: this.props=', this.props);
-    // setTimeout(() => this.props.history.createHref('/discover/search'), 3000);
   }
 
   getPlaceholder() {

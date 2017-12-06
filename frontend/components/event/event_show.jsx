@@ -6,6 +6,8 @@ class EventShow extends React.Component {
     super(props);
 
     this.handleAttendanceChange = this.handleAttendanceChange.bind(this);
+    this.renderAttendees = this.renderAttendees.bind(this);
+    this.renderUserRole = this.renderUserRole.bind(this);
     this.renderButtons = this.renderButtons.bind(this);
   }
 
@@ -76,7 +78,6 @@ class EventShow extends React.Component {
   }
 
   render() {
-    console.log(this.props.event);
     const event = this.props.event;
     if (!event) {
       return null;
@@ -84,10 +85,8 @@ class EventShow extends React.Component {
 
     return (
       <div className='event-page'>
-
         <div className='event-header'>
           <div className='header-content'>
-
             <div className='event-header-info'>
               <h2>{event.date}, {event.time}</h2>
               <h1>{event.name}</h1>
@@ -100,11 +99,9 @@ class EventShow extends React.Component {
                 </Link>
               </h3>
             </div>
-
             <div className='rsvp-info'>
               {this.renderButtons(event)}
             </div>
-
           </div>
         </div>
 
@@ -129,13 +126,9 @@ class EventShow extends React.Component {
                   <h2>{event.address}</h2>
                 </div>
             </div>
-
             {this.renderAttendees(event)}
-
           </div>
-
         </div>
-
       </div>
     );
   }

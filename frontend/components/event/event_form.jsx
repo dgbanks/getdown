@@ -24,34 +24,18 @@ class EventForm extends React.Component {
     this.parseDate = this.parseDate.bind(this);
   }
 
-  componentDidMount() {
-    // console.log('EventForm.componentDidMount, this.props.pathname.split('/').length=', this.props.pathname.split('/').length);
-    // this.setState({
-    //   group_id: parseInt(this.props.pathname.split('/').slice(-1)[0]),
-    //   host_id: this.props.currentUser.id
-    // });
-  }
-
   handleSubmit(event) {
     event.preventDefault;
-    console.log(this.state);
     this.props.createEvent(this.props.groupId, this.state);
   }
 
   update(field) {
     return e => {
-      // e.preventDefault();
       if (field === 'datetime') {
-        console.log(e);
-        console.log(e._d);
-        console.log(new Date(e._d.toDateString()));
-        console.log(e._d.toTimeString());
-
         this.selectedDate = e;
         this.setState({['date']: new Date(e._d.toDateString()) });
         this.setState({['time']: e._d.toTimeString() });
       } else {
-
         this.setState({[field]: e.target.value});
       }
     };

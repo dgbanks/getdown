@@ -25,7 +25,6 @@ class GroupForm extends React.Component {
   update(field) {
     return e => {
       e.preventDefault();
-      console.log(typeof(e.target.value));
       if (field === 'category_id') {
         this.setState({[field]: parseInt(e.target.value)});
       } else {

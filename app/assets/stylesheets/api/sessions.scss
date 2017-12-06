@@ -6,7 +6,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid yellow;
   font-family: sans-serif;
 }
 
@@ -14,7 +13,6 @@
   display:flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid blue;
   width: 100%;
 }
 
@@ -23,7 +21,6 @@
   font-size: 45px;
   font-weight: bold;
   color: #FF0B55;
-  border: 1px solid red;
 }
 
 .modal-type {
@@ -31,38 +28,30 @@
   font-size: 25px;
   font-weight: lighter;
   font-family: sans-serif;
-  border: 1px solid red;
 }
 
 .modal-errors {
-  border: 1px solid red;
   color: red;
   margin: 10px 0px;
 }
 
-
 .user-inputs {
   display: flex;
-  border: 5px solid orange;
   margin: 10px 0px;
   width: 800px;
   font-family: sans-serif;
-
 }
 
 .user-inputs > div {
-  border: 1px solid green;
   display: flex;
   flex-direction: column;
   width: 50%;
   padding: 5px;
 }
 
-//
 .session-label {
   display: flex;
   flex-direction: column;
-  border: 1px solid red;
   width: 95%;
   margin: 10px 0px;
 }
@@ -71,45 +60,28 @@
   font-size: 25px;
   font-weight: lighter;
   font-family: sans-serif;
-  // margin-left: 5%;
 }
 
 .session-input {
-  border: 1px solid red;
   width: inherit;
-  // height: 100%;
-  // width: 100%;
   font-size: 20px;
-  // padding-left: 5%;
 }
-//
-// .interests-container {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   width: 130%;
-//   border: 1px solid green;
-// }
-//
+
 .interests-container p {
-  // font-size: 20px;
-  // margin:10px 0px;
   display: flex;
   justify-content: center;
 }
-//
-//
+
 .interests {
   display: grid;
   grid-template-columns: 48% 48%;
   grid-column-gap: 4%;
   grid-row-gap: 15px;
 }
-//
+
 .session-checkbox {
   display: flex;
   align-items: center;
-  border: 1px solid yellow;
 }
 
 .modal-nav-options {

@@ -167,8 +167,6 @@ componentDidMount() {
   }
 
   render() {
-    // console.log('GroupShow.render: this.props.group=', this.props.group);
-    // console.log('GroupShow.render: this.state.group=', this.state.group);
     const group = this.props.group;
     if (!group) {
       return (

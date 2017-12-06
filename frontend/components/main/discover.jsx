@@ -9,20 +9,16 @@ class Discover extends React.Component {
 
   constructor(props) {
     super(props);
+    this.alternateHeader = this.alternateHeader.bind(this);
+    this.renderHeader = this.renderHeader.bind(this);
+    this.renderIndex = this.renderIndex.bind(this);
+    this.getPlaceholder = this.getPlaceholder.bind(this);
   }
 
   componentDidMount() {
-    console.log('Discover.componentDidMount: this.props.match.path=', this.props.match.path);
     if (this.props.match.params.categoryId) {
       this.props.fetchCategory(this.props.match.params.categoryId);
     }
-  }
-
-  componentWillReceiveProps(newProps) {
-    console.log('Discover.componentWillReceiveProps: newProps=', newProps);
-    // if (newProps.location.pathname.includes('search')) {
-    //
-    // }
   }
 
   alternateHeader(text) {
@@ -68,13 +64,10 @@ class Discover extends React.Component {
     }
 
     if (this.props.location.pathname.includes('events')) {
-      // console.log('TIME FOR SOME EVENTINDEXXXXXX');
       return (
         <EventIndexContainer categoryId={categoryId}/>
       );
     } else {
-      // console.log(this.props.location.pathname);
-      // console.log('GroupIndexContainer', categoryId);
       return (
         <GroupIndexContainer categoryId={categoryId}/>
       );
@@ -91,9 +84,6 @@ class Discover extends React.Component {
 
 
   render() {
-    // console.log(this.props.match.params.categoryId);
-    // console.log('render', this.categoryId);
-
     const categoryId = this.props.match.params.categoryId;
     const category = this.props.category;
     if (this.props.match.params.categoryId && category === undefined) {
@@ -102,7 +92,6 @@ class Discover extends React.Component {
       );
     }
 
-    // console.log(this.props.categories, 'discover');
     return (
       <div className='category-page'>
 
