@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-require "Nokogiri"
+require "nokogiri"
 require "open-uri"
 require "faker"
 
