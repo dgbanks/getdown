@@ -189,7 +189,8 @@ def get_event_info(event_hash)
   rescue OpenURI::HTTPError => error
     puts error
     puts event_hash['url']
-    too_many == 10 ? return event_hash : retry
+    too_many == 10 ? return event_hash : too_many += 1
+    retry
   end
 
   event_hash['name'] = html.at_css('.pageHead-headline').content
