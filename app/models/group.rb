@@ -1,12 +1,9 @@
 class Group < ApplicationRecord
 
   validates :name, :description, :location, :organizer_id, :category_id, presence: true
-  # validates :name, uniqueness: true
 
   after_initialize :fix_png
   after_save :ensure_organizer_membership, on: :create
-  # after_initialize :get_address
-  # after_initialize :geocode, :get_address
 
   has_many :membershps,
     primary_key: :id,
@@ -54,13 +51,3 @@ class Group < ApplicationRecord
   end
 
 end
-
-# def geocode
-#   geocode = Geocoder.coordinates(self.zip_code)
-#   self.latitude = geocode.first
-#   self.longitude = geocode.last
-# end
-
-# def get_address
-#   self.location = Geocoder.address(self.zip_code)
-# end
