@@ -14,73 +14,73 @@ require "faker"
 
 ### GET CATEGORIES ###
 
-# def get_meetup_categories(url)
-#   html = Nokogiri::HTML(open(url))
-#   categories_grid = html.at_css('.gridList').children
-#   categories = []
-#   categories_grid.children.each do |child|
-#     next if categories.length == 12
-#     hash = {}
-#     hash['name'] = child.content.strip unless child.content.strip == ''
-#     hash['url'] = child['href'] unless child['href'].nil?
-#     categories << hash unless hash == {}
-#   end
-#   return categories
-# end
-#
-# homepage = "https://www.meetup.com/"
-#
-# meetup_categories = get_meetup_categories(homepage)
+def get_meetup_categories(url)
+  html = Nokogiri::HTML(open(url))
+  categories_grid = html.at_css('.gridList').children
+  categories = []
+  categories_grid.children.each do |child|
+    next if categories.length == 12
+    hash = {}
+    hash['name'] = child.content.strip unless child.content.strip == ''
+    hash['url'] = child['href'] unless child['href'].nil?
+    categories << hash unless hash == {}
+  end
+  return categories
+end
+
+homepage = "https://www.meetup.com/"
+
+meetup_categories = get_meetup_categories(homepage)
 
 
 
 ### CREATE CATEGORIES ###
 
-# Category.destroy_all
-#
-# meetup_categories.each do |category|
-#   Category.create({
-#     name: category['name'],
-#     img_url: category['url']
-#     })
-# end
+Category.destroy_all
+
+meetup_categories.each do |category|
+  Category.create({
+    name: category['name'],
+    img_url: category['url']
+    })
+end
 
 
 
 ### CREATE 'FAKER' USERS ###
 
-# User.destroy_all
-# Subscription.destroy_all
-#
-# zip_codes = [94103, 94132, 94608, 94901, 94602, 94505]
-#
-# 100.times do
-#   first = Faker::Name.first_name
-#   last = Faker::Name.last_name
-#
-#   user = User.create({
-#     name: "#{first} #{last}",
-#     email: "#{first[0].downcase}.#{last.downcase}#{rand(100)}@email.com",
-#     password: "password",
-#     zip_code: zip_codes[rand(6)]
-#   })
-#
-#   ### CREATE SUBSCRIPTIONS ###
-#
-#   4.times do # every user gets 4 subscriptions
-#
-#     category = Category.all[rand(Category.all.length)] # choose random categories
-#
-#     unless user.interests.include?(category)
-#
-#       Subscription.create({
-#         user: user,
-#         category: category
-#       })
-#
-#     end
-#   end
-# end
+User.destroy_all
+Subscription.destroy_all
+
+zip_codes = [94103, 94132, 94608, 94901, 94602, 94505]
+
+100.times do
+  first = Faker::Name.first_name
+  last = Faker::Name.last_name
+
+  user = User.create({
+    name: "#{first} #{last}",
+    email: "#{first[0].downcase}.#{last.downcase}#{rand(100)}@email.com",
+    password: "password",
+    zip_code: zip_codes[rand(6)]
+  })
+
+  ### CREATE SUBSCRIPTIONS ###
+
+  4.times do # every user gets 4 subscriptions
+
+    category = Category.all[rand(Category.all.length)] # choose random categories
+
+    unless user.interests.include?(category)
+
+      Subscription.create({
+        user: user,
+        category: category
+      })
+
+    end
+  end
+end
 
 
 
@@ -232,8 +232,8 @@ end
 
 
 
-# Group.destroy_all
-# Membership.destroy_all
+Group.destroy_all
+Membership.destroy_all
 Event.destroy_all
 Rsvp.destroy_all
 
