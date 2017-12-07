@@ -1,4 +1,4 @@
-json.extract! category, :id, :name, :groups
+json.extract! category, :id, :name, :img_url, :groups
 
 json.isCurrentUserSubscriber current_user.interests.include?(category) if current_user && category
 

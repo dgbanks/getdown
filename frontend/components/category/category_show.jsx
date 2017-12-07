@@ -96,8 +96,12 @@ class CategoryShow extends React.Component {
     }
 
     return (
-      <div className='category-header'>
-        {this.threeStripes()}
+      <div
+        className='category-header'
+        style={{
+          backgroundImage: `url(${category.img_url})`,
+          backgroundSize: '100%'
+        }}>
         <div className='category-header-text'>
           <h1>{category.name}</h1>
           {this.renderButtons(category)}

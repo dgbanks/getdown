@@ -15,7 +15,11 @@ const CategoryIndexItem = ({category}) => {
 
         <div
           className='inner-div-wrapper category-item'
-          style={{backgroundColor: color}}>
+          style={{
+            backgroundImage: `url(${category.img_url})`,
+            backgroundSize: '100% 100%'
+          }}>
+
           <h2>{category.name}</h2>
         </div>
 
