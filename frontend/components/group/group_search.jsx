@@ -81,7 +81,7 @@ class GroupSearch extends React.Component {
           </div>
         </div>
 
-        <h1> near San Francisco </h1>
+        <h1> nearby </h1>
 
         <div className='search-options'>
           <div
